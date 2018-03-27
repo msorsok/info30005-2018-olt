@@ -1,4 +1,4 @@
-var database = require('./../models/db');
+var database = require('../models/db');
 
 const rootRoute = function rootRoute(req, res) {
     res.send('Welcome to my website!');

@@ -5,7 +5,7 @@ const rootRoute = function rootRoute(req, res) {
 };
 const comingSoonRoute = function(req, res) {
     res.render('views/comingSoon');
-});
+};
 const usersRoute = function userRoute(req, res) {
     var users = [];
     for (var i=0; i<database.length; i++){
@@ -22,5 +22,6 @@ const userRoute = function usersRoute(req, res){
 module.exports = {
     rootRoute: rootRoute,
     userRoute: userRoute,
-    usersRoute: usersRoute
+    usersRoute: usersRoute,
+    comingSoonRoute: comingSoonRoute
 };

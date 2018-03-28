@@ -4,7 +4,7 @@ const rootRoute = function rootRoute(req, res) {
     res.send('Welcome to my website!');
 };
 const comingSoonRoute = function(req, res) {
-    res.render('views/comingSoon');
+    res.render('comingSoon');
 };
 const usersRoute = function userRoute(req, res) {
     var users = [];

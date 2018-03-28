@@ -1,18 +1,26 @@
+@font-face {
+    font-family: "Lorano-ExtraLight";
+    src: url("css/fonts/Lorano-Extralight.ttf");
+}
+
 body {
-    background-image: url("https://images.unsplash.com/photo-1518623380242-d992d3c57b37?ixlib=rb-0.3.5&s=4640d25cfb7bcdecf12aa535bc7579cb&auto=format&fit=crop&w=700&q=80");
+    background-image: url("https://static.pexels.com/photos/747964/pexels-photo-747964.jpeg");
 
     height: 100%;
 
     /* Position and center the image to scale nicely on all screens */
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     position: relative;
 }
 
 div.hero-image {
     /* The image used */
+    /*
     background-image: url("https://images.unsplash.com/photo-1518623380242-d992d3c57b37?ixlib=rb-0.3.5&s=4640d25cfb7bcdecf12aa535bc7579cb&auto=format&fit=crop&w=700&q=80");
+     */
 
     /* Set a specific height */
     height: 50%;
@@ -25,21 +33,20 @@ div.hero-image {
 }
 
 div.comingsoon {
-    position: fixed;
-    top: 10%;
-    left: 35%;
-
-
+    font-family: "Lorano-ExtraLight", "Arial", "serif";
     color: white;
     text-align: center;
-    border: 10px solid white;
-    font-size: 200%
+    font-size: 300%;
+    margin-top: 20vh;
 }
 
 div.teammembers {
     color: white;
-    border:  10px solid white;
     text-align: center;
     font-size: 125%;
-    margin-top: 45%;
+    /* margin-top: 45%; */
+    /* position:  fixed; */
+    /* margin-left:  auto; */
+    /* margin-right:  auto; */
+    margin-top: 38vh;
 }

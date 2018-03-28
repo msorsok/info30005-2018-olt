@@ -3,7 +3,9 @@ var database = require('../models/db');
 const rootRoute = function rootRoute(req, res) {
     res.send('Welcome to my website!');
 };
-
+const comingSoonRoute = function(req, res) {
+    res.render('views/comingSoon');
+});
 const usersRoute = function userRoute(req, res) {
     var users = [];
     for (var i=0; i<database.length; i++){

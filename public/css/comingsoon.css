@@ -1,0 +1,45 @@
+body {
+    background-image: url("https://images.unsplash.com/photo-1518623380242-d992d3c57b37?ixlib=rb-0.3.5&s=4640d25cfb7bcdecf12aa535bc7579cb&auto=format&fit=crop&w=700&q=80");
+
+    height: 100%;
+
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+div.hero-image {
+    /* The image used */
+    background-image: url("https://images.unsplash.com/photo-1518623380242-d992d3c57b37?ixlib=rb-0.3.5&s=4640d25cfb7bcdecf12aa535bc7579cb&auto=format&fit=crop&w=700&q=80");
+
+    /* Set a specific height */
+    height: 50%;
+
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+div.comingsoon {
+    position: fixed;
+    top: 10%;
+    left: 35%;
+
+
+    color: white;
+    text-align: center;
+    border: 10px solid white;
+    font-size: 200%
+}
+
+div.teammembers {
+    color: white;
+    border:  10px solid white;
+    text-align: center;
+    font-size: 125%;
+    margin-top: 45%;
+}

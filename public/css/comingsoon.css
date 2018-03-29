@@ -1,6 +1,11 @@
-@font-face {
+/*@font-face {
     font-family: "Lorano-ExtraLight";
     src: url("css/fonts/Lorano-Extralight.ttf");
+
+}*/
+@font-face {
+    font-family: 'Montserrat', sans-serif;;
+    src: url("https://fonts.googleapis.com/css?family=Montserrat");
 }
 
 body {
@@ -33,20 +38,56 @@ div.hero-image {
 }
 
 div.comingsoon {
-    font-family: "Lorano-ExtraLight", "Arial", "serif";
+    /*font-family: Century Gothic, sans-serif;*/
+    /*font-family: "Lorano-ExtraLight", "Arial", "serif";*/
+    font-family: 'Montserrat', sans-serif;
     color: white;
     text-align: center;
     font-size: 300%;
     margin-top: 20vh;
+    text-shadow: #000 0px 0px 1px;
+
+
 }
 
 div.teammembers {
-    color: white;
-    text-align: center;
-    font-size: 125%;
+
+
+
     /* margin-top: 45%; */
     /* position:  fixed; */
     /* margin-left:  auto; */
     /* margin-right:  auto; */
-    margin-top: 30vh;
+
+}
+
+div.Mina {
+    color: white;
+    font-size: 125%;
+    margin-left: 20% ;
+    float:left;
+
+
+}
+div.Tarnvir{
+    color: white;
+    font-size: 125%;
+    float:left;
+
+    margin-left: 17%;
+}
+div.Rodger{
+    color: white;
+    font-size: 125%;
+
+
+    margin-left: 70%;
+    overflow: hidden;
+}
+
+div.Wrapper{
+    margin-top: 18%;
+    overflow: hidden;
+    text-shadow: #000 0px 0px 1px;
+    font-family: 'Montserrat', sans-serif;
 }

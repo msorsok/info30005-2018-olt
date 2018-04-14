@@ -5,6 +5,12 @@ const comingSoonRoute = function(req, res) {
 };
 
 
+const loginRoute = function(req, res) {
+    res.render('login');
+};
+
+
 module.exports = {
-    comingSoonRoute: comingSoonRoute
+    comingSoonRoute: comingSoonRoute,
+    loginRoute: loginRoute
 };

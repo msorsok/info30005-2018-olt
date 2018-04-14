@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'Montserrat', sans-serif;;
+    src: url("https://fonts.googleapis.com/css?family=Montserrat");
+}
+
+
+.page{
+    display:grid;
+    grid-template-columns: 11fr 9fr;
+    grid-template-rows: 4em auto;
+    grid-template-areas:
+            "logo login"
+            "description signup";
+}
+
+.logo{
+    grid-area: logo
+}
+
+.login{
+    grid-area: login
+}
+
+.description{
+    grid-area: description
+}
+
+.signup{
+    grid-area: signup
+}
+

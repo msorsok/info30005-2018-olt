@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Coming Soon</title>
     <link href = "css/login.css" rel = "stylesheet" type = "text/css">
+
 </head>
 
 <body>
@@ -12,12 +13,21 @@
         ONE LAST TIME
     </div>
     <div class = "login">
-        <form action="">
-            Email
-            <input type="text" name="email" value="example@email.com">
-            Password
-            <input type="text" name="password" value="**********">
-            <input type="submit" value="Submit">
+        <form id = "loginform" action="">
+            <div class = "loginEmail">
+                Email <br>
+                <input type="text" name="email" placeholder="example@email.com">
+            </div>
+            <div class = "loginPassword">
+                Password <br>
+                <input type="text" name="password" placeholder="**********">
+
+                <a href=""> Forgotten Password? </a>
+            </div>
+            <div class = "loginButton">
+                <br>
+                <input id = loginButton type="submit" value="Login">
+            </div>
         </form>
     </div>
     <div class="description">
@@ -25,13 +35,18 @@
     </div>
     <div class = "signup">
         <form action="">
-            First Name
-            <br>
-            <input type="text" name="First Name" value="John">
-            <br>
-            Last Name
-            <br>
-            <input type="text" name="Last Name" value="Smith">
+            <div class = "signupName">
+                <div class = "firstName">
+                    First Name
+                    <br>
+                    <input type="text" name="First Name" value="John">
+                </div>
+                <div class = "lastName">
+                    Last Name
+                    <br>
+                    <input type="text" name="Last Name" value="Smith">
+                </div>
+            </div>
             <br>
             Date of Birth
             <br>
@@ -49,10 +64,11 @@
             <br>
             <input type="text" name="re-enter password" value="**********">
             <br>
+            <br>
             <input type="submit" value="Submit">
         </form>
     </div>
 </div>
-
+<script src="js/login.js"></script>
 </body>
 </html>

@@ -9,8 +9,13 @@ const loginRoute = function(req, res) {
     res.render('login');
 };
 
+const blankRoute = function(req, res) {
+    res.render('page_template');
+};
+
 
 module.exports = {
     comingSoonRoute: comingSoonRoute,
-    loginRoute: loginRoute
+    loginRoute: loginRoute,
+    blankRoute: blankRoute
 };

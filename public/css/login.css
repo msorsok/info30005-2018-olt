@@ -4,28 +4,121 @@
 }
 
 
-.page{
-    display:grid;
-    grid-template-columns: 11fr 9fr;
-    grid-template-rows: 4em auto;
-    grid-template-areas:
-            "logo login"
-            "description signup";
+@media screen and (min-width: 992px) {
+    .page {
+        position: relative;
+        display: grid;
+        grid-template-columns: auto 30em;
+        grid-template-rows: 4em auto;
+        grid-template-areas: "logo login" "description signup";
+        grid-column-gap: 4em;
+        grid-row-gap: 1em;
+        padding: 0% 15%;
+    }
+
+    #loginform{
+        display:grid;
+        grid-template-columns: 2fr 2fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "loginEmail loginPassword loginButton";
+    }
+    .loginEmail {
+        grid-area: loginEmail;
+
+    }
+
+    .loginPassword {
+        grid-area: loginPassword;
+    }
+
+    .loginButton{
+        grid-area: loginButton;
+
+    }
+    .signup{
+        grid-area: signup;
+    }
 }
 
-.logo{
-    grid-area: logo
-}
+@media screen and (max-width: 992px) {
+    .page{
+        position:relative;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 5fr auto auto;
+        grid-template-areas:
+                "logo"
+                "description"
+                "login"
+                "signup";
+        padding: 0% 5%;
+    }
 
-.login{
-    grid-area: login
-}
+    #loginform{
+        position:relative;
+        width: 100%;
+        height: 100%;
+    }
 
-.description{
-    grid-area: description
-}
+    .loginEmail, .loginPassword, .loginButton {
+        margin: 3% 0;
+    }
 
-.signup{
-    grid-area: signup
-}
 
+    .logo{
+        grid-area: logo;
+
+    }
+
+    .login{
+        grid-area: login;
+    }
+
+
+    .description{
+        grid-area: description;
+    }
+
+    .signup{
+        grid-area: signup;
+        visibility: hidden;
+
+    }
+
+
+    .signup input[type=text]{
+        width: 80%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .signup input[type=date]{
+        width: 80%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .login input[type=text]{
+        width: 95%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .signupName {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr ;
+        grid-template-areas: "firstName lastName";
+    }
+
+    .firstName{
+        grid-area: firstName;
+    }
+
+    .lastName{
+        grid-area: lastName;
+    }
+}

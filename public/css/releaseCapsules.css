@@ -1,0 +1,115 @@
+@font-face {
+    font-family: 'Cv-regular';
+    src: url("fonts/CharlevoixPro-Regular.woff");
+}
+
+
+@media screen and (min-width: 992px) {
+    body {
+        margin: 0 0;
+    }
+
+    /* template css */
+    .page {
+        display: grid;
+        grid-template-columns: 0.5fr 7fr 0.8fr 0.8fr 0.5fr;
+        grid-template-rows: 3em auto;
+        grid-template-areas: "header header header header header" ". content sidebar sidebar sidebar";
+        grid-column-gap: 1em;
+        grid-row-gap: 1em;
+        height: 100vh;
+        //background-color: #9a67a2;
+    }
+
+    .header{
+        grid-area: header;
+        display: grid;
+        grid-template-columns: 0.5fr 7fr 0.8fr 0.8fr 0.5fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "logo logo user user user";
+        color: #ffffff;
+    }
+
+    .logo{
+        font-family: 'Cv-regular';
+        grid-area: logo;
+        align-self: center;
+        background-color: #9a67a2;
+        padding: 1em 7em;
+    }
+
+    .user{
+        grid-area: user;
+        display: grid;
+        grid-template-columns: 0.7fr 3fr;
+        grid-template-rows: 0.01em 0.5em;
+        grid-template-areas: ". ." "image name";
+        grid-column-gap: 0.5em;
+        align-self: center;
+        background-color: #9a67a2;
+    }
+    .userImage{
+        grid-area: image;
+    }
+
+    .userName{
+        font-family: 'Cv-regular';
+        grid-area: name;
+    }
+
+
+    .sidebar{
+        font-family: 'Cv-regular';
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(13, 1fr) auto;
+        grid-row-gap: 0.5em;
+        grid-area: sidebar;
+        color: #000!important;
+        background-color: #ffffff;
+        align-self: center;
+    }
+
+    .sidebar *{
+        padding-left: 0.5em;
+        background-color: #f1f1f1;
+
+    }
+    /*
+    .sidebar *:hover{
+        background-color:red;
+    }*/
+
+    .Account{
+        grid-column: 1/2;
+        grid-row: 1/2;
+
+    }
+    /*
+    .sidebar *:hover{
+        background-color: #888888;
+    }
+    */
+
+    .ReleaseCapsules{
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+
+    .CreateCapsule{
+        grid-column: 1/2;
+        grid-row: 3/4;
+    }
+
+
+
+    /* page specific css */
+
+    .content{
+         grid-area: content;
+     }
+}
+
+@media screen and (max-width: 992px) {
+
+}

@@ -12,9 +12,9 @@
     /* template css */
     .page {
         display: grid;
-        grid-template-columns: 0.5fr 7fr 0.8fr 0.8fr 0.5fr;
+        grid-template-columns: 0.5fr 7fr 0.8fr 0.8fr 0.5fr 1em;
         grid-template-rows: 3em auto;
-        grid-template-areas: "header header header header header" ". content sidebar sidebar sidebar";
+        grid-template-areas: "header header header header header header" ". content sidebar sidebar sidebar .";
         grid-column-gap: 1em;
         grid-row-gap: 1em;
         height: 100vh;

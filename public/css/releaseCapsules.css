@@ -42,8 +42,8 @@
         grid-area: user;
         display: grid;
         grid-template-columns: 0.7fr 3fr;
-        grid-template-rows: 0.01em 0.5em;
-        grid-template-areas: ". ." "image name";
+        grid-template-rows: 1fr;
+        grid-template-areas: "image name";
         grid-column-gap: 0.5em;
         align-self: center;
         background-color: #9a67a2;

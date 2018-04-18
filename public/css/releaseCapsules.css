@@ -31,7 +31,6 @@
         grid-template-columns: 8fr 2em 3.1fr 2em;
         grid-template-rows: 1fr;
         grid-template-areas: "logo logo user user";
-        background-color: #9A67A2;
         color: #fff;
         align-items: center;
         font-family: 'CV-regular';
@@ -39,7 +38,7 @@
 
     .logo{
         grid-area: logo;
-        background-color: #9a67a2;
+        background-color: #56327d;
         display: grid;
         grid-template-columns: 1fr 1em 0.4fr 6.6fr;
         grid-template-rows: 1fr;
@@ -64,7 +63,7 @@
         grid-template-areas: "image name";
         grid-column-gap: 0.5em;
         align-items: center;
-        background-color: #9a67a2;
+        background-color: #56327d;
     }
     .userImage{
         grid-area: image;
@@ -83,13 +82,13 @@
         grid-row-gap: 0.5em;
         grid-area: sidebar;
         color: #fff;
-        background-color: #fff;
         align-items: center;
     }
 
     .sidebar *{
         padding-left: 0.5em;
-        background-color: #c38ecb;
+        background-color: #957ead;
+
 
     }
 
@@ -141,7 +140,7 @@
         padding: 12px 20px;
         margin: 8px 0;
         box-sizing: border-box;
-        background-color: #c38ecb;
+        background-color: #957ead;
         border-style: none;
         color: #fff;
         font-family: "CV-regular";

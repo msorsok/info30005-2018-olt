@@ -8,11 +8,11 @@ function mouseOver(el) {
     return  function() {
         console.log(el.childNodes);
         console.log(Node.ELEMENT_NODE);
-        el.style.backgroundColor = "#9A67A2";
+        el.style.backgroundColor = "#56327d";
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {
                 console.log(el.childNodes[i]);
-                el.childNodes[i].style.backgroundColor = "#9A67A2";
+                el.childNodes[i].style.backgroundColor = "#56327d";
             }
         }
     }
@@ -22,11 +22,11 @@ function mouseOut(el) {
     return  function() {
         console.log(el.childNodes);
         console.log(Node.ELEMENT_NODE);
-        el.style.backgroundColor = "#c38ecb";
+        el.style.backgroundColor = "#957ead";
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {
                 console.log(el.childNodes[i]);
-                el.childNodes[i].style.backgroundColor = "#c38ecb";
+                el.childNodes[i].style.backgroundColor = "#957ead";
             }
         }
     }

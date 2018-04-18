@@ -11,7 +11,15 @@
 <div class="page">
     <div class = "header">
         <div class="logo">
-            ONE LAST TIME
+            <div class = "logoImage">
+                <img src="res/logoImage.png" alt="logo image" height="30" width="30">
+            </div>
+            <div class = "logoText">
+                <p>
+                    One Last Time
+                </p>
+            </div>
+
         </div>
         <div class = "user">
             <div class = "userImage">
@@ -47,7 +55,7 @@
         </div>
         <form id = "releaseForm" action="">
             <div class = "deceasedName">
-                Name <br>
+                <p>Name</p>
                 <select name="placeholder">
                     <option value="John">John</option>
                     <option value="Lucy">Lucy</option>
@@ -55,12 +63,12 @@
                     <option value="Alice">Alice</option>
                 </select>
             </div>
-            <div class = "dob">
-                Date of Birth
-                <br>
-                <input type="date" name="DOB">
+            <div class = "datePassing">
+                <p>Date of Passing</p>
+                <input type="date" name="datePassing">
             </div>
-                <input id = submit type="submit" value="Submit">
+            <div class = submitRelease>
+                <input type="submit" value="Submit">
             </div>
         </form>
     </div>

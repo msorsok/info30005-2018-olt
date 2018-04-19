@@ -17,11 +17,14 @@
     }
 
     .logo{
+        text-align: center;
         grid-area: logo;
+        background-color:#9A67A2 ;
     }
 
     .user{
         grid-area: user;
+        background-color: #9A67A2;
     }
 
     .content{
@@ -88,7 +91,7 @@
         grid-template-rows: repeat(13, 1fr) auto;
         grid-area: sidebar;
         color: #000!important;
-        background-color: #f1f1f1!important;
+        background-color: #D9B5E3!important;
     }
     .sidebar a{
         display: inline-block;

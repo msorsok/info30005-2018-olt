@@ -19,11 +19,19 @@ const accountRoute = function(req, res) {
 const newMessageRoute = function(req, res) {
     res.render('newmessage');
 };
-
+const userWelcomeRoute = function (req,res) {
+    res.render('user_welcome')
+}
+const userInboxRoute = function (req,res) {
+    res.render('user_inbox')
+}
 
 module.exports = {
     comingSoonRoute: comingSoonRoute,
     loginRoute: loginRoute,
+    blankRoute: blankRoute,
+    userWelcomeRoute: userWelcomeRoute,
+    userInboxRoute:userInboxRoute,
     blankRoute: blankRoute,
     accountRoute: accountRoute,
     newMessageRoute: newMessageRoute

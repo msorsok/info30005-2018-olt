@@ -19,7 +19,7 @@
     <div class = "sidebar">
         <div class = "Account">
             <a href="">
-            Account
+            <p>Account</p>
             </a>
         </div>
         <div class = "ReleaseCapsules">
@@ -34,31 +34,33 @@
         </div>
     </div>
     <div class="content">
-        <form id ="editNameForm"action="">
+        <form id ="editNameForm" action="">
             <div class="editFirstName">
-            First Name
+                <p>First Name</p>
             <br>
-                <input type="text" name="firstName" placeholder="John">
+                <input type="text" id="firstName" placeholder="John">
 
             </div>
 
             <div class="editLastName">
-            Last Name
+                <p> Last Name</p>
             <br>
-                <input type="text" name="lastName" placeholder="Smith">
+                <input type="text" id="lastName" placeholder="Smith">
 
             </div>
+
             <div class="editDOB">
-            Date of Birth
+                <p>Date of Birth</p>
             <br>
-                <input type="date" name="dob">
+                <input type="date" id="dob">
             </div>
+
             <br>
         </form>
 
 
         <div class ="editProfilePicture">
-            Upload New Photo
+            <p>Upload New Photo</p>
             <br>
             <div class="currentPhoto">
                 <img src="smiley.jpg" alt="User Profile Picture" height="42" width="42">
@@ -71,10 +73,10 @@
 
 
         <form id= "editNominationForm" action="">
-            First Nominee
+            <p>First Nominee</p>
             <input type="text" name="firstNominee" placeholder="Jim Smith">
             <br>
-            Second Nominee
+            <p>Second Nominee</p>
             <input type="text" name="secondNominee" placeholder="Jane Smith">
             <br>
         </form>
@@ -83,6 +85,8 @@
         </div>
     </div>
 </div>
-
+<!--
+<script type="text/javascript" src="../public/js/account.js"></script>
+-->
 </body>
 </html>

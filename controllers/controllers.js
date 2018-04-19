@@ -37,7 +37,7 @@ module.exports = {
     userInboxRoute:userInboxRoute,
     blankRoute: blankRoute,
     accountRoute: accountRoute,
-    newMessageRoute: newMessageRoute
+    newMessageRoute: newMessageRoute,
     blankRoute: blankRoute,
     releaseRoute: releaseRoute
 };

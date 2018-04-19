@@ -13,13 +13,13 @@ const blankRoute = function(req, res) {
     res.render('page_template');
 };
 
-const releaseRoute = function(req, res) {
-    res.render("releaseCapsules");
+const unlockRoute = function(req, res) {
+    res.render("unlock");
 };
 
 module.exports = {
     comingSoonRoute: comingSoonRoute,
     loginRoute: loginRoute,
     blankRoute: blankRoute,
-    releaseRoute: releaseRoute
+    unlockRoute: unlockRoute
 };

@@ -7,5 +7,5 @@ var router = express.Router();
 router.get('/', controller.comingSoonRoute);
 router.get("/login", controller.loginRoute );
 router.get("/blank", controller.blankRoute);
-router.get("/release", controller.releaseRoute);
+router.get("/unlock", controller.unlockRoute);
 module.exports = router;

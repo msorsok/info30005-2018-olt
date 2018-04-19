@@ -46,6 +46,3 @@ for (var i = 0 ; i < els.length; i++) {
 console.log(document.getElementsByClassName("Account")[0]);
 
 
-
-
-//document.getElementsByClassName("Account").addEventListener("mouseout", mouseOut);

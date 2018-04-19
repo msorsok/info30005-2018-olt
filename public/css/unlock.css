@@ -115,6 +115,7 @@
 
     .content{
         font-family: "Unna-regular";
+        font-size: 200%;
         grid-area: content;
         box-sizing: border-box;
         padding: 0 1em;
@@ -122,33 +123,45 @@
 
     .message{
         display: block;
-        padding: 1em;
+        padding: 1em 0;
 
     }
 
     #releaseForm{
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 2fr 2fr 1fr;
         grid-template-rows: 1fr 1fr;
-        grid-row-gap: 2em;
         grid-column-gap: 1em;
-        grid-template-areas: "deceasedName datePassing" "submitRelease submitRelease";
+        grid-template-areas: ". deceasedName datePassing ." ". submitRelease submitRelease. ";
         align-items: center;
         background-color: #f1f1f1;
-        padding: 1em;
+        font-size: 70%;
 
     }
 
     #releaseForm input, #releaseForm select{
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
+        padding: 1em;
         box-sizing: border-box;
         background-color: #957ead;
         border-style: none;
         color: #fff;
         font-family: "CV-regular";
+        font-size: 100%;
+        width: 100%;
     }
+
+    #releaseForm input[type = submit]{
+        width: 100%;
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 100%;
+        box-sizing: border-box;
+        padding: 1em 2em;
+    }
+
 
     .deceasedName{
         grid-area: deceasedName;

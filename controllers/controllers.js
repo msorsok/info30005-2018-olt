@@ -25,6 +25,9 @@ const userWelcomeRoute = function (req,res) {
 const userInboxRoute = function (req,res) {
     res.render('user_inbox')
 }
+const releaseRoute = function(req, res) {
+    res.render("releaseCapsules");
+};
 
 module.exports = {
     comingSoonRoute: comingSoonRoute,
@@ -35,4 +38,6 @@ module.exports = {
     blankRoute: blankRoute,
     accountRoute: accountRoute,
     newMessageRoute: newMessageRoute
+    blankRoute: blankRoute,
+    releaseRoute: releaseRoute
 };

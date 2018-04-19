@@ -38,6 +38,7 @@
     .signup{
         grid-area: signup;
     }
+
 }
 
 @media screen and (max-width: 992px) {

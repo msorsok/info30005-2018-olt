@@ -23,6 +23,7 @@
         grid-column-gap: 1em;
         grid-row-gap: 2em;
         height: 100vh;
+        background-color: #f1f1f1;
     }
 
     .header{
@@ -121,7 +122,8 @@
 
     .message{
         display: block;
-        padding-bottom: 2em;
+        padding: 1em;
+
     }
 
     #releaseForm{
@@ -132,6 +134,8 @@
         grid-column-gap: 1em;
         grid-template-areas: "deceasedName datePassing" "submitRelease submitRelease";
         align-items: center;
+        background-color: #f1f1f1;
+        padding: 1em;
 
     }
 

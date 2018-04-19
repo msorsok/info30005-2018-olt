@@ -16,6 +16,10 @@ const accountRoute = function(req, res) {
     res.render('account');
 };
 
+const account2Route = function(req, res) {
+    res.render('account2');
+};
+
 const unlockRoute = function(req, res) {
     res.render("unlock");
 };
@@ -23,10 +27,13 @@ const createRoute = function(req, res) {
     res.render('newmessage');
 };
 const userWelcomeRoute = function (req,res) {
-    res.render('user_welcome')
+    res.render('user_welcome');
 };
 const userInboxRoute = function (req,res) {
-    res.render('user_inbox')
+    res.render('user_inbox');
+};
+const viewRoute = function (req,res) {
+    res.render('view_capsule');
 };
 
 module.exports = {
@@ -38,6 +45,8 @@ module.exports = {
     userInboxRoute:userInboxRoute,
     blankRoute: blankRoute,
     accountRoute: accountRoute,
+    account2Route: account2Route,
     createRoute: createRoute,
-    blankRoute: blankRoute
+    blankRoute: blankRoute,
+    viewRoute: viewRoute
 };

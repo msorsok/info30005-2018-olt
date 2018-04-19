@@ -1,9 +1,3 @@
-/*function mouseOver() {
-    document.getElementsByClassName("Account").children.style.backgroundColor = "#888888";
-    console.log("worked");
-}
-*/
-
 function mouseOver(el) {
     return  function() {
         el.style.backgroundColor = "#56327d";
@@ -18,7 +12,6 @@ function mouseOver(el) {
 
 function mouseOut(el) {
     return  function() {
-        console.log("hello");
         el.style.backgroundColor = "#957ead";
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {

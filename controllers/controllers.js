@@ -11,6 +11,13 @@ const loginRoute = function(req, res) {
 
 const blankRoute = function(req, res) {
     res.render('page_template');
+}
+const accountRoute = function(req, res) {
+    res.render('account');
+};
+
+const newMessageRoute = function(req, res) {
+    res.render('newmessage');
 };
 const userWelcomeRoute = function (req,res) {
     res.render('user_welcome')
@@ -18,11 +25,19 @@ const userWelcomeRoute = function (req,res) {
 const userInboxRoute = function (req,res) {
     res.render('user_inbox')
 }
+const releaseRoute = function(req, res) {
+    res.render("releaseCapsules");
+};
 
 module.exports = {
     comingSoonRoute: comingSoonRoute,
     loginRoute: loginRoute,
     blankRoute: blankRoute,
     userWelcomeRoute: userWelcomeRoute,
-    userInboxRoute:userInboxRoute
+    userInboxRoute:userInboxRoute,
+    blankRoute: blankRoute,
+    accountRoute: accountRoute,
+    newMessageRoute: newMessageRoute,
+    blankRoute: blankRoute,
+    releaseRoute: releaseRoute
 };

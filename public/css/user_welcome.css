@@ -1,6 +1,8 @@
 @font-face {
+
     font-family: 'Cv-regular';
     src: url("fonts/CharlevoixPro-Regular.woff");
+
 }
 
 
@@ -18,8 +20,9 @@
         grid-template-areas: "header header header header header header" ". content sidebar sidebar sidebar .";
         grid-column-gap: 1em;
         grid-row-gap: 1em;
+
         height: 100vh;
-    //background-color: #9a67a2;
+        background-color: #9a67a2;
     }
 
     .header{
@@ -29,6 +32,10 @@
         grid-template-rows: 1fr;
         grid-template-areas: "logo logo user user user";
         color: #ffffff;
+
+        padding: 0%;
+        height: 81vh;
+
     }
 
     .logo{
@@ -102,7 +109,60 @@
         grid-column: 1/2;
         grid-row: 3/4;
     }
-    /* page specific css */
+
+    .welcomeTitle{
+        font-size: 300%;
+    }
+    .standardText{
+        font-size: large;
+        padding-top: 2%;
+        padding-bottom: 0.5%;
+    }
+    .button{
+        grid-area: viewButton;
+        display: inline-block;
+        line-height: 1em;
+        padding: 0 1em;
+        background: #9A67A2;
+        border-radius: 0.125em;
+        background-clip: padding-box;
+
+        margin-right: 1em;
+        border: 1px solid #EEE !important;
+        background: none;
+        color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        font-size: 150%;
+    }
+    a {
+        color:white;
+        text-decoration: none;
+    }
+
+}
+
+@media screen and (max-width: 992px) {
+    .page {
+        display: grid;
+        grid-template-columns: 7fr 1fr 1fr;
+        grid-template-rows: 4em auto;
+        grid-template-areas: "logo user user" "content content sidebar";
+        grid-column-gap: 1em;
+        grid-row-gap: 1em;
+        padding: 0 10%;
+        height: 81vh;
+    }
+
+    .logo{
+        grid-area: logo;
+    }
+
+    .user{
+        grid-area: user;
+    }
+
+
     .content{
         grid-area: content;
         text-align: center;

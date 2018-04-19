@@ -1,58 +1,97 @@
 @font-face {
-    font-family: 'Montserrat', sans-serif;;
-    src: url("https://fonts.googleapis.com/css?family=Montserrat");
+    font-family: 'Cv-regular';
+    src: url("fonts/CharlevoixPro-Regular.woff");
 }
 
 
+
 @media screen and (min-width: 992px) {
+    body {
+        margin: 0 0;
+    }
+
+    /* template css */
     .page {
         display: grid;
-        grid-template-columns: 7fr 1fr 1fr;
-        grid-template-rows: 4em auto;
-        grid-template-areas: "logo user user" "content content sidebar";
-
+        grid-template-columns: 0.5fr 7fr 0.8fr 0.8fr 0.5fr 1em;
+        grid-template-rows: 3em auto;
+        grid-template-areas: "header header header header header header" ". content sidebar sidebar sidebar .";
+        grid-column-gap: 1em;
         grid-row-gap: 1em;
-        padding: 0 %;
-        height: 81vh;
+        height: 100vh;
+    //background-color: #9a67a2;
+    }
+
+    .header{
+        grid-area: header;
+        display: grid;
+        grid-template-columns: 0.5fr 7fr 0.8fr 0.8fr 0.5fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "logo logo user user user";
+        color: #ffffff;
     }
 
     .logo{
-        text-align: center;
+        font-family: 'Cv-regular';
         grid-area: logo;
-        background-color:#9A67A2 ;
+        align-self: center;
+        background-color: #9a67a2;
+        padding: 1em 7em;
     }
 
     .user{
         grid-area: user;
-        background-color: #9A67A2;
+        display: grid;
+        grid-template-columns: 0.7fr 3fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "image name";
+        grid-column-gap: 0.5em;
+        align-self: center;
+        background-color: #9a67a2;
+    }
+    .userImage{
+        grid-area: image;
     }
 
-    .content{
-        grid-area: content;
-        text-align: center;
+    .userName{
+        font-family: 'Cv-regular';
+        grid-area: name;
     }
+
 
     .sidebar{
+        font-family: 'Cv-regular';
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(13, 1fr) auto;
+        grid-row-gap: 0.5em;
         grid-area: sidebar;
         color: #000!important;
-        background-color: #D9B5E3!important;
+        background-color: #ffffff;
+        align-self: center;
     }
-    .sidebar a{
-        display: inline-block;
-        text-align: center;
+
+    .sidebar *{
+        padding-left: 0.5em;
+        background-color: #f1f1f1;
+
     }
+    /*
+    .sidebar *:hover{
+        background-color:red;
+    }*/
 
     .Account{
         grid-column: 1/2;
         grid-row: 1/2;
-    }
 
-    .Account:hover{
-        background-color: #d498e0;
     }
+    /*
+    .sidebar *:hover{
+        background-color: #888888;
+    }
+    */
+
 
     .ReleaseCapsules{
         grid-column: 1/2;
@@ -63,6 +102,11 @@
         grid-column: 1/2;
         grid-row: 3/4;
     }
+    /* page specific css */
+    .content{
+        grid-area: content;
+        text-align: center;
+    }
     .welcomeTitle{
         font-size: 300%;
     }
@@ -71,6 +115,19 @@
         padding-top: 2%;
         padding-bottom: 0.5%;
     }
+    .button {
+        background-color: #9A67A2;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    /*
     .button{
         grid-area: viewButton;
         display: inline-block;
@@ -82,103 +139,16 @@
 
         margin-right: 1em;
         border: 1px solid #EEE !important;
-        background: none
+        background: none;
         color: #fff;
         border-radius: 5px;
         padding: 20px;
         font-size: 150%;
-    }
-    a {
-        color:white;
-        text-decoration: none;
-    }
+    }*/
+
 
 }
 
 @media screen and (max-width: 992px) {
-    .page {
-        display: grid;
-        grid-template-columns: 7fr 1fr 1fr;
-        grid-template-rows: 4em auto;
-        grid-template-areas: "logo user user" "content content sidebar";
-        grid-column-gap: 1em;
-        grid-row-gap: 1em;
-        padding: 0 10%;
-        height: 81vh;
-    }
-
-    .logo{
-        grid-area: logo;
-    }
-
-    .user{
-        grid-area: user;
-    }
-
-    .content{
-        grid-area: content;
-        text-align: center;
-    }
-
-    .sidebar{
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(13, 1fr) auto;
-        grid-area: sidebar;
-        color: #000!important;
-        background-color: #f1f1f1!important;
-    }
-    .sidebar a{
-        display: inline-block;
-        text-align: center;
-    }
-
-    .Account{
-        grid-column: 1/2;
-        grid-row: 1/2;
-    }
-
-    .Account:hover{
-        background-color: #d498e0;
-    }
-
-    .ReleaseCapsules{
-        grid-column: 1/2;
-        grid-row: 2/3;
-    }
-
-    .CreateCapsule{
-        grid-column: 1/2;
-        grid-row: 3/4;
-    }
-    .welcomeTitle{
-        font-size: 300%;
-    }
-    .standardText{
-        font-size: large;
-        padding-top: 2%;
-        padding-bottom: 0.5%;
-    }
-    .button{
-        grid-area: viewButton;
-        display: inline-block;
-        line-height: 1em;
-        padding: 0 1em;
-        background: #9A67A2;
-        border-radius: 0.125em;
-        background-clip: padding-box;
-
-        margin-right: 1em;
-        border: 1px solid #EEE !important;
-        background: none
-        color: #fff;
-        border-radius: 5px;
-        padding: 20px;
-        font-size: 150%;
-    }
-    a {
-        color:white;
-        text-decoration: none;
-    }
 
 }

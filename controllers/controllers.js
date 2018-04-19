@@ -12,10 +12,17 @@ const loginRoute = function(req, res) {
 const blankRoute = function(req, res) {
     res.render('page_template');
 };
-
+const userWelcomeRoute = function (req,res) {
+    res.render('user_welcome')
+}
+const userInboxRoute = function (req,res) {
+    res.render('user_inbox')
+}
 
 module.exports = {
     comingSoonRoute: comingSoonRoute,
     loginRoute: loginRoute,
-    blankRoute: blankRoute
+    blankRoute: blankRoute,
+    userWelcomeRoute: userWelcomeRoute,
+    userInboxRoute:userInboxRoute
 };

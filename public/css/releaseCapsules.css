@@ -92,18 +92,18 @@
 
     }
 
-    .Account{
+    .account{
         grid-column: 1/2;
         grid-row: 1/2;
 
     }
 
-    .ReleaseCapsules{
+    .unlock{
         grid-column: 1/2;
         grid-row: 2/3;
     }
 
-    .CreateCapsule{
+    .create{
         grid-column: 1/2;
         grid-row: 3/4;
     }

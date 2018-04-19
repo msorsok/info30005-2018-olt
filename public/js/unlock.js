@@ -43,6 +43,4 @@ for (var i = 0 ; i < els.length; i++) {
     els[i].addEventListener("click", mouseClick(els[i].className));
 }
 
-console.log(document.getElementsByClassName("Account")[0]);
-
 

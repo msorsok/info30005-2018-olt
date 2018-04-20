@@ -26,51 +26,64 @@
 
     #releaseForm{
         display: grid;
-        grid-template-columns: 1fr 2fr 2fr 1fr;
+        grid-template-columns: 0.1fr 2fr 0.5fr 2fr 0.1fr;
         grid-template-rows: 1fr 1fr;
-        grid-column-gap: 1em;
-        grid-template-areas: ". deceasedName datePassing ." ". submitRelease submitRelease. ";
+        grid-row-gap: 1em;
+        grid-template-areas: ". deceasedName . datePassing ." ". submitRelease submitRelease submitRelease . ";
         align-items: center;
         background-color: #f1f1f1;
         font-size: 70%;
 
     }
 
-    #releaseForm input, #releaseForm select{
+    #releaseForm select{
+        padding: 1.1em 1em;
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 70%;
+    }
+
+    #releaseForm input{
         padding: 1em;
         box-sizing: border-box;
         background-color: #957ead;
         border-style: none;
         color: #fff;
         font-family: "CV-regular";
-        font-size: 100%;
-        width: 100%;
+        font-size: 70%;
     }
 
     #releaseForm input[type = submit]{
-        width: 100%;
         box-sizing: border-box;
-        background-color: #957ead;
+        background-color: #56327d;
         border-style: none;
         color: #fff;
         font-family: "CV-regular";
         font-size: 100%;
         box-sizing: border-box;
-        padding: 1em 2em;
+        padding: 0.5em 1em;
+        cursor: pointer;
     }
 
 
     .deceasedName{
         grid-area: deceasedName;
+        justify-self: right;
     }
 
     .datePassing{
         grid-area: datePassing;
+        justify-self: left;
+
     }
 
     .submitRelease{
         grid-area: submitRelease;
         justify-self: center;
+
     }
 
 

@@ -28,12 +28,20 @@ function mouseClick(link) {
     }
 }
 
-
+// making all sidebar buttons clickable
 var els = document.getElementsByClassName("sidebar")[0].children;
 for (var i = 0 ; i < els.length; i++) {
     els[i].addEventListener("mouseover", mouseOver(els[i]));
     els[i].addEventListener("mouseout", mouseOut(els[i]));
     els[i].addEventListener("click", mouseClick(els[i].className));
 }
+
+document.getElementsByClassName("logout")[0].addEventListener("click", mouseClick("/login"));
+
+var els = document.getElementsByClassName("logo")[0].children;
+for (var i = 0 ; i < els.length; i++) {
+    els[i].addEventListener("click", mouseClick("/userInbox"));
+}
+
 
 

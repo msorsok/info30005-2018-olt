@@ -1,58 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Coming Soon</title>
-    <link href = "css/view_capsule.css" rel = "stylesheet" type = "text/css">
-
-</head>
-
-<body>
-<div class="page">
-    <div class = "header">
-        <div class="logo">
-
-            <div class = "logoImage">
-                <img src="res/logoImage.png" alt="logo image" height="30" width="30">
-            </div>
-            <div class = "logoText">
-                <p>
-                    One Last Time
-                </p>
-            </div>
-
-
-        </div>
-        <div class = "user">
-            <div class = "userImage">
-                <img src="res/user.png" alt="User Profile Picture" height="40" width="40">
-            </div>
-            <div class = "userName">
-                <p>
-                    Farah Khan
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class = "sidebar">
-        <div class = "account">
-            <p>Account</p>
-        </div>
-        <div class = "unlock">
-            <p>
-                Release Time Capsules
-            </p>
-        </div>
-        <div class = "create">
-            <p>
-                Create New Time Capsule
-            </p>
-        </div>
-    </div>
-    <div class="content">
+<%- include("page_template_start");%>
         <div class = "preamble">
-            <p>Alice saved the following time capsule for you to view:</p>
+            <p>Alice saved the following time capsule for you to view</p>
         </div>
         <div class = "note">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -63,9 +11,9 @@
                 &#10094;
 
             </div>
-            <div class = "photo">
-                <video controls>
-                    <source src="movie.mp4" type="video/mp4">
+            <div class = "video">
+                <video controls width = "100%">
+                    <source src="res/movie.mp4" type="video/mp4" >
                 </video>
             </div>
             <div class = "nextVideo">
@@ -85,9 +33,4 @@
                 &#10095;
             </div>
         </div>
-
-    </div>
-</div>
-<script src = "js/page_template.js"></script>
-</body>
-</html>
+<%- include("page_template_end");%>

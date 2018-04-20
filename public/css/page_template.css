@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'CV-regular';
+    src: url("fonts/CharlevoixPro-Regular.woff");
+}
+
+@font-face {
+    font-family: 'Unna-regular';
+    src: url("fonts/Unna-Regular.ttf");
+}
+
+
+@media screen and (min-width: 992px) {
+    body {
+        margin: 0;
+        background-color: #f1f1f1;
+    }
+
+    /* template css */
+    .page {
+        position:relative;
+        display: grid;
+        grid-template-columns: 1fr 7fr 0.8fr 0.8fr 0.5fr 1fr;
+        grid-template-rows: 3em auto;
+        grid-template-areas: "header header header header header header" ". content sidebar sidebar sidebar .";
+        grid-column-gap: 1em;
+        grid-row-gap: 2em;
+        height: 100%;
+    }
+
+    .header{
+        grid-area: header;
+        display: grid;
+        grid-template-columns: 8fr 2em 3.1fr 2em;
+        grid-template-rows: 1fr;
+        grid-template-areas: "logo logo user user";
+        color: #fff;
+        align-items: center;
+        font-family: 'CV-regular';
+    }
+
+    .logo{
+        grid-area: logo;
+        background-color: #56327d;
+        display: grid;
+        grid-template-columns: 1fr 1em 0.4fr 1.2fr 5.4fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: ". . logoImage logoText .";
+        align-items: center;
+    }
+
+    .logoImage{
+        grid-area: logoImage;
+        cursor: pointer;
+
+    }
+
+    .logoText{
+        grid-area: logoText;
+        cursor: pointer;
+    }
+
+    .user{
+        grid-area: user;
+        display: grid;
+        grid-template-columns: 0.5fr 1.2fr 0.4fr 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "userImage userName logout .";
+        grid-column-gap: 0.5em;
+        align-items: center;
+        background-color: #56327d;
+    }
+    .userImage{
+        grid-area: userImage;
+    }
+
+    .userName{
+        grid-area: userName;
+    }
+
+    .logout{
+        grid-area: logout;
+        padding-left: 1em;
+        cursor: pointer;
+    }
+
+    .sidebar{
+        font-family: 'CV-regular';
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, fit-content(100%));
+        grid-template-areas: "account" "unlock" "create";
+        grid-row-gap: 0.5em;
+        grid-area: sidebar;
+        color: #fff;
+        align-items: center;
+    }
+
+    .sidebar *{
+        padding-left: 0.5em;
+        background-color: #957ead;
+        cursor: pointer;
+    }
+
+    .account{
+        grid-area: account;
+
+    }
+
+    .unlock{
+        grid-area: unlock;
+    }
+
+    .create{
+        grid-area: create;
+
+    }
+}
+
+@media screen and (max-width: 992px) {
+
+}

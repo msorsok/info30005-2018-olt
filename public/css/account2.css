@@ -154,6 +154,8 @@
         grid-column: 2/3;
     }
 
+
+
     #editNominationForm {
         display: grid;
         grid-area: editNominees;

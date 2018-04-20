@@ -12,10 +12,57 @@
 @media screen and (min-width: 992px) {
     .content{
         grid-area: content;
+        display: grid;
+        grid-auto-columns: 1fr;
+        grid-template-rows: 1fr 2fr 1fr 2fr;
+        grid-template-areas:"inboxHeaderText" "inbox" "sentHeaderText" "sent";
+        grid-row-gap: 0.5em;
 
     }
+    .inboxHeaderText{
+        font-family: 'CV-regular';
+        color: #56327d;
+    }
+    .inbox{
+        background-color: white;
+        font-family: 'CV-regular';
+    }
+    .HeaderBox{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 2em auto;
+        cursor: pointer;
+        border-color: #56327d;
+        border-style: solid;
+        color: white;
+        background-color: #56327d;
+    }
 
+    .inboxEmail{
+        display: grid;
 
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 2em auto;
+
+        cursor: pointer;
+        border-color: #56327d;
+    }
+    .sentHeaderText{
+        font-family: 'CV-regular';
+        color: #56327d;
+    }
+    .sent{
+        background-color: white;
+        font-family: 'CV-regular';
+    }
+    .sentEmail{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 2em auto;
+
+        cursor: pointer;
+        border-color: #56327d;
+    }
 
 }
 

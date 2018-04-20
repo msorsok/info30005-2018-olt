@@ -16,13 +16,14 @@
 
     /* template css */
     .page {
+        position:relative;
         display: grid;
         grid-template-columns: 1fr 7fr 0.8fr 0.8fr 0.5fr 1fr;
         grid-template-rows: 3em auto;
         grid-template-areas: "header header header header header header" ". content sidebar sidebar sidebar .";
         grid-column-gap: 1em;
         grid-row-gap: 2em;
-        height: 100vh;
+        height: 100%;
         background-color: #f1f1f1;
     }
 
@@ -79,7 +80,8 @@
         font-family: 'CV-regular';
         display: grid;
         grid-template-columns: 1fr;
-        grid-template-rows: repeat(13, 1fr) auto;
+        grid-template-rows: repeat(3, fit-content(100%));
+        grid-template-areas: "account" "unlock" "create";
         grid-row-gap: 0.5em;
         grid-area: sidebar;
         color: #fff;
@@ -94,19 +96,17 @@
     }
 
     .account{
-        grid-column: 1/2;
-        grid-row: 1/2;
+        grid-area: account;
 
     }
 
     .unlock{
-        grid-column: 1/2;
-        grid-row: 2/3;
+        grid-area: unlock;
     }
 
     .create{
-        grid-column: 1/2;
-        grid-row: 3/4;
+        grid-area: create;
+
     }
 
 
@@ -115,17 +115,22 @@
 
     .content{
         display: grid;
-        grid-template-columns: 1fr 5fr 1fr;
-        grid-template-rows: repeat(5, fit-content(100%));
-        grid-template-areas: "preamble preamble preamble" ". note ." ". videos ." ". photos ." ". files .";
+        grid-template-columns: 0.5fr 0.5fr 6fr 0.5fr 0.5fr;
+        grid-template-rows: auto auto auto auto auto;
+        grid-row-gap: 3em;
+        grid-template-areas: ". . preamble . ." ". . note . ." ". videoGallery videoGallery videoGallery ."
+        ". photoGallery photoGallery photoGallery ." ". files files files .";
         font-family: "Unna-regular";
         font-size: 120%;
         grid-area: content;
         box-sizing: border-box;
         padding: 0 1em;
      }
+
     .preamble{
         grid-area: preamble;
+        text-align: center;
+
     }
     .note{
         grid-area: note;
@@ -135,33 +140,58 @@
         background-color: #957ead;
         padding: 1em;
         box-sizing: border-box;
-        margin: 0;
+        margin: -2em 0 0 0;
+    }
+
+    .videoGallery{
+        grid-area: videoGallery;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 0.5fr 6fr 0.5fr;
+        grid-template-areas: "prevVideo video nextVideo";
+        align-items: center;
+        justify-items: center;
+
+    }
+
+    .video{
+        grid-area: video;
+        box-sizing: border-box;
+    }
+
+    .prevVideo{
+        grid-area: prevVideo;
+        color: #56327d;
+
+    }
+    .nextVideo{
+        grid-area: nextVideo;
+        color: #56327d;
+
     }
 
     .photoGallery{
-        grid-area: photos;
+        grid-area: photoGallery;
         box-sizing: border-box;
-        padding: 1em;
         display: grid;
         grid-template-rows: 1fr;
-        grid-template-columns: 1fr;
-        grid-template-areas: "photos";
+        grid-template-columns: 0.5fr 6fr 0.5fr;
+        grid-template-areas: "prevPhoto photo nextPhoto";
         align-items: center;
+        justify-items: center;
 
     }
     .photo{
         grid-area: photo;
-        justify-self: center;
     }
 
     .prevPhoto{
-        grid-area: photo;
-        justify-self: left;
+        grid-area: prevPhoto;
 
     }
     .nextPhoto{
-        grid-area: photo;
-        justify-self: right;
+        grid-area: nextPhoto;
 
     }
 

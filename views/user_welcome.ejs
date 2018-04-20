@@ -1,67 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Coming Soon</title>
-    <link href = "css/user_welcome.css" rel = "stylesheet" type = "text/css">
+<%- include("page_template_start");%>
 
-</head>
+<div class="welcomeTitle">Welcome Farah,</div>
+<div class="standardText">would you like to create a new Time Capsule?</div>
+<div  class="createNewTimeCapsuleButton button">Create New Message </div>
+<br>
+<div class="standardText">or would you like to unlock a Time Capsule?</div>
+<div class="unlockTimeCapsule button"> Unlock Time Capsule</div>
 
-<body>
-<div class="page">
-    <div class = "header">
-        <div class="logo">
-
-            <div class = "logoImage">
-                <img src="res/logoImage.png" alt="logo image" height="30" width="30">
-            </div>
-            <div class = "logoText">
-                <p>
-                    One Last Time
-                </p>
-            </div>
-
-
-        </div>
-        <div class = "user">
-            <div class = "userImage">
-                <img src="res/user.png" alt="User Profile Picture" height="40" width="40">
-            </div>
-            <div class = "userName">
-                <p>
-                    Farah Khan
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class = "sidebar">
-        <div class = "account">
-            <p>Account</p>
-        </div>
-        <div class = "unlock">
-            <p>
-                Release Time Capsules
-            </p>
-        </div>
-        <div class = "create">
-            <p>
-                Create New Time Capsule
-            </p>
-        </div>
-    </div>
-    <div class="content">
-
-        <div class="welcomeTitle">Welcome Farah,</div>
-        <div class="standardText">would you like to create a new Time Capsule?</div>
-        <div  class="createNewTimeCapsuleButton button">Create New Message </div>
-        <br>
-        <div class="standardText">or would you like to unlock a Time Capsule?</div>
-        <div class="unlockTimeCapsule button"> Unlock Time Capsule</div>
-
-
-    </div>
-</div>
-<script src = "js/page_template.js"></script>
-</body>
-</html>
+<%- include("page_template_end");%>

@@ -4,7 +4,7 @@ function mouseOver(el) {
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {
                 console.log(el.childNodes[i]);
-                el.childNodes[i].style.backgroundColor = "#56327d";
+                el.childNodes[i].style.backgroundColor = "#aaa";
             }
         }
     }
@@ -16,7 +16,7 @@ function mouseOut(el) {
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {
                 console.log(el.childNodes[i]);
-                el.childNodes[i].style.backgroundColor = "#957ead";
+                el.childNodes[i].style.backgroundColor = "#fff";
             }
         }
     }
@@ -29,12 +29,20 @@ function mouseClick(link) {
 }
 
 
-var els = document.getElementsByClassName("sidebar")[0].children;
-for (var i = 0 ; i < els.length; i++) {
-    els[i].addEventListener("mouseover", mouseOver(els[i]));
-    els[i].addEventListener("mouseout", mouseOut(els[i]));
-    els[i].addEventListener("click", mouseClick(els[i].className));
+
+var inbox = document.getElementsByClassName("inboxAllEmails")[0].children;
+
+for (var i = 0 ; i < inbox.length; i++) {
+    inbox[i].addEventListener("mouseover", mouseOver(inbox[i]));
+    inbox[i].addEventListener("mouseout", mouseOut(inbox[i]));
+    inbox[i].addEventListener("click", mouseClick(inbox[i].className));
+
 }
 
+var sentMail = document.getElementsByClassName("allSentEmails")[0].children;
+for (var i = 0 ; i < sentMail.length; i++) {
+    sentMail[i].addEventListener("mouseover", mouseOver(sentMail[i]));
+    sentMail[i].addEventListener("mouseout", mouseOut(sentMail[i]));
+    sentMail[i].addEventListener("click", mouseClick(sentMail[i].className));
 
-
+}

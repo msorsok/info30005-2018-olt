@@ -52,19 +52,23 @@
 
     }
 
-    .video{
+    .videoGallery video{
         grid-area: video;
         box-sizing: border-box;
+        display: none;
     }
 
     .prevVideo{
         grid-area: prevVideo;
         color: #56327d;
+        cursor: pointer;
 
     }
+
     .nextVideo{
         grid-area: nextVideo;
         color: #56327d;
+        cursor: pointer;
 
     }
 
@@ -81,14 +85,19 @@
 
     .photo{
         grid-area: photo;
+
     }
 
     .prevPhoto{
         grid-area: prevPhoto;
+        color: #56327d;
+        cursor: pointer;
 
     }
     .nextPhoto{
         grid-area: nextPhoto;
+        color: #56327d;
+        cursor: pointer;
 
     }
 

@@ -9,45 +9,57 @@
 
 <body>
 <div class="page">
-    <div class="logo">
-        ONE LAST TIME
-    </div>
-    <div class = "user">
-        <img src="smiley.jpg" alt="User Profile Picture" height="42" width="42">
-        &ltFirst Name&gt
+    <div class = "header">
+        <div class="logo">
+            <div class = "logoImage">
+                <img src="res/logoImage.png" alt="logo image" height="30" width="30">
+            </div>
+            <div class = "logoText">
+                <p>
+                    One Last Time
+                </p>
+            </div>
+
+        </div>
+        <div class = "user">
+            <div class = "userImage">
+                <img src="res/user.png" alt="User Profile Picture" height="40" width="40">
+            </div>
+            <div class = "userName">
+                <p>
+                    Farah Khan
+                </p>
+            </div>
+        </div>
     </div>
 
     <div class = "sidebar">
-        <div class = "Account">
-            <a href="">
-                Account
-            </a>
+        <div class = "account">
+            <p>Account</p>
         </div>
-        <div class = "ReleaseCapsules">
-            <a href="">
+        <div class = "unlock">
+            <p>
                 Release Time Capsules
-            </a>
+            </p>
         </div>
-        <div class = "CreateCapsule">
-            <a href="">
+        <div class = "create">
+            <p>
                 Create New Time Capsule
-            </a>
+            </p>
         </div>
     </div>
     <div class="content">
         <div class="new_message">
             <div class="recipients">
                 <form action="" id="messageRecipients">
-                    Recipients <br>
+                    <p>Recipients</p>
                     <input type="text" placeholder="These people will receive your message">
-                    <br>
                     <input type="submit" value="Submit">
                 </form>
-            <br>
             </div>
 
             <div class="attachments">
-                Add Files
+                <p>Add Files</p>
                 <form action="" id="messageAttachments">
 
                     <input type="file" name="attachments" multiple>
@@ -57,12 +69,11 @@
             <br>
 
             <div class="note">
-                Write a note (Optional)
+                <p>Write a note (Optional)</p>
                 <form action="" id="notesubmission">
-                    <textarea name="nameTextArea" form="noteSubmission" rows="10">Enter text here...</textarea>
+                    <textarea name="nameTextArea" form="noteSubmission" rows="10" placeholder="Enter your note here..."></textarea>
                 </form>
                 <input type="submit" value="Submit">
-                <br>
             </div>
 
             <div class="sendOptions">
@@ -81,5 +92,6 @@
 
     </div>
 </div>
+<script src = "js/page_template.js"></script>
 </body>
 </html>

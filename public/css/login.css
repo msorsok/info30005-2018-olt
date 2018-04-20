@@ -70,6 +70,7 @@
     .userLoginButton{
         font-family: 'CV-regular';
         grid-area: userLoginButton;
+
     }
 
     .forgotPassword{
@@ -77,7 +78,17 @@
         grid-area: forgotPassword;
     }
 
-
+    #loginForm input[type = submit]{
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 100%;
+        box-sizing: border-box;
+        padding: 0.5em 1em;
+        cursor: pointer;
+    }
 
 
 
@@ -106,6 +117,17 @@
     .description{
         padding-right: 3.05%;
         grid-area: description;
+    }
+    #signupForm input[type = submit]{
+        box-sizing: border-box;
+        background-color: #56327d;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 100%;
+        box-sizing: border-box;
+        padding: 0.5em 1em;
+        cursor: pointer;
     }
 }
 

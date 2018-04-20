@@ -10,7 +10,6 @@
 
 
 @media screen and (min-width: 992px) {
-    /* page specific css */
     .content{
         display: grid;
         grid-template-columns: 0.5fr 0.5fr 6fr 0.5fr 0.5fr;

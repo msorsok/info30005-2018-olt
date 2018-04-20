@@ -5,38 +5,111 @@
 
 
 @media screen and (min-width: 992px) {
+    body{
+        margin: 0;
+        background-color: #f1f1f1;
+    }
     .page {
         position: relative;
         display: grid;
-        grid-template-columns: auto 30em;
-        grid-template-rows: 4em auto;
-        grid-template-areas: "logo login" "description signup";
-        grid-column-gap: 4em;
-        grid-row-gap: 1em;
-        padding: 0% 15%;
+        grid-template-columns: 1fr 7fr 0.8fr 0.8fr 0.5fr 1fr;
+        grid-template-rows: 3em auto;
+        grid-template-areas: "header header header header header header" " . description signup signup signup .";
+        grid-column-gap: 1em;
+        grid-row-gap: 2em;
+        height: 100%;
     }
-
-    #loginform{
-        display:grid;
-        grid-template-columns: 2fr 2fr 1fr;
+    .header{
+        grid-area: header;
+        display: grid;
+        grid-template-columns: 6fr 2em 5.1fr 2em;
         grid-template-rows: 1fr;
-        grid-template-areas: "loginEmail loginPassword loginButton";
+        grid-template-areas: "logo login login login";
+        color: #fff;
+        align-items: center;
+        font-family: 'CV-regular';
+
     }
-    .loginEmail {
-        grid-area: loginEmail;
+    .logo{
+        grid-area: logo;
+        background-color: #56327d;
+        display: grid;
+        grid-template-columns: 1fr 1em 0.4fr 1.2fr 3.4fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: ". . logoImage logoText .";
+        align-items: center;
+    }
+    .logoImage{
+        grid-area: logoImage;
+        cursor: pointer;
+
+    }
+    .logoText{
+        grid-area: logoText;
+        cursor: pointer;
+    }
+
+    .login{
+        background-color: #56327d;
+        grid-area: login;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 1fr;
+        grid-template-areas: "loginEmailT loginEmailF loginPasswordT loginPasswordF loginButton forgotPassword";
+        align-items: center;
+        background-color: #56327d;
+    }
+
+
+
+    .loginEmailT {
+        grid-area: loginEmailT;
 
     }
 
-    .loginPassword {
-        grid-area: loginPassword;
+    .loginEmailF {
+        grid-area: loginEmailF;
+
+    }
+
+    .loginPasswordT {
+        grid-area: loginPasswordT;
+    }
+
+    .loginPasswordF {
+        grid-area: loginPasswordF;
     }
 
     .loginButton{
         grid-area: loginButton;
+        padding-left: 1em;
+        cursor: pointer;
 
     }
+    .forgotPassword{
+        grid-area: forgotPassword;
+    }
+
+
+    /* Header ends here */
+
+
     .signup{
+        font-family: 'CV-regular';
+        display: grid;
+        grid-template-columns: 1fr;
         grid-area: signup;
+        grid-row-gap: 0.5em;
+        color: #fff;
+        align-items: center;
+        grid-template-rows: repeat(13, fit-content(100%));
+        grid-template-areas: "account" "unlock" "create";
+    }
+
+    .signup *{
+
+        background-color: #957ead;
+        cursor: pointer;
     }
 
 }

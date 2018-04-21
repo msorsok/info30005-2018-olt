@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Montserrat', sans-serif;;
-    src: url("https://fonts.googleapis.com/css?family=Montserrat");
+    font-family: 'CV-regular';
+    src: url("fonts/CharlevoixPro-Regular.woff");
 }
 
 
@@ -12,27 +12,26 @@
     .page {
         position: relative;
         display: grid;
-        grid-template-columns: 1fr 7fr 0.8fr 0.8fr 0.5fr 1fr;
+        grid-template-columns: 1fr 5.5fr 2fr 1fr 1fr 1fr;
         grid-template-rows: 3em auto;
         grid-template-areas: "header header header header header header" " . description signup signup signup .";
-        grid-column-gap: 1em;
+        font-family: 'CV-regular';
         grid-row-gap: 2em;
         height: 100%;
     }
     .header{
         grid-area: header;
         display: grid;
-        grid-template-columns: 6fr 2em 5.1fr 2em;
+        grid-template-columns: 6fr 5.5fr;
         grid-template-rows: 1fr;
         grid-template-areas: "logo login login login";
         color: #fff;
         align-items: center;
         font-family: 'CV-regular';
-
+        background-color: #56327d;
     }
     .logo{
         grid-area: logo;
-        background-color: #56327d;
         display: grid;
         grid-template-columns: 1fr 1em 0.4fr 1.2fr 3.4fr;
         grid-template-rows: 1fr;
@@ -49,46 +48,48 @@
         cursor: pointer;
     }
 
-    .login{
-        background-color: #56327d;
+    .loginSection{
+
         grid-area: login;
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: 1fr;
-        grid-template-areas: "loginEmailT loginEmailF loginPasswordT loginPasswordF loginButton forgotPassword";
+        grid-template-columns:2fr 2fr 0.75fr 0.75fr;
+
+        grid-template-areas: "addEmail addPassword userLoginButton forgotPassword";
         align-items: center;
-        background-color: #56327d;
-    }
-
-
-
-    .loginEmailT {
-        grid-area: loginEmailT;
 
     }
+    .addEmail{
+        font-family: 'CV-regular';
+        grid-area: addEmail;
+    }
+    .addPassword{
+        font-family: 'CV-regular';
+        grid-area: addPassword;
+    }
 
-    .loginEmailF {
-        grid-area: loginEmailF;
+    .userLoginButton{
+        font-family: 'CV-regular';
+        grid-area: userLoginButton;
 
     }
 
-    .loginPasswordT {
-        grid-area: loginPasswordT;
-    }
-
-    .loginPasswordF {
-        grid-area: loginPasswordF;
-    }
-
-    .loginButton{
-        grid-area: loginButton;
-        padding-left: 1em;
-        cursor: pointer;
-
-    }
     .forgotPassword{
+        font-family: 'CV-regular';
         grid-area: forgotPassword;
     }
+
+    #loginForm input[type = submit]{
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 100%;
+        box-sizing: border-box;
+        padding: 0.5em 1em;
+        cursor: pointer;
+    }
+
 
 
     /* Header ends here */
@@ -104,15 +105,43 @@
         align-items: center;
         grid-template-rows: repeat(13, fit-content(100%));
         grid-template-areas: "account" "unlock" "create";
+        background-color: #957ead;
+        padding-left: 10%;
     }
 
     .signup *{
 
-        background-color: #957ead;
+
         cursor: pointer;
     }
-
+    .description{
+        padding-right: 3.05%;
+        grid-area: description;
+    }
+    #signupForm input[type = submit]{
+        box-sizing: border-box;
+        background-color: #56327d;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 100%;
+        box-sizing: border-box;
+        padding: 0.5em 1em;
+        cursor: pointer;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 992px) {
     .page{

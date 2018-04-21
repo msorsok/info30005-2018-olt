@@ -14,4 +14,5 @@ router.get("/userWelcome", controller.userWelcomeRoute);
 router.get("/userInbox",controller.userInboxRoute);
 router.get("/account2", controller.account2Route);
 router.get("/view", controller.viewRoute);
+
 module.exports = router;

@@ -121,6 +121,13 @@
         box-sizing: border-box;
         padding: 0 1em;
 
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: 2fr 1fr 2fr;
+        grid-template-areas:
+                "pageContent ."
+                "pageContent ."
+                "pageContent .";
+
     }
     .changeYourDetails {
         display: block;
@@ -130,47 +137,31 @@
     }
 
     #editNameForm {
-        margin: 0 1em;
+        margin: 1em 1em;
         display: grid;
+        grid-area: pageContent;
     }
-
-
-    #editNameForm p{
-        font-size:175%;
-    }
-
-    #editNameForm input[type=text]{
-        padding: 1em;
+    input[type=submit] {
+        padding: 0.5em 1em;
         box-sizing: border-box;
         background-color: #957ead;
         border-style: none;
         color: #fff;
         font-family: "CV-regular";
         font-size: 100%;
-        width: 60%;
-    }
-
-    #editNominationForm input[type=text]{
-        padding: 1em;
-        box-sizing: border-box;
-        background-color: #957ead;
-        border-style: none;
-        color: #fff;
-        font-family: "CV-regular";
-        font-size: 100%;
-        width: 60%;
-    }
-
-    input[type = submit]{
         width: 25%;
+        margin-top: 2em;
+    }
+
+    input[type=text]{
+        padding: 1em;
         box-sizing: border-box;
         background-color: #957ead;
         border-style: none;
         color: #fff;
         font-family: "CV-regular";
         font-size: 100%;
-        box-sizing: border-box;
-        padding: 1em 2em;
+        width: 50%;
     }
 
 
@@ -195,13 +186,11 @@
     .editProfilePicture {
         padding: 1em;
         display: grid;
+        grid-area: pageContent;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: auto;
-        grid-template-areas: "currentPhoto selectPhoto space";
-    }
-
-    .editProfilePicture p{
-        font-size: 175%;
+        grid-template-areas: "currentPhoto selectPhoto .";
+        margin: 1em 1em;
     }
     .currentPhoto{
         padding: 1em;
@@ -218,11 +207,11 @@
 
     #editNominationForm {
         display: grid;
-        grid-area: editNominees;
         margin: 1em 1em;
+        grid-area: pageContent;
     }
 
-    #editNominationForm p{
+    #editNominationForm p, .editProfilePicture p, #editNameForm p{
         font-size: 175%;
     }
 

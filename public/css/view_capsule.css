@@ -43,13 +43,27 @@
     }
     .note{
         grid-area: note;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "text";
+    }
+
+    .note img{
+        grid-area: text;
+        justify-self: left;
+        align-self: end;
     }
 
     .note p{
+        grid-area: text;
+        width: 99%;
         background-color: #957ead;
         padding: 1em;
         box-sizing: border-box;
         margin: -2em 0 0 0;
+        border-radius: 1em;
+        justify-self: right;
     }
 
     .videoGallery{

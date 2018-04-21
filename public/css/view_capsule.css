@@ -1,11 +1,23 @@
 @font-face {
-    font-family: 'CV-regular';
+    font-family: 'Charlevoix Pro';
     src: url("fonts/CharlevoixPro-Regular.woff");
 }
 
 @font-face {
-    font-family: 'Unna-regular';
+    font-family: 'Charlevoix Pro';
+    src: url("fonts/CharlevoixPro-Bold.woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Unna';
     src: url("fonts/Unna-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Unna';
+    src: url("fonts/Unna-Bold.ttf");
+    font-weight: bold;
 }
 
 
@@ -15,9 +27,9 @@
         grid-template-columns: 0.5fr 0.5fr 6fr 0.5fr 0.5fr;
         grid-template-rows: auto auto auto auto auto;
         grid-row-gap: 3em;
-        grid-template-areas: ". . preamble . ." ". . note . ." ". videoGallery videoGallery videoGallery ."
-        ". photoGallery photoGallery photoGallery ." ". files files files .";
-        font-family: "Unna-regular";
+        grid-template-areas: ". . preamble . ." ". . note . ." "videoGallery videoGallery videoGallery videoGallery videoGallery"
+        "photoGallery photoGallery photoGallery photoGallery photoGallery" ". files files files .";
+        font-family: "Unna";
         font-size: 140%;
         grid-area: content;
         box-sizing: border-box;
@@ -45,26 +57,34 @@
         box-sizing: border-box;
         display: grid;
         grid-template-rows: 1fr;
-        grid-template-columns: 0.5fr 6fr 0.5fr;
-        grid-template-areas: "prevVideo video nextVideo";
+        grid-template-columns: 0.9fr 0.1fr 6fr 0.1fr 0.9fr;
+        grid-template-areas: "prevVideo . video . nextVideo";
         align-items: center;
         justify-items: center;
 
     }
 
-    .video{
+    .videoGallery .video{
         grid-area: video;
         box-sizing: border-box;
+        display: none;
     }
 
     .prevVideo{
         grid-area: prevVideo;
-        color: #56327d;
+        color: #957ead;
+        font-family: "Charlevoix Pro";
+        font-weight: bold;
+        font-size: 200%;
 
     }
+
     .nextVideo{
         grid-area: nextVideo;
-        color: #56327d;
+        color: #957ead;
+        font-family: "Charlevoix Pro";
+        font-weight: bold;
+        font-size: 200%;
 
     }
 
@@ -73,23 +93,35 @@
         box-sizing: border-box;
         display: grid;
         grid-template-rows: 1fr;
-        grid-template-columns: 0.5fr 6fr 0.5fr;
-        grid-template-areas: "prevPhoto photo nextPhoto";
+        grid-template-columns: 0.9fr 0.1fr 6fr 0.1fr 0.9fr;
+        grid-template-areas: "prevPhoto . photo . nextPhoto";
         align-items: center;
         justify-items: center;
+        font-family: "Charlevoix Pro";
+        font-weight: bold;
     }
 
     .photo{
         grid-area: photo;
+        box-sizing: border-box;
+        display: none;
     }
 
     .prevPhoto{
         grid-area: prevPhoto;
+        color: #957ead;
+        font-family: "Charlevoix Pro";
+        font-weight: bold;
+        font-size: 200%;
+
 
     }
     .nextPhoto{
         grid-area: nextPhoto;
-
+        color: #957ead;
+        font-family: "Charlevoix Pro";
+        font-weight: bold;
+        font-size: 200%;
     }
 
 }

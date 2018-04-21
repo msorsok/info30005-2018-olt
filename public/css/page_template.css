@@ -1,11 +1,23 @@
 @font-face {
-    font-family: 'CV-regular';
+    font-family: 'Charlevoix Pro';
     src: url("fonts/CharlevoixPro-Regular.woff");
 }
 
 @font-face {
-    font-family: 'Unna-regular';
+    font-family: 'Charlevoix Pro';
+    src: url("fonts/CharlevoixPro-Bold.woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Unna';
     src: url("fonts/Unna-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Unna';
+    src: url("fonts/Unna-Bold.ttf");
+    font-weight: bold;
 }
 
 
@@ -35,7 +47,7 @@
         grid-template-areas: "logo logo user user";
         color: #fff;
         align-items: center;
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
     }
 
     .logo{
@@ -84,7 +96,7 @@
     }
 
     .sidebar{
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: repeat(3, fit-content(100%));

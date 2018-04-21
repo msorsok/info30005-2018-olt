@@ -3,7 +3,7 @@ function mouseOver(el) {
         el.style.backgroundColor = "#56327d";
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {
-                console.log(el.childNodes[i]);
+                //console.log(el.childNodes[i]);
                 el.childNodes[i].style.backgroundColor = "#aaa";
             }
         }
@@ -15,7 +15,7 @@ function mouseOut(el) {
         el.style.backgroundColor = "#957ead";
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {
-                console.log(el.childNodes[i]);
+                //console.log(el.childNodes[i]);
                 el.childNodes[i].style.backgroundColor = "#fff";
             }
         }
@@ -35,7 +35,8 @@ var inbox = document.getElementsByClassName("inboxAllEmails")[0].children;
 for (var i = 0 ; i < inbox.length; i++) {
     inbox[i].addEventListener("mouseover", mouseOver(inbox[i]));
     inbox[i].addEventListener("mouseout", mouseOut(inbox[i]));
-    inbox[i].addEventListener("click", mouseClick(inbox[i].className));
+    console.log(inbox[i].children[0].childNodes[0]);
+    inbox[i].addEventListener("click", mouseClick("view/" + inbox[i].children[0].childNodes[0].data));
 
 }
 

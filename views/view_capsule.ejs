@@ -3,14 +3,14 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>View Capsule</title>
-    <link href = "css/page_template.css" rel = "stylesheet" type = "text/css">
-    <link href = "css/view_capsule.css" rel = "stylesheet" type = "text/css">
+    <link href = "/css/page_template.css" rel = "stylesheet" type = "text/css">
+    <link href = "/css/view_capsule.css" rel = "stylesheet" type = "text/css">
     <link rel="icon" href="res/logoImageBlack.png">
 </head>
 
 <%- include("page_template_start");%>
         <div class = "preamble">
-            <p>Alice saved the following time capsule for you to view</p>
+            <p><%= name%> saved the following time capsule for you to view</p>
         </div>
         <div class = "note">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -18,37 +18,37 @@
 
         <div class = "videoGallery">
             <div class = "prevVideo">
-                &#10094;
+                <p>&#10094;</p>
 
             </div>
 
             <% videos.forEach(function(video, i){ %>
                 <div class = "video" >
                     <video controls width = "100%">
-                        <source src= "/<%= video %>" type="video/mp4" >
+                        <source src= "<%= video %>" type="video/mp4" >
                     </video>
                 </div>
             <% }) %>
                 <div class = "nextVideo">
-                    &#10095;
+                    <p>&#10095;</p>
                 </div>
         </div>
 
         <div class = "photoGallery">
             <div class = "prevPhoto">
-                &#10094;
+                <p>&#10094;</p>
 
             </div>
             <% photos.forEach(function(photo, i){ %>
                 <div class = "photo <%= i %>">
-                    <img src="/<%= photo %>" width = 100% />
+                    <img src="<%= photo %>" width = 100% />
                 </div>
             <% }) %>
 
             <div class = "nextPhoto">
-                &#10095;
+                <p>&#10095;</p>
             </div>
         </div>
 
-<script src = "js/view_capsule.js"></script>
+<script src = "/js/view_capsule.js"></script>
 <%- include("page_template_end");%>

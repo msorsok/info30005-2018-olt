@@ -33,10 +33,9 @@ const userInboxRoute = function (req,res) {
     res.render('user_inbox');
 };
 const viewRoute = function (req,res) {
-    res.render('view_capsule',  database);
+    res.render('view_capsule', database[req.params.id]);
 };
-console.log(database);
-console.log(database.photos[0]);
+
 module.exports = {
     comingSoonRoute: comingSoonRoute,
     loginRoute: loginRoute,

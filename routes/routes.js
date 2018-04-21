@@ -4,8 +4,7 @@ var router = express.Router();
 
 
 
-router.get('/', controller.comingSoonRoute);
-router.get("/login", controller.loginRoute );
+router.get('/', controller.loginRoute);
 router.get("/blank", controller.blankRoute);
 router.get("/unlock", controller.unlockRoute);
 router.get("/account", controller.accountRoute);

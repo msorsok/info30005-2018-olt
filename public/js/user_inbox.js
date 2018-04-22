@@ -37,13 +37,14 @@ for (var i = 0 ; i < inbox.length; i++) {
     inbox[i].addEventListener("mouseout", mouseOut(inbox[i]));
     console.log(inbox[i].children[0].childNodes[0]);
     inbox[i].addEventListener("click", mouseClick("view/" + inbox[i].children[0].childNodes[0].data));
-
 }
 
-var sentMail = document.getElementsByClassName("allSentEmails")[0].children;
-for (var i = 0 ; i < sentMail.length; i++) {
-    sentMail[i].addEventListener("mouseover", mouseOver(sentMail[i]));
-    sentMail[i].addEventListener("mouseout", mouseOut(sentMail[i]));
-    sentMail[i].addEventListener("click", mouseClick(sentMail[i].className));
+var sent = document.getElementsByClassName("allSentEmails")[0].children;
 
+for (var i = 0 ; i < sent.length; i++) {
+    sent[i].addEventListener("mouseover", mouseOver(sent[i]));
+    sent[i].addEventListener("mouseout", mouseOut(sent[i]));
+    console.log(inbox[i].children[0].childNodes[0]);
+    sent[i].addEventListener("click", mouseClick("view/" + sent[i].children[0].childNodes[0].data));
 }
+

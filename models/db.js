@@ -13,10 +13,15 @@ var eduardo = {
     photos:photos,
     videos:videos
 };
-
+var luis = {
+    name: "Luis",
+    photos:photos,
+    videos:videos
+}
 var database = {
     Mina: mina,
-    Eduardo: eduardo
+    Eduardo: eduardo,
+    Luis: luis
 };
 
 module.exports = database;

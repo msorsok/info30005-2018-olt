@@ -11,7 +11,7 @@
 
 @media screen and (min-width: 992px) {
     .content{
-        font-family: "Unna-regular";
+        font-family: "CV-regular";
         font-size: 200%;
         grid-area: content;
         box-sizing: border-box;
@@ -42,6 +42,7 @@
         margin: 4px 2px;
         cursor: pointer;
     }
+
 
 
 }

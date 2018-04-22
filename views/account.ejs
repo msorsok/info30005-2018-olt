@@ -13,46 +13,46 @@
             <p>Change your account details</p>
         </div>
 
-        <form id ="editNameForm" action="">
-            <div class="editFirstName">
-                <p>First Name</p>
-                <input type="text" id="firstName" placeholder="John">
+            <form id ="editNameForm" action="">
+                    <p>First Name</p>
+                    <input type="text" id="firstName" placeholder="Enter your first name">
 
+                    <p>Last Name</p>
+                    <input type="text" id="lastName" placeholder="Enter your last name">
+
+                    <p>Date of Birth</p>
+                    <input type="date" id="dob">
+                <br>
+                <input type="submit" id="nameSubmit" value="submit">
+
+            </form>
+
+
+            <div class ="editProfilePicture">
+                <p>Upload New Photo</p>
+                <div class="currentPhoto">
+                    <img src="res/user.png" alt="User Profile Picture">
+                </div>
+                <form action="" id ="selectPhoto">
+                    <input type="file" name="file_profilePicture" placeholder="fileupload" id="profilePicture" accept=".png, .jpg, .jpeg">
+                </form>
             </div>
 
-            <div class="editLastName">
-                <p> Last Name</p>
-                <input type="text" id="lastName" placeholder="Smith">
 
-            </div>
-
-            <div class="editDOB">
-                <p>Date of Birth</p>
-                <input type="date" id="dob">
-            </div>
-
-        </form>
-
-
-        <div class ="editProfilePicture">
-            <p>Upload New Photo</p>
-            <div class="currentPhoto">
-                <img src="res/user.png" alt="User Profile Picture">
-            </div>
-            <form action="" id ="selectPhoto">
-                <input type="file" name="file_profilePicture" placeholder="fileupload" id="profilePicture" accept=".png, .jpg, .jpeg">
+            <form id= "editNominationForm" action="">
+                <p>First Nominee</p>
+                <input type="text" id="firstNominee" placeholder="Jim Smith">
+                <p>Second Nominee</p>
+                <input type="text" id="secondNominee" placeholder="Jane Smith">
+                <br>
+                <input type="submit" value="Confirm Nominees" id="confirmChanges">
             </form>
         </div>
 
-
-        <form id= "editNominationForm" action="">
-            <p>First Nominee</p>
-            <input type="text" name="firstNominee" placeholder="Jim Smith">
-            <p>Second Nominee</p>
-            <input type="text" name="secondNominee" placeholder="Jane Smith">
-        </form>
-        <div class="submitAccountChanges">
-            <input type="submit" value="Confirm Changes">
-        </div>
-
 <%- include("page_template_end");%>
+    </div>
+</div>
+<script src = "js/page_template.js"></script>
+<script src = "js/account.js"></script>
+</body>
+</html>

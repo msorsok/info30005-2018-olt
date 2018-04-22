@@ -1,27 +1,61 @@
 
-/*add functionality for changing name for user*/
-
 function mouseClick(link) {
-    /*
-    var editFirstName = document.getElementById("firstName").valueOf();
-
-    var currName = document.getElementsByClassName("userName");
-    var currNamePTag = currName.getElementsByTagName("p")[0];
-    if (editFirstName != null && editLastName != null) {
-        currNamePTag.innerHTML = editFirstName;
-    } else {
-        currNamePTag.innerHTML = "uh oh!"
-    }*/
-
     return function() {
         window.location.href = link;
     }
 }
 
-/* getElementsByClassName returns a list of all elements withing the class sidebar
-*  els[i] is the i'th element in that list (the i'th element in class submitAccountChanges
-*  children returns a list of all the elements of children*/
-var els = document.getElementsByClassName("submitAccountChanges")[0].children;
-for (var i = 0 ; i < els.length; i++) {
-    els[i].addEventListener("click", mouseClick("account"));
+
+var nameForm = document.getElementById("editNameForm");
+nameForm.addEventListener("submit", processNameForm);
+function processNameForm(e) {
+    if(e.preventDefault) {
+        e.preventDefault();
+    }
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+
+    if ((firstName == "") || (lastName == "")) {
+        alert("Please fill out the first and last name fields");
+    } else {
+        alert("you set your new name to be: " +firstName + " " + lastName);
+
+        var userName = document.getElementsByClassName("userName")[0];
+        userName.getElementsByTagName("p")[0].innerHTML = firstName + " " + lastName;
+
+    }
+
+
+    mouseClick("account");
+    return false;
+
+}
+
+/*listener for when user presses enter in the edit name form*/
+nameForm.addEventListener("keyup", enterPressed);
+function enterPressed(e) {
+    e.preventDefault();
+    if (e.keyCode == 13) {
+        processNameForm(e);
+    }
+}
+
+
+
+var nomineeForm = document.getElementById("editNominationForm");
+nomineeForm.addEventListener("submit", processNominationForm);
+function processNominationForm(e) {
+    if(e.preventDefault) {
+        e.preventDefault();
+    }
+
+    var firstNominee = document.getElementById("firstNominee").value;
+    var secondNominee = document.getElementById("secondNominee").value;
+    if ((firstNominee == "") || (secondNominee = "")) {
+        alert("Please specify your first and second nominees");
+    } else {
+        alert("your new nominees are: " +firstNominee+ " and " + secondNominee);
+    }
+    mouseClick("account");
+    return false
 }

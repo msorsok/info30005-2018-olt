@@ -12,118 +12,77 @@
 @media screen and (min-width: 992px) {
     .content{
         font-family: "Unna-regular";
-        font-size: 70%;
         grid-area: content;
         box-sizing: border-box;
         padding: 0 1em;
-
+        font-size: 150%;
     }
-    .changeYourDetails {
-        display: block;
-        font-size: 200%;
-        text-align: left;
-        margin: 0 0.5em;
+    .description {
+    }
+    .description p {
+        padding: 0 1em;
+    }
+
+    .currentPhoto img {
+        height: 25%;
+        width: 25%;
     }
 
     #editNameForm {
-        margin: 0 1em;
-        display: grid;
+        padding: 0 1em;
     }
-
-
-    #editNameForm p{
-        font-size:175%;
-    }
-
-    #editNameForm input[type=text]{
-        padding: 1em;
-        box-sizing: border-box;
-        background-color: #957ead;
-        border-style: none;
-        color: #fff;
-        font-family: "CV-regular";
-        font-size: 100%;
-        width: 60%;
-    }
-
-    #editNominationForm input[type=text]{
-        padding: 1em;
-        box-sizing: border-box;
-        background-color: #957ead;
-        border-style: none;
-        color: #fff;
-        font-family: "CV-regular";
-        font-size: 100%;
-        width: 60%;
-    }
-
-    input[type = submit]{
-        width: 25%;
-        box-sizing: border-box;
-        background-color: #957ead;
-        border-style: none;
-        color: #fff;
-        font-family: "CV-regular";
-        font-size: 100%;
-        box-sizing: border-box;
-        padding: 1em 2em;
-    }
-
-
-
-    #editNameForm input[type=date]{
-        padding: 1em;
-        box-sizing: border-box;
-        background-color: #957ead;
-        border-style: none;
-        color: #fff;
-        font-family: "CV-regular";
-        font-size: 100%;
-        width: 40%;
-        text-align: center;
-    }
-
-    ::placeholder {
-        color: #fff;
-    }
-
 
     .editProfilePicture {
-        padding: 1em;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto;
-        grid-template-areas: "currentPhoto selectPhoto space";
-    }
 
-    .editProfilePicture p{
-        font-size: 175%;
-    }
-    .currentPhoto{
-        padding: 1em;
-        grid-area: currentPhoto;
-    }
-
-    .currentPhoto img{
-        height: 30%;
-        width: 30%;
-    }
-    #selectPhoto {
-        grid-column: selectPhoto;
+        padding: 0 1em;
     }
 
     #editNominationForm {
-        display: grid;
-        grid-area: editNominees;
-        margin: 1em 1em;
+        padding: 0 1em;
     }
 
-    #editNominationForm p{
-        font-size: 175%;
+    #editNameForm p, #editNominationForm p, .editProfilePicture p {
+        font-size: 100%;
     }
 
-    .submitAccountChanges {
-        margin: 1em 1em;
+    input[type=submit] {
+        padding: 0.5em 1em;
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 65%;
+        width: 30%;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    input[type=text]{
+        padding: 1em;
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 75%;
+        width: 60%;
+    }
+
+    input[type=date] {
+        padding: 1em;
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 75%;
+        width: 30%;
+    }
+
+
+    ::placeholder {
+        color: #ffffff;
     }
 
 

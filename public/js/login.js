@@ -27,9 +27,4 @@ function mouseClick(link) {
         window.location.href = link;
     }
 }
-console.log(document.getElementById("loginButton"));
-document.getElementById("loginButton").addEventListener("click", mouseClick("/userInbox"));
-var els = document.getElementsByClassName("userLoginButton")[0].children;
-for (var i = 0 ; i < els.length; i++) {
-    els[i].addEventListener("click", mouseClick("/userInbox"));
-}
+

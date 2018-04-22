@@ -95,21 +95,29 @@
     /* Header ends here */
 
 
-    .signup{
+    #signupForm{
         font-family: 'CV-regular';
-        display: grid;
-        grid-template-columns: 1fr;
         grid-area: signup;
-        grid-row-gap: 0.5em;
+        display: grid;
+        grid-template-columns: 0.05fr 1fr 1fr 0.2fr;
+        grid-template-areas: " . SignupTEXT SignupTEXT ." " . firstName lastName . "  " . dateOfBirthT dateOfBirthF . " " . emailT emailF ." " . passwordT passwordF ." " . re-enterPasswordT re-enterPasswordF . " " . . submitButton .";
+        grid-row-gap: 1em;
+
         color: #fff;
         align-items: center;
-        grid-template-rows: repeat(13, fit-content(100%));
-        grid-template-areas: "account" "unlock" "create";
+        grid-template-rows: repeat(7, fit-content(100%));
+
         background-color: #957ead;
-        padding-left: 10%;
         padding-top: 3%;
     }
+    .signup{
+        font-family: 'CV-regular';
+        grid-area: signup;
+        display: grid;
 
+        background-color: #957ead;
+
+    }
     .signup *{
 
 
@@ -121,8 +129,11 @@
         grid-area: description;
     }
     .submitButton{
-        padding-top: 5%;
+        padding-top: 10%;
+        grid-area: submitButton;
+        padding-bottom: 8%;
     }
+
     #signupForm input[type = submit]{
         box-sizing: border-box;
         background-color: #56327d;
@@ -134,99 +145,49 @@
         padding: 0.5em 1em;
         cursor: pointer;
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media screen and (max-width: 992px) {
-    .page{
-        position:relative;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 5fr auto auto;
-        grid-template-areas:
-                "logo"
-                "description"
-                "login"
-                "signup";
-        padding: 0% 5%;
+    .SignupTEXT{
+        grid-area: SignupTEXT;
+        font-size: 3em;
     }
-
-    #loginform{
-        position:relative;
-        width: 100%;
-        height: 100%;
-    }
-
-    .loginEmail, .loginPassword, .loginButton {
-        margin: 3% 0;
-    }
-
-
-    .logo{
-        grid-area: logo;
-
-    }
-
-    .login{
-        grid-area: login;
-    }
-
-
-    .description{
-        grid-area: description;
-    }
-
-    .signup{
-        grid-area: signup;
-        visibility: hidden;
-
-    }
-
-
-    .signup input[type=text]{
-        width: 80%;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    .signup input[type=date]{
-        width: 80%;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    .login input[type=text]{
-        width: 95%;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        box-sizing: border-box;
-    }
-
-    .signupName {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr ;
-        grid-template-areas: "firstName lastName";
-    }
-
     .firstName{
         grid-area: firstName;
-    }
 
+    }
     .lastName{
         grid-area: lastName;
     }
+
+    .dateOfBirthT{
+        grid-area: dateOfBirthT;
+    }
+    .dateOfBirthF{
+        grid-area: dateOfBirthF;
+    }
+    .emailT{
+        grid-area: emailT;
+    }
+    .emailF{
+        grid-area: emailF;
+    }
+    .passwordT{
+        grid-area: passwordT;
+    }
+    .passwordF{
+        grid-area: passwordF;
+    }
+    .re-enterPasswordT{
+        grid-area: re-enterPasswordT;
+    }
+    .re-enterPasswordF{
+        grid-area: re-enterPasswordF;
+    }
 }
+
+
+
+
+
+
+
+
+

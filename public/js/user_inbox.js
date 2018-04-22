@@ -1,6 +1,6 @@
 function mouseOver(el) {
     return  function() {
-        el.style.backgroundColor = "#56327d";
+        el.style.backgroundColor = "#aaa";
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {
                 //console.log(el.childNodes[i]);
@@ -12,7 +12,7 @@ function mouseOver(el) {
 
 function mouseOut(el) {
     return  function() {
-        el.style.backgroundColor = "#957ead";
+        el.style.backgroundColor = "#fff";
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {
                 //console.log(el.childNodes[i]);

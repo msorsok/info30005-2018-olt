@@ -23,11 +23,12 @@
         font-family: 'CV-regular';
         color: #56327d;
         padding-left: 45%;
+        grid-area: inboxHeaderText;
     }
     .inbox{
         background-color: white;
         font-family: 'CV-regular';
-
+        grid-area: inbox;
     }
     .HeaderBox{
         display: grid;
@@ -55,14 +56,14 @@
         color: #56327d;
         padding-left: 45%;
         padding-top: 3%;
-        font-size: ;
-
+        grid-area: sentHeaderText;
+        
     }
 
     .sent{
         background-color: white;
         font-family: 'CV-regular';
-
+        grid-area: sent;
     }
     .sentEmail{
 

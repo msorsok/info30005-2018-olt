@@ -1,11 +1,23 @@
 @font-face {
-    font-family: 'CV-regular';
+    font-family: 'Charlevoix Pro';
     src: url("fonts/CharlevoixPro-Regular.woff");
 }
 
 @font-face {
-    font-family: 'Unna-regular';
+    font-family: 'Charlevoix Pro';
+    src: url("fonts/CharlevoixPro-Bold.woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Unna';
     src: url("fonts/Unna-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Unna';
+    src: url("fonts/Unna-Bold.ttf");
+    font-weight: bold;
 }
 
 

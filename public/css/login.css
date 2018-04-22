@@ -1,8 +1,24 @@
 @font-face {
-    font-family: 'CV-regular';
+    font-family: 'Charlevoix Pro';
     src: url("fonts/CharlevoixPro-Regular.woff");
 }
 
+@font-face {
+    font-family: 'Charlevoix Pro';
+    src: url("fonts/CharlevoixPro-Bold.woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Unna';
+    src: url("fonts/Unna-Regular.ttf");
+}
+
+@font-face {
+    font-family: 'Unna';
+    src: url("fonts/Unna-Bold.ttf");
+    font-weight: bold;
+}
 
 @media screen and (min-width: 992px) {
     body{
@@ -13,9 +29,11 @@
         position: relative;
         display: grid;
         grid-template-columns: 1fr 5.5fr 2fr 1fr 1fr 1fr;
-        grid-template-rows: 3em auto;
-        grid-template-areas: "header header header header header header" " . description signup signup signup .";
-        font-family: 'CV-regular';
+        grid-template-rows: 3em auto auto;
+        grid-template-areas: "header header header header header header"
+        ". description signup signup signup ."
+        ". description . . . .";
+        font-family: 'Charlevoix Pro';
         grid-row-gap: 2em;
         height: 100%;
     }
@@ -27,7 +45,7 @@
         grid-template-areas: "logo login login login";
         color: #fff;
         align-items: center;
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
         background-color: #56327d;
     }
     .logo{
@@ -59,22 +77,22 @@
 
     }
     .addEmail{
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
         grid-area: addEmail;
     }
     .addPassword{
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
         grid-area: addPassword;
     }
 
     .userLoginButton{
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
         grid-area: userLoginButton;
 
     }
 
     .forgotPassword{
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
         grid-area: forgotPassword;
     }
 
@@ -83,7 +101,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 100%;
         box-sizing: border-box;
         padding: 0.4em 1em;
@@ -96,11 +114,11 @@
 
 
     #signupForm{
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
         grid-area: signup;
         display: grid;
         grid-template-columns: 0.05fr 1fr 1fr 0.2fr;
-        grid-template-areas: " . SignupTEXT SignupTEXT ." " . firstName lastName . "  " . dateOfBirthT dateOfBirthF . " " . emailT emailF ." " . passwordT passwordF ." " . re-enterPasswordT re-enterPasswordF . " " . . submitButton .";
+        grid-template-areas: " . SignupTEXT SignupTEXT ." " . firstName lastName . "  " . dateOfBirthT dateOfBirthF . " " . emailT emailF ." " . passwordT passwordF ." " . re-enterPasswordT re-enterPasswordF . " " . submitButton submitButton .";
         grid-row-gap: 1em;
 
         color: #fff;
@@ -108,30 +126,36 @@
         grid-template-rows: repeat(7, fit-content(100%));
 
         background-color: #957ead;
-        padding-top: 3%;
+        padding: 3% 0;
     }
     .signup{
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
         grid-area: signup;
         display: grid;
-
         background-color: #957ead;
+        padding: 1.5em;
 
-    }
-    .signup *{
-
-
-        cursor: pointer;
     }
 
     .description{
-        padding-right: 3.05%;
+        padding: 0 8%;
+        font-size: 130%;
         grid-area: description;
+        color: #56327d;
     }
     .submitButton{
         padding-top: 10%;
         grid-area: submitButton;
         padding-bottom: 8%;
+        justify-self: center;
+    }
+
+    #signupForm input{
+        font-family: "Charlevoix Pro";
+        font-size: 100%;
+        padding: 0.5em;
+        margin-right: 1em;
+
     }
 
     #signupForm input[type = submit]{
@@ -139,11 +163,13 @@
         background-color: #56327d;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
-        font-size: 100%;
+        font-family: "Charlevoix Pro";
+        font-size: 120%;
         box-sizing: border-box;
         padding: 0.5em 1em;
+        margin-top: 1em;
         cursor: pointer;
+
     }
     .SignupTEXT{
         grid-area: SignupTEXT;
@@ -180,6 +206,12 @@
     }
     .re-enterPasswordF{
         grid-area: re-enterPasswordF;
+    }
+
+    .largeLogo{
+        margin: 10% 35%;
+        box-sizing: border-box;
+        text-align: justify;
     }
 }
 

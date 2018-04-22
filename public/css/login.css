@@ -28,24 +28,23 @@
     .page {
         position: relative;
         display: grid;
-        grid-template-columns: 1fr 5.5fr 2fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 5fr 4.1fr 1fr;
         grid-template-rows: 3em auto auto;
-        grid-template-areas: "header header header header header header"
-        ". description signup signup signup ."
-        ". description . . . .";
-        font-family: 'Charlevoix Pro';
+        grid-template-areas: "header header header header"
+        ". description signup ."
+        ". description . .";
         grid-row-gap: 2em;
         height: 100%;
+        font-family: "Charlevoix Pro";
     }
     .header{
         grid-area: header;
         display: grid;
-        grid-template-columns: 6fr 5.5fr;
+        grid-template-columns: 5fr 2em 6.1fr 2em;
         grid-template-rows: 1fr;
-        grid-template-areas: "logo login login login";
+        grid-template-areas: "logo logo login login";
         color: #fff;
         align-items: center;
-        font-family: 'Charlevoix Pro';
         background-color: #56327d;
     }
     .logo{
@@ -55,6 +54,7 @@
         grid-template-rows: 1fr;
         grid-template-areas: ". . logoImage logoText .";
         align-items: center;
+        box-sizing: border-box;
     }
     .logoImage{
         grid-area: logoImage;
@@ -66,34 +66,40 @@
         cursor: pointer;
     }
 
-    .loginSection{
-
+    #loginForm{
         grid-area: login;
         display: grid;
-        grid-template-columns:0.5fr 1.5fr 2fr 0.75fr 0.75fr;
-
-        grid-template-areas: " . addEmail addPassword userLoginButton forgotPassword";
+        grid-template-columns: repeat(4, auto);
+        grid-template-rows: 1fr;
+        grid-template-areas: "addEmail addPassword userLoginButton forgotPassword";
         align-items: center;
 
     }
+    #loginForm p{
+        display: inline-block;
+        padding-right: 0.5em;
+        margin: 0;
+    }
     .addEmail{
-        font-family: 'Charlevoix Pro';
         grid-area: addEmail;
     }
     .addPassword{
-        font-family: 'Charlevoix Pro';
         grid-area: addPassword;
     }
 
     .userLoginButton{
-        font-family: 'Charlevoix Pro';
         grid-area: userLoginButton;
 
     }
 
     .forgotPassword{
-        font-family: 'Charlevoix Pro';
         grid-area: forgotPassword;
+    }
+
+    #loginForm input{
+        box-sizing: border-box;
+        padding: 0.4em 1em;
+        cursor: pointer;
     }
 
     #loginForm input[type = submit]{
@@ -101,9 +107,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "Charlevoix Pro";
         font-size: 100%;
-        box-sizing: border-box;
         padding: 0.4em 1em;
         cursor: pointer;
     }
@@ -114,44 +118,31 @@
 
 
     #signupForm{
-        font-family: 'Charlevoix Pro';
+        background-color: #957ead;
         grid-area: signup;
         display: grid;
-        grid-template-columns: 0.05fr 1fr 1fr 0.2fr;
+        grid-template-columns: 0.05fr 1fr 1fr 0.05fr;
         grid-template-areas: " . SignupTEXT SignupTEXT ." " . firstName lastName . "  " . dateOfBirthT dateOfBirthF . " " . emailT emailF ." " . passwordT passwordF ." " . re-enterPasswordT re-enterPasswordF . " " . submitButton submitButton .";
         grid-row-gap: 1em;
-
         color: #fff;
         align-items: center;
         grid-template-rows: repeat(7, fit-content(100%));
-
-        background-color: #957ead;
-        padding: 3% 0;
-    }
-    .signup{
-        font-family: 'Charlevoix Pro';
-        grid-area: signup;
-        display: grid;
-        background-color: #957ead;
-        padding: 1.5em;
-
+        padding: 1em 1.5em;
     }
 
     .description{
-        padding: 0 8%;
+        padding: 0 10% 0 0;
         font-size: 130%;
         grid-area: description;
         color: #56327d;
     }
     .submitButton{
-        padding-top: 10%;
         grid-area: submitButton;
-        padding-bottom: 8%;
+        padding: 1em 0;
         justify-self: center;
     }
 
     #signupForm input{
-        font-family: "Charlevoix Pro";
         font-size: 100%;
         padding: 0.5em;
         margin-right: 1em;
@@ -163,11 +154,8 @@
         background-color: #56327d;
         border-style: none;
         color: #fff;
-        font-family: "Charlevoix Pro";
         font-size: 120%;
-        box-sizing: border-box;
-        padding: 0.5em 1em;
-        margin-top: 1em;
+        padding: 0.5em 1.5em;
         cursor: pointer;
 
     }

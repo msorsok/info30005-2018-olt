@@ -11,7 +11,6 @@
 <div class="page">
     <div class="header">
         <div class="logo">
-
             <div class = "logoImage">
                 <img src="res/logoImage.png" alt="logo image" height="30" width="30">
             </div>
@@ -22,13 +21,12 @@
             </div>
         </div>
         <form id = "loginForm" action="/userWelcome">
-        <div class="loginSection">
             <div class="addEmail">
-                Email
+                <p> Email</p>
                 <input type="text" name="email" placeholder="example@email.com">
             </div>
             <div class="addPassword">
-                Password
+                <p>Password</p>
                 <input type="password" name="password" placeholder="**********">
             </div>
             <div class="userLoginButton">
@@ -37,7 +35,6 @@
             <div class="forgotPassword">
                 Forgot Password?
             </div>
-        </div>
         </form>
     </div>
 
@@ -50,53 +47,49 @@
         </div>
     </div>
 
-    <div class = "signup">
-        <form id = "signupForm" action="/userWelcome">
-
+    <form id = "signupForm" action="/userWelcome">
             <div class="SignupTEXT">
                 Create an account
             </div>
 
             <div class="firstName">
-            <input type="text" name="First Name" placeholder="First name">
+                <input type="text" name="First Name" placeholder="First name">
             </div>
 
 
             <div class="lastName">
-            <input type="text" name="Last Name" placeholder="Surname">
+                <input type="text" name="Last Name" placeholder="Surname">
             </div>
 
             <div class="dateOfBirthT TEXT">
-            Date of Birth
+                Date of Birth
             </div>
             <div class="dateOfBirthF">
-            <input type="date" name="DOB">
+                <input type="date" name="DOB">
             </div>
             <div class="emailT TEXT">
-            Email
+                Email
             </div>
 
             <div class="emailF">
-            <input type="text" name="email" placeholder="example@email.com">
+                <input type="text" name="email" placeholder="example@email.com">
             </div>
             <div class="passwordT TEXT">
-            Password
+                Password
             </div>
             <div class="passwordF">
-            <input type="password" name="password" placeholder="New password">
+                <input type="password" name="password" placeholder="New password">
             </div>
             <div class="re-enterPasswordT TEXT">
-            Re-enter Password
+                Re-enter Password
             </div>
             <div class="re-enterPasswordF">
-            <input type="password" name="re-enter password" placeholder="Re-enter password">
+                <input type="password" name="re-enter password" placeholder="Re-enter password">
             </div>
             <div class="submitButton">
-            <input type="submit" value="Submit">
+                <input type="submit" value="Submit">
             </div>
-        </form>
-    </div>
-
+    </form>
 </div>
 <script src="/js/login.js"></script>
 </body>

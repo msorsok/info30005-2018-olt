@@ -10,3 +10,12 @@ function processCompleteMessage(e) {
     window.location.href = "userinbox";
     return false;
 }
+
+
+var messageRecipients = document.getElementById("messageRecipients");
+messageRecipients.addEventListener("submit", processMessageRecipients);
+function processMessageRecipients(e) {
+    if (e.preventDefault()) {
+        e.preventDefault();
+    }
+}

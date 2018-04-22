@@ -23,7 +23,7 @@
 
 @media screen and (min-width: 992px) {
     .content{
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 200%;
         grid-area: content;
         box-sizing: border-box;
@@ -42,7 +42,7 @@
     }
     .button {
         background-color: #957ead;
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
         border: none;
 
         padding: 15px 32px;

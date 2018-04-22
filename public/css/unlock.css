@@ -23,7 +23,7 @@
 
 @media screen and (min-width: 992px) {
     .content{
-        font-family: "Unna-regular";
+        font-family: "Unna";
         font-size: 200%;
         grid-area: content;
         box-sizing: border-box;
@@ -54,7 +54,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 70%;
     }
 
@@ -64,7 +64,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 70%;
     }
 
@@ -73,7 +73,7 @@
         background-color: #56327d;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 100%;
         box-sizing: border-box;
         padding: 0.5em 1em;

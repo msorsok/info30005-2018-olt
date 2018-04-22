@@ -33,14 +33,14 @@
     }
     .inboxHeaderText{
         grid-area: inboxHeaderText;
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
         color: #56327d;
         padding-left: 45%;
     }
     .inbox{
         grid-area: inbox;
         background-color: white;
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
 
     }
     .HeaderBox{
@@ -67,7 +67,7 @@
     .sentHeaderText{
         grid-area: sentHeaderText;
         margin-top: 4em;
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
         color: #56327d;
         padding-left: 45%;
 
@@ -76,7 +76,7 @@
     .sent{
         grid-area: sent;
         background-color: white;
-        font-family: 'CV-regular';
+        font-family: 'Charlevoix Pro';
 
     }
     .sentEmail{

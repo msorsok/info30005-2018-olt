@@ -23,7 +23,7 @@
 
 @media screen and (min-width: 992px) {
    .content{
-        font-family: "Unna-regular";
+        font-family: "Unna";
         grid-area: content;
         box-sizing: border-box;
         padding: 0 1em;
@@ -63,7 +63,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 100%;
         width: 60%;
     }
@@ -74,7 +74,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
     }
 
     textarea{
@@ -85,7 +85,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 75%;
         width: 60%;
     }
@@ -96,7 +96,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 100%;
         width: 25%;
         margin-top: 1em;
@@ -108,7 +108,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 70%;
         width: 50%;
     }
@@ -126,7 +126,7 @@
 
 @media screen and (max-width: 992px) {
     .content{
-        font-family: "Unna-regular";
+        font-family: "Unna";
         grid-area: content;
         box-sizing: border-box;
         padding: 0 1em;
@@ -166,7 +166,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 100%;
         width: 60%;
     }
@@ -177,7 +177,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
     }
 
     textarea{
@@ -188,7 +188,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 75%;
         width: 60%;
     }
@@ -199,7 +199,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 100%;
         width: 25%;
         margin-top: 1em;
@@ -211,7 +211,7 @@
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "CV-regular";
+        font-family: "Charlevoix Pro";
         font-size: 70%;
         width: 50%;
     }

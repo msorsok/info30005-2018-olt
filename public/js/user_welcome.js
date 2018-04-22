@@ -29,11 +29,5 @@ function mouseClick(link) {
 }
 
 
-var els = document.getElementsByClassName("sidebar")[0].children;
-for (var i = 0 ; i < els.length; i++) {
-    els[i].addEventListener("mouseover", mouseOver(els[i]));
-    els[i].addEventListener("mouseout", mouseOut(els[i]));
-    els[i].addEventListener("click", mouseClick(els[i].className));
-}
-
+document.getElementsByClassName("createNewTimeCapsuleButton")[0].addEventListener("click", mouseClick("/userInbox"));
 

@@ -2,65 +2,24 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Coming Soon</title>
+    <title>One Last Time - Create</title>
+    <link href = "css/page_template.css" rel = "stylesheet" type = "text/css">
     <link href = "css/newmessage.css" rel = "stylesheet" type = "text/css">
 
 </head>
-
-<body>
-<div class="page">
-    <div class = "header">
-        <div class="logo">
-            <div class = "logoImage">
-                <img src="res/logoImage.png" alt="logo image" height="30" width="30">
-            </div>
-            <div class = "logoText">
-                <p>
-                    One Last Time
-                </p>
-            </div>
-
-        </div>
-        <div class = "user">
-            <div class = "userImage">
-                <img src="res/user.png" alt="User Profile Picture" height="40" width="40">
-            </div>
-            <div class = "userName">
-                <p>
-                    Farah Khan
-                </p>
-            </div>
-        </div>
+<%- include("page_template_start");%>
+<div class="new_message">
+    <div class="recipients">
+        <form action="" id="messageRecipients">
+            <p>Recipients</p>
+            <input type="text" placeholder="These people will receive your message">
+            <input type="submit" value="Submit">
+        </form>
     </div>
 
-    <div class = "sidebar">
-        <div class = "account">
-            <p>Account</p>
-        </div>
-        <div class = "unlock">
-            <p>
-                Release Time Capsules
-            </p>
-        </div>
-        <div class = "create">
-            <p>
-                Create New Time Capsule
-            </p>
-        </div>
-    </div>
-    <div class="content">
-        <div class="new_message">
-            <div class="recipients">
-                <form action="" id="messageRecipients">
-                    <p>Recipients</p>
-                    <input type="text" placeholder="These people will receive your message" id="recipients"> <br>
-                    <input type="submit" value="Submit">
-                </form>
-            </div>
-
-            <div class="attachments">
-                <p>Add Files</p>
-                <form action="" id="messageAttachments">
+    <div class="attachments">
+        <p>Add Files</p>
+        <form action="" id="messageAttachments">
 
                     <input type="file" name="attachments" multiple> <br>
                     <input type="submit" value="Submit">
@@ -77,9 +36,9 @@
                 </form>
             </div>
 
-            <div class="sendOptions">
-                <form action="" id="sendOptionsForm">
-                    <input type="radio" name="option" value="separate" checked> Send message to recipients SEPARATELY<br>
+    <div class="sendOptions">
+        <form action="" id="sendOptionsForm">
+            <input type="radio" name="option" value="separate" checked> Send message to recipients SEPARATELY<br>
 
                     <input type="radio" name="option" value="group" checked> Send message to recipients as a GROUP<br>
 
@@ -93,6 +52,7 @@
 
     </div>
 </div>
+<%- include("page_template_end");%>
 <script src = "js/page_template.js"></script>
 <script src = "js/newmessage.js"></script>
 </body>

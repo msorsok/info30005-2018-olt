@@ -3,8 +3,8 @@ function mouseOver(el) {
         el.style.backgroundColor = "#56327d";
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {
-                console.log(el.childNodes[i]);
-                el.childNodes[i].style.backgroundColor = "#56327d";
+                //console.log(el.childNodes[i]);
+                el.childNodes[i].style.backgroundColor = "#aaa";
             }
         }
     }
@@ -15,8 +15,8 @@ function mouseOut(el) {
         el.style.backgroundColor = "#957ead";
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {
-                console.log(el.childNodes[i]);
-                el.childNodes[i].style.backgroundColor = "#957ead";
+                //console.log(el.childNodes[i]);
+                el.childNodes[i].style.backgroundColor = "#fff";
             }
         }
     }
@@ -29,12 +29,22 @@ function mouseClick(link) {
 }
 
 
-var els = document.getElementsByClassName("sidebar")[0].children;
-for (var i = 0 ; i < els.length; i++) {
-    els[i].addEventListener("mouseover", mouseOver(els[i]));
-    els[i].addEventListener("mouseout", mouseOut(els[i]));
-    els[i].addEventListener("click", mouseClick(els[i].className));
+
+var inbox = document.getElementsByClassName("inboxAllEmails")[0].children;
+
+for (var i = 0 ; i < inbox.length; i++) {
+    inbox[i].addEventListener("mouseover", mouseOver(inbox[i]));
+    inbox[i].addEventListener("mouseout", mouseOut(inbox[i]));
+    console.log(inbox[i].children[0].childNodes[0]);
+    inbox[i].addEventListener("click", mouseClick("view/" + inbox[i].children[0].childNodes[0].data));
 }
 
+var sent = document.getElementsByClassName("allSentEmails")[0].children;
 
+for (var i = 0 ; i < sent.length; i++) {
+    sent[i].addEventListener("mouseover", mouseOver(sent[i]));
+    sent[i].addEventListener("mouseout", mouseOut(sent[i]));
+    console.log(inbox[i].children[0].childNodes[0]);
+    sent[i].addEventListener("click", mouseClick("view/" + sent[i].children[0].childNodes[0].data));
+}
 

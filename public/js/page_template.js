@@ -24,7 +24,7 @@ function mouseOut(el) {
 
 function mouseClick(link) {
     return function() {
-        window.location.href = link;
+        window.location.href = "/" + link;
     }
 }
 
@@ -36,11 +36,11 @@ for (var i = 0 ; i < els.length; i++) {
     els[i].addEventListener("click", mouseClick(els[i].className));
 }
 
-document.getElementsByClassName("logout")[0].addEventListener("click", mouseClick("/login"));
+document.getElementsByClassName("logout")[0].addEventListener("click", mouseClick(""));
 
 var els = document.getElementsByClassName("logo")[0].children;
 for (var i = 0 ; i < els.length; i++) {
-    els[i].addEventListener("click", mouseClick("/userInbox"));
+    els[i].addEventListener("click", mouseClick("userInbox"));
 }
 
 

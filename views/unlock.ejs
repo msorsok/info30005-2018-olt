@@ -2,81 +2,35 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Coming Soon</title>
+    <title>One Last Time - Unlock</title>
+    <link href = "css/page_template.css" rel = "stylesheet" type = "text/css">
     <link href = "css/unlock.css" rel = "stylesheet" type = "text/css">
 
 </head>
+<%- include("page_template_start");%>
 
-<body>
-<div class="page">
-    <div class = "header">
-        <div class="logo">
-
-            <div class = "logoImage">
-                <img src="res/logoImage.png" alt="logo image" height="30" width="30">
-            </div>
-            <div class = "logoText">
-                <p>
-                    One Last Time
-                </p>
-            </div>
-
-
-        </div>
-        <div class = "user">
-            <div class = "userImage">
-                <img src="res/user.png" alt="User Profile Picture" height="40" width="40">
-            </div>
-            <div class = "userName">
-                <p>
-                    Farah Khan
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class = "sidebar">
-        <div class = "account">
-            <p>Account</p>
-        </div>
-        <div class = "unlock">
-            <p>
-                Release Time Capsules
-            </p>
-        </div>
-        <div class = "create">
-            <p>
-                Create New Time Capsule
-            </p>
-        </div>
-    </div>
-    <div class="content">
-
-        <div class = "message">
+<div class = "message">
             From everyone at One Last Time we are sorry for your loss.
             To release your friend or loved one's time capsule, please provide their name and date of passing below.
-        </div>
-        <form id = "releaseForm" action="">
-            <div class = "deceasedName">
-                <p>Name</p>
-                <select name="placeholder">
-                    <option value="John">John</option>
-                    <option value="Lucy">Lucy</option>
-                    <option value="Steve">Steve</option>
-                    <option value="Alice">Alice</option>
-                </select>
-            </div>
-            <div class = "datePassing">
-                <p>Date of Passing</p>
-                <input type="date" name="datePassing">
-            </div>
-            <div class = submitRelease>
-                <input type="submit" value="Submit">
-            </div>
-        </form>
-
-    </div>
 </div>
-<script src = "js/page_template.js"></script>
-</body>
-</html>
+
+<form id = "releaseForm" action="">
+    <div class = "deceasedName">
+        <p>Name</p>
+        <select name="placeholder">
+            <option value="John">John Smith</option>
+            <option value="Lucy">Lucy Diamonds</option>
+            <option value="Steve">Steve Green</option>
+            <option value="Alice">Alice Hutchins</option>
+        </select>
+    </div>
+    <div class = "datePassing">
+        <p>Date of Passing</p>
+        <input type="date" name="datePassing">
+    </div>
+    <div class = submitRelease>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+<%- include("page_template_end");%>

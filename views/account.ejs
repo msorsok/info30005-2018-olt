@@ -3,56 +3,15 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Coming Soon</title>
+    <link href = "css/page_template.css" rel = "stylesheet" type = "text/css">
     <link href = "css/account.css" rel = "stylesheet" type = "text/css">
 
 </head>
-
-<body>
-<div class="page">
-    <div class = "header">
-        <div class="logo">
-
-            <div class = "logoImage">
-                <img src="res/logoImage.png" alt="logo image" height="30" width="30">
-            </div>
-            <div class = "logoText">
-                <p>
-                    One Last Time
-                </p>
-            </div>
-
-
+<%- include("page_template_start");%>
+<link href = "css/account.css" rel = "stylesheet" type = "text/css">
+        <div class="changeYourDetails">
+            <p>Change your account details</p>
         </div>
-        <div class = "user">
-            <div class = "userImage">
-                <img src="res/user.png" alt="User Profile Picture" height="40" width="40">
-            </div>
-            <div class = "userName">
-                <p>
-                    Farah Khan
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <div class = "sidebar">
-        <div class = "account">
-            <p>Account</p>
-        </div>
-        <div class = "unlock">
-            <p>
-                Release Time Capsules
-            </p>
-        </div>
-        <div class = "create">
-            <p>
-                Create New Time Capsule
-            </p>
-        </div>
-    </div>
-    <div class="content">
-        <div class="wrapper">
-            <div class="description"><p>Change your account details</p></div>
 
             <form id ="editNameForm" action="">
                     <p>First Name</p>
@@ -89,6 +48,8 @@
                 <input type="submit" value="Confirm Nominees" id="confirmChanges">
             </form>
         </div>
+
+<%- include("page_template_end");%>
     </div>
 </div>
 <script src = "js/page_template.js"></script>

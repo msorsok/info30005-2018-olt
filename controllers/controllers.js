@@ -1,4 +1,4 @@
-var database = require('../models/db');
+var database = require("../models/db");
 
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');
@@ -33,17 +33,17 @@ const userInboxRoute = function (req,res) {
     res.render('user_inbox');
 };
 const viewRoute = function (req,res) {
-    res.render('view_capsule');
+    res.render('view_capsule', database[req.params.id]);
 };
+
+
 
 module.exports = {
     comingSoonRoute: comingSoonRoute,
     loginRoute: loginRoute,
-    blankRoute: blankRoute,
     unlockRoute: unlockRoute,
     userWelcomeRoute: userWelcomeRoute,
     userInboxRoute:userInboxRoute,
-    blankRoute: blankRoute,
     accountRoute: accountRoute,
     account2Route: account2Route,
     createRoute: createRoute,

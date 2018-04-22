@@ -1,45 +1,152 @@
 @font-face {
-    font-family: 'Montserrat', sans-serif;;
-    src: url("https://fonts.googleapis.com/css?family=Montserrat");
+    font-family: 'CV-regular';
+    src: url("fonts/CharlevoixPro-Regular.woff");
 }
 
 
 @media screen and (min-width: 992px) {
+    body{
+        margin: 0;
+        background-color: #f1f1f1;
+    }
     .page {
         position: relative;
         display: grid;
-        grid-template-columns: auto 30em;
-        grid-template-rows: 4em auto;
-        grid-template-areas: "logo login" "description signup";
-        grid-column-gap: 4em;
-        grid-row-gap: 1em;
-        padding: 0% 15%;
+        grid-template-columns: 1fr 5.5fr 2fr 1fr 1fr 1fr;
+        grid-template-rows: 3em auto;
+        grid-template-areas: "header header header header header header" " . description signup signup signup .";
+        font-family: 'CV-regular';
+        grid-row-gap: 2em;
+        height: 100%;
     }
-
-    #loginform{
-        display:grid;
-        grid-template-columns: 2fr 2fr 1fr;
+    .header{
+        grid-area: header;
+        display: grid;
+        grid-template-columns: 6fr 5.5fr;
         grid-template-rows: 1fr;
-        grid-template-areas: "loginEmail loginPassword loginButton";
+        grid-template-areas: "logo login login login";
+        color: #fff;
+        align-items: center;
+        font-family: 'CV-regular';
+        background-color: #56327d;
     }
-    .loginEmail {
-        grid-area: loginEmail;
+    .logo{
+        grid-area: logo;
+        display: grid;
+        grid-template-columns: 1fr 1em 0.4fr 1.2fr 3.4fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: ". . logoImage logoText .";
+        align-items: center;
+    }
+    .logoImage{
+        grid-area: logoImage;
+        cursor: pointer;
+
+    }
+    .logoText{
+        grid-area: logoText;
+        cursor: pointer;
+    }
+
+    .loginSection{
+
+        grid-area: login;
+        display: grid;
+        grid-template-columns:0.5fr 1.5fr 2fr 0.75fr 0.75fr;
+
+        grid-template-areas: " . addEmail addPassword userLoginButton forgotPassword";
+        align-items: center;
+
+    }
+    .addEmail{
+        font-family: 'CV-regular';
+        grid-area: addEmail;
+    }
+    .addPassword{
+        font-family: 'CV-regular';
+        grid-area: addPassword;
+    }
+
+    .userLoginButton{
+        font-family: 'CV-regular';
+        grid-area: userLoginButton;
 
     }
 
-    .loginPassword {
-        grid-area: loginPassword;
+    .forgotPassword{
+        font-family: 'CV-regular';
+        grid-area: forgotPassword;
     }
 
-    .loginButton{
-        grid-area: loginButton;
-
+    #loginForm input[type = submit]{
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 100%;
+        box-sizing: border-box;
+        padding: 0.4em 1em;
+        cursor: pointer;
     }
+
+
+
+    /* Header ends here */
+
+
     .signup{
+        font-family: 'CV-regular';
+        display: grid;
+        grid-template-columns: 1fr;
         grid-area: signup;
+        grid-row-gap: 0.5em;
+        color: #fff;
+        align-items: center;
+        grid-template-rows: repeat(13, fit-content(100%));
+        grid-template-areas: "account" "unlock" "create";
+        background-color: #957ead;
+        padding-left: 10%;
+        padding-top: 3%;
     }
 
+    .signup *{
+
+
+        cursor: pointer;
+    }
+
+    .description{
+        padding-right: 3.05%;
+        grid-area: description;
+    }
+    .submitButton{
+        padding-top: 5%;
+    }
+    #signupForm input[type = submit]{
+        box-sizing: border-box;
+        background-color: #56327d;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 100%;
+        box-sizing: border-box;
+        padding: 0.5em 1em;
+        cursor: pointer;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 @media screen and (max-width: 992px) {
     .page{

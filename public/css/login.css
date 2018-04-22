@@ -52,9 +52,9 @@
 
         grid-area: login;
         display: grid;
-        grid-template-columns:2fr 2fr 0.75fr 0.75fr;
+        grid-template-columns:0.5fr 1.5fr 2fr 0.75fr 0.75fr;
 
-        grid-template-areas: "addEmail addPassword userLoginButton forgotPassword";
+        grid-template-areas: " . addEmail addPassword userLoginButton forgotPassword";
         align-items: center;
 
     }
@@ -86,7 +86,7 @@
         font-family: "CV-regular";
         font-size: 100%;
         box-sizing: border-box;
-        padding: 0.5em 1em;
+        padding: 0.4em 1em;
         cursor: pointer;
     }
 
@@ -107,6 +107,7 @@
         grid-template-areas: "account" "unlock" "create";
         background-color: #957ead;
         padding-left: 10%;
+        padding-top: 3%;
     }
 
     .signup *{
@@ -114,9 +115,13 @@
 
         cursor: pointer;
     }
+
     .description{
         padding-right: 3.05%;
         grid-area: description;
+    }
+    .submitButton{
+        padding-top: 5%;
     }
     #signupForm input[type = submit]{
         box-sizing: border-box;

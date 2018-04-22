@@ -22,7 +22,6 @@ var database = {
     Mina: mina,
     Eduardo: eduardo,
     Luis: luis
-
 };
 
 module.exports = database;

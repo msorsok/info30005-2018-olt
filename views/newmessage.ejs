@@ -53,7 +53,7 @@
             <div class="recipients">
                 <form action="" id="messageRecipients">
                     <p>Recipients</p>
-                    <input type="text" placeholder="These people will receive your message">
+                    <input type="text" placeholder="These people will receive your message"> <br>
                     <input type="submit" value="Submit">
                 </form>
             </div>
@@ -62,7 +62,7 @@
                 <p>Add Files</p>
                 <form action="" id="messageAttachments">
 
-                    <input type="file" name="attachments" multiple>
+                    <input type="file" name="attachments" multiple> <br>
                     <input type="submit" value="Submit">
                 </form>
             </div>
@@ -71,9 +71,10 @@
             <div class="note">
                 <p>Write a note (Optional)</p>
                 <form action="" id="notesubmission">
-                    <textarea name="nameTextArea" form="noteSubmission" rows="10" placeholder="Enter your note here..."></textarea>
+                    <textarea id="nameTextArea" form="noteSubmission" rows="10" placeholder="Enter your note here..."></textarea>
+                    <br>
+                    <input type="submit" value="Submit">
                 </form>
-                <input type="submit" value="Submit">
             </div>
 
             <div class="sendOptions">
@@ -83,8 +84,8 @@
                     <input type="radio" name="option" value="group" checked> Send message to recipients as a GROUP<br>
                 </form>
             </div>
-
-            <input type="submit" value="Complete">
+            <br>
+            <input type="submit" id="completeMessage" value="Complete">
 
 
 
@@ -93,5 +94,6 @@
     </div>
 </div>
 <script src = "js/page_template.js"></script>
+<script src = "js/newmessage.js"></script>
 </body>
 </html>

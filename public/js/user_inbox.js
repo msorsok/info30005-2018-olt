@@ -45,6 +45,6 @@ for (var i = 0 ; i < sent.length; i++) {
     sent[i].addEventListener("mouseover", mouseOver(sent[i]));
     sent[i].addEventListener("mouseout", mouseOut(sent[i]));
     console.log(inbox[i].children[0].childNodes[0]);
-    sent[i].addEventListener("click", mouseClick("view/" + sent[i].children[0].childNodes[0].data));
+    sent[i].addEventListener("click", mouseClick("view/Farah"));
 }
 

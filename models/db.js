@@ -17,11 +17,19 @@ var luis = {
     name: "Luis",
     photos:photos,
     videos:videos
-}
+};
+
+var farah = {
+    name: "Farah",
+    photos:photos,
+    videos:videos
+};
+
 var database = {
     Mina: mina,
     Eduardo: eduardo,
-    Luis: luis
+    Luis: luis,
+    Farah: farah
 };
 
 module.exports = database;

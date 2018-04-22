@@ -116,42 +116,47 @@
 
     .content{
         font-family: "Unna-regular";
-        font-size: 200%;
         grid-area: content;
         box-sizing: border-box;
         padding: 0 1em;
     }
-    .currentPhoto img{
-        height: 30%;
-        width: 30%;
+    .description {
+    }
+    .description p {
+        padding: 0 1em;
+        font-size: 175%;
     }
 
-
-    .changeYourDetails {
-        font-size: 100%;
-
+    .currentPhoto img {
+        height: 25%;
+        width: 25%;
     }
 
     #editNameForm {
-        font-size: 75%;
+        padding: 0 1em;
     }
 
     .editProfilePicture {
-        font-size: 75%;
+
+        padding: 0 1em;
     }
 
     #editNominationForm {
-        font-size: 75%;
+        padding: 0 1em;
     }
 
-    input[type=submit], input[type=submit] {
+    #editNameForm p, #editNominationForm p, .editProfilePicture p {
+        font-size: 125%;
+    }
+
+    input[type=submit] {
         padding: 0.5em 1em;
         box-sizing: border-box;
         background-color: #957ead;
         border-style: none;
         color: #fff;
         font-family: "CV-regular";
-        font-size: 60%;
+        font-size: 100%;
         width: 25%;
         margin-top: 1em;
         margin-bottom: 1em;
@@ -164,8 +169,19 @@
         border-style: none;
         color: #fff;
         font-family: "CV-regular";
-        font-size: 60%;
+        font-size: 100%;
         width: 60%;
+    }
+
+    input[type=date] {
+        padding: 1em;
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "CV-regular";
+        font-size: 100%;
+        width: 30%;
     }
 
 

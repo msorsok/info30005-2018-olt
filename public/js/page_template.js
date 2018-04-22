@@ -24,7 +24,7 @@ function mouseOut(el) {
 
 function mouseClick(link) {
     return function() {
-        window.location.href = link;
+        window.location.href = "/" + link;
     }
 }
 

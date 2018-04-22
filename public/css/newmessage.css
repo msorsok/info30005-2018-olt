@@ -193,6 +193,10 @@
         font-size: 100%;
         width: 25%;
         margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    #completeMessage {
     }
 
 

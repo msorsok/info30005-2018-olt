@@ -35,6 +35,18 @@ const userInboxRoute = function (req,res) {
 const viewRoute = function (req,res) {
     res.render('view_capsule', database[req.params.id]);
 };
+const userLoginPost = function(req, res) {
+
+};
+const userSignupPost = function(req, res) {
+
+};
+const createPost = function(req, res) {
+
+};
+const unlockPost = function(req, res) {
+
+};
 
 
 
@@ -48,5 +60,9 @@ module.exports = {
     account2Route: account2Route,
     createRoute: createRoute,
     blankRoute: blankRoute,
-    viewRoute: viewRoute
+    viewRoute: viewRoute,
+    userLoginPost: userLoginPost,
+    userSignupPost: userSignupPost,
+    createPost: createPost,
+    unlockPost: unlockPost
 };

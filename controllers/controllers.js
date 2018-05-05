@@ -35,16 +35,33 @@ const userInboxRoute = function (req,res) {
 const viewRoute = function (req,res) {
     res.render('view_capsule', database[req.params.id]);
 };
-const userLoginPost = function(req, res) {
+const userLogin = function(req, res) {
 
 };
-const userSignupPost = function(req, res) {
+const userSignup = function(req, res) {
 
 };
-const createPost = function(req, res) {
+const createCapsule = function(req, res) {
 
 };
-const unlockPost = function(req, res) {
+const unlockCapsule = function(req, res) {
+    if (req.body.deceased && req.body.datePassing) {
+        var passingAwayEvent = {
+            deceased: req.body.deceased,
+            datePassing: req.body.datePassing
+        };
+        database.create(passingAwayEvent, function(err, event){
+            if (err) {
+                return next(err)
+            }
+            else{
+                return res.redirect("/userInbox")
+            }
+        })
+    }
+    console.log("unlocking capsule");
+};
+const updateAccount = function(req, res) {
 
 };
 
@@ -61,8 +78,9 @@ module.exports = {
     createRoute: createRoute,
     blankRoute: blankRoute,
     viewRoute: viewRoute,
-    userLoginPost: userLoginPost,
-    userSignupPost: userSignupPost,
-    createPost: createPost,
-    unlockPost: unlockPost
+    userLogin: userLogin,
+    userSignup: userSignup,
+    createCapsule: createCapsule,
+    unlockCapsule: unlockCapsule,
+    updateAccount: updateAccount
 };

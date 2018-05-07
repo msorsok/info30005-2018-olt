@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var db = require("../models/db.js");
 var Passing = mongoose.model("Passing");
 var User = mongoose.model("User");
+var UserSignUp = mongoose.model("User");
 
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');
@@ -42,7 +43,31 @@ const userLogin = function(req, res) {
 
 };
 const userSignup = function(req, res) {
+    console.log("Hello")
+    console.log(req.body);
+    console.log(req.body.deceased);
+    if (req.body.firstName &&
+        req.body.lastName &&
+        req.body.emailF &&
+        req.body.passwordF &&
+        req.body.dateOfBirthF) {
+        var userCreate = new UserSignup ({
+            "firstName": req.body.firstName,
+            "lastName": req.body.lastName,
+            "DOB": req.body.dateOfBirthF,
+            "email": req.body.emailF,
+            "password": req.body.passwordF
 
+        });
+        userCreate.save(function(err, event){
+            if (err) {
+                return next(err)
+            }
+            else{
+                return res.redirect("/userInbox")
+            }
+        });
+    }
 };
 const createCapsule = function(req, res) {
 
@@ -75,7 +100,7 @@ const updateAccount = function(req, res) {
     var newData = {
         "firstName": req.body.firstName,
         "lastName": req.body.lastName,
-        "DOB": req.body.DOB
+        "dateOfBirthF": req.body.DOB
     };
 
     console.log("ready to update data");

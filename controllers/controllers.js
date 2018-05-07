@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+var db = require("../models/db.js");
 var Passing = mongoose.model("Passing");
 var User = mongoose.model("User");
 
@@ -65,23 +66,32 @@ const unlockCapsule = function(req, res) {
     }
 };
 const updateAccount = function(req, res) {
-    var accIdx = req.params.id;
+    console.log("updating account");
 
-    User.findByIdAndUpdate(accIdx,
-        {   "firstName" : req.body.firstName,
-            "lastName" : req.body.lastName,
-            "DOB" : req.body.DOB,
-            "password": req.body.password,
-            "email" : req.body.email,
-            "capsules": req.body.capsules,
-            "profilePic" : req.body.profilePic,
-            "nominee1email" : req.body.nominee1email,
-            "nominee2email" : req.body.nominee2email
-        }, {new: true},function(err, user) {
-        if (err) { // update existing user details
-            res.sendStatus(500);
+    const query = {"firstName": "newFirstName"};
+
+    console.log("query field created");
+
+    var newData = {
+        "firstName": req.body.firstName,
+        "lastName": req.body.lastName,
+        "DOB": req.body.DOB
+    };
+
+    console.log("ready to update data");
+    /*findOneAndUpdate(condition, update, callback)
+    * returns the first document to match all conditions specified in condition
+    * update all the values specified in update argument
+    * execute the callback function
+     */
+    User.findOneAndUpdate(query, {$set: newData}, function(err, doc) {
+        if(err) {
+            next(err);
         }
-    });
+        else {
+            return res.redirect("/account");
+        }
+    })
 };
 
 

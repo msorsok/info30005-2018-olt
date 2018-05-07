@@ -4,7 +4,7 @@ function mouseClick(link) {
         window.location.href = link;
     }
 }
-
+/*
 
 var nameForm = document.getElementById("editNameForm");
 nameForm.addEventListener("submit", processNameForm);
@@ -31,7 +31,6 @@ function processNameForm(e) {
 
 }
 
-/*listener for when user presses enter in the edit name form*/
 nameForm.addEventListener("keyup", enterPressed);
 function enterPressed(e) {
     e.preventDefault();
@@ -59,3 +58,4 @@ function processNominationForm(e) {
     mouseClick("account");
     return false
 }
+*/

@@ -13,15 +13,15 @@
             <p>Change your account details</p>
         </div>
 
-            <form id ="editNameForm" action="">
+            <form id ="editNameForm" action="/account" method="post">
                     <p>First Name</p>
-                    <input type="text" id="firstName" placeholder="Enter your first name">
+                    <input type="text" name ="firstName" id="firstName" placeholder="Enter your first name">
 
                     <p>Last Name</p>
-                    <input type="text" id="lastName" placeholder="Enter your last name">
+                    <input type="text" name = "lastName" id="lastName" placeholder="Enter your last name">
 
                     <p>Date of Birth</p>
-                    <input type="date" id="dob">
+                    <input type="date" name="DOB" id="DOB">
                 <br>
                 <input type="submit" id="nameSubmit" value="submit">
 

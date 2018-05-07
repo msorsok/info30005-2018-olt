@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Passing = mongoose.model("passing");
+var UserSignup = mongoose.model("user");
 
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');
@@ -40,7 +41,31 @@ const userLogin = function(req, res) {
 
 };
 const userSignup = function(req, res) {
+    console.log("Hello")
+    console.log(req.body);
+    console.log(req.body.deceased);
+    if (req.body.firstName &&
+        req.body.lastName &&
+        req.body.emailF &&
+        req.body.passwordF &&
+        req.body.dateOfBirthF) {
+        var userCreate = new UserSignup ({
+            "firstName": req.body.firstName,
+            "lastName": req.body.lastName,
+            "DOB": req.body.dateOfBirthF,
+            "email": req.body.emailF,
+            "password": req.body.passwordF
 
+        });
+        userCreate.save(function(err, event){
+            if (err) {
+                return next(err)
+            }
+            else{
+                return res.redirect("/userInbox")
+            }
+        });
+    }
 };
 const createCapsule = function(req, res) {
 

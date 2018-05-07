@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Passing = mongoose.model("Passing");
+var User = mongoose.model("User");
 
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');
@@ -64,7 +65,23 @@ const unlockCapsule = function(req, res) {
     }
 };
 const updateAccount = function(req, res) {
+    var accIdx = req.params.id;
 
+    User.findByIdAndUpdate(accIdx,
+        {   "firstName" : req.body.firstName,
+            "lastName" : req.body.lastName,
+            "DOB" : req.body.DOB,
+            "password": req.body.password,
+            "email" : req.body.email,
+            "capsules": req.body.capsules,
+            "profilePic" : req.body.profilePic,
+            "nominee1email" : req.body.nominee1email,
+            "nominee2email" : req.body.nominee2email
+        }, {new: true},function(err, user) {
+        if (err) { // update existing user details
+            res.sendStatus(500);
+        }
+    });
 };
 
 

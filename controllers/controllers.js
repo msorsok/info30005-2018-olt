@@ -96,7 +96,7 @@ const updateAccount = function(req, res) {
     const query = {"firstName": "newFirstName"};
 
     console.log("query field created");
-
+    /*only update name*/
     var newData = {
         "firstName": req.body.firstName,
         "lastName": req.body.lastName,

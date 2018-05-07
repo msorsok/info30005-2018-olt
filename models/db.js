@@ -1,6 +1,19 @@
 var mongoose = require("mongoose");
-var PassingAwayEvents = require("PassingAwayEvents");
-mongoose.connect("mongodb://adminlasttime:iloveweb123@ds215370.mlab.com:15370/onelasttime");
+mongoose.connect("mongodb://adminlasttime:iloveweb123@ds215370.mlab.com:15370/onelasttime", function(err) {
+    if(!err){
+        console.log("connected to mongo");
+    } else {
+        console.log("failed to connect to mongo");
+    }
+});
+
+require("./passing.js");
+
+
+
+
+
+
 
 var photos = ["/res/photo1.jpg", "/res/photo2.jpg", "/res/photo3.jpg"];
 var videos = ["/res/video1.mp4", "/res/video2.mp4", "/res/video3.mp4"];

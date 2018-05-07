@@ -7,7 +7,7 @@ var userSchema =  mongoose.Schema(
         "DOB" : Date,
         "password": String,
         "email" : String,
-        "capsules": {type: Schema.ObjectId, ref: 'capsule'},
+        //"capsules": {type: Schema.ObjectId, ref: 'capsule'},
         "profilePic" : {data: Buffer, contentType: String},
         "nominee1email" : String,
         "nominee2email" : String

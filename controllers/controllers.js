@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var Passing = mongoose.model("Passing");
+var Passing = mongoose.model("passing");
 
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');

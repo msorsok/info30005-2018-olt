@@ -98,8 +98,13 @@ const createCapsule = function(req, res) {
         }
         if (req.files.imageInput){
             var images = [];
-            console.log(req.files.imageInput);
-            req.files.imageInput.forEach(function(element){
+            if (!(req.files.imageInput instanceof Array) ){
+                var input = [req.files.imageInput];
+            }
+            else{
+                var input = req.files.imageInput;
+            }
+            input.forEach(function(element){
                 var newImage  = new image ({
                     data: fs.readFileSync(element.file),
                     contentType: element.mimetype
@@ -113,8 +118,13 @@ const createCapsule = function(req, res) {
         }
         if (req.files.videoInput){
             var videos = [];
-            console.log(req.files.videoInput);
-            req.files.videoInput.forEach(function(element){
+            if (!(req.files.videoInput instanceof Array) ){
+                var input = [req.files.videoInput];
+            }
+            else{
+                var input = req.files.videoInput;
+            }
+            input.forEach(function(element){
                     var newVideo  = new video ({
                         data: fs.readFileSync(element.file),
                         contentType: element.mimetype
@@ -129,8 +139,13 @@ const createCapsule = function(req, res) {
 
         if (req.files.fileInput){
             var files = [];
-            console.log(req.files.fileInput);
-            req.files.fileInput.forEach(function(element){
+            if (!(req.files.fileInput instanceof Array) ){
+                var input = [req.files.fileInput];
+            }
+            else{
+                var input = req.files.fileInput;
+            }
+            input.forEach(function(element){
                     var newFile  = new file ({
                         data: fs.readFileSync(element.file),
                         contentType: element.mimetype
@@ -156,7 +171,7 @@ const createCapsule = function(req, res) {
 };
 const unlockCapsule = function(req, res) {
     if (req.body.deceased && req.body.datePassing) {
-        var passingEvent = new Passing ({
+        var passingEvent = new passing ({
             "deceased": req.body.deceased,
             "datePassing": req.body.datePassing
         });

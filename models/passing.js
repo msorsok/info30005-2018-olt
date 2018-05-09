@@ -7,4 +7,4 @@ var passingSchema =  mongoose.Schema(
     }
 );
 
-mongoose.model('Passing', passingSchema);
+mongoose.model('passing', passingSchema);

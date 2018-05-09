@@ -8,10 +8,6 @@ var file = mongoose.model("file");
 var fs = require('fs');
 var del = require("del");
 var db = require("../models/db.js");
-var Passing = mongoose.model("Passing");
-var User = mongoose.model("User");
-var UserSignUp = mongoose.model("User");
-var fs = require("fs"); // filestream
 
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');
@@ -211,12 +207,24 @@ const updateAccount = function(req, res) {
     if (req.body.nominee2email) {
         newData.nominee2email = req.body.nominee2email;
     }
+    console.log("req.body is");
+    console.log(req.body);
+    console.log("the req.files. are");
+    console.log(req.files.profilePic);
 
-    //not working
-    if (req.body.profilePic) {
-        var imgPath = req.body.profilePic;
-        newData.profilePic.data = fs.readFileSync(imgPath);
-        newData.profilePic.contentType = "image/png, image/jpeg";
+
+    if (req.files.profilePic) {
+        console.log("file has been sent");
+        var input = [req.files.profilePic];
+        input.forEach(function(element) {
+            var newFile  = new file ({
+                data: fs.readFileSync(element.file),
+                contentType: element.mimetype
+            });
+            newData.profilePic = newFile;
+            del("uploads/" + element.uuid + "/**");
+        });
+
     }
 
     /*findOneAndUpdate(condition, update, callback)
@@ -224,7 +232,7 @@ const updateAccount = function(req, res) {
     * update all the values specified in update argument
     * execute the callback function
      */
-    User.findOneAndUpdate(query, {$set: newData}, function(err, doc) {
+    user.findOneAndUpdate(query, {$set: newData}, function(err, doc) {
         if(err) {
             next(err);
         }

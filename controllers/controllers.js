@@ -115,9 +115,8 @@ const updateAccount = function(req, res) {
 
     //not working
     if (req.body.profilePic) {
-        console.log("new profile pic");
-        console.log(req.body.profilePic);
-        newData.profilePic.data = fs.readFileSync(req.body.profilePic);
+        var imgPath = req.body.profilePic;
+        newData.profilePic.data = fs.readFileSync(imgPath);
         newData.profilePic.contentType = "image/png, image/jpeg";
     }
 

@@ -1,6 +1,12 @@
 var mongoose = require("mongoose");
-var Passing = mongoose.model("passing");
-var UserSignup = mongoose.model("user");
+var passing = mongoose.model("passing");
+var user = mongoose.model("user");
+var capsule = mongoose.model("capsule");
+var image = mongoose.model("img");
+var video = mongoose.model("video");
+var file = mongoose.model("file");
+var fs = require('fs');
+var del = require("del");
 
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');
@@ -41,15 +47,15 @@ const userLogin = function(req, res) {
 
 };
 const userSignup = function(req, res) {
-    console.log("Hello")
+    console.log("Hello");
     console.log(req.body);
-    console.log(req.body.deceased);
+    console.log(req.body.email);
     if (req.body.firstName &&
         req.body.lastName &&
         req.body.emailF &&
         req.body.passwordF &&
         req.body.dateOfBirthF) {
-        var userCreate = new UserSignup ({
+        var userCreate = new user ({
             "firstName": req.body.firstName,
             "lastName": req.body.lastName,
             "DOB": req.body.dateOfBirthF,
@@ -68,11 +74,87 @@ const userSignup = function(req, res) {
     }
 };
 const createCapsule = function(req, res) {
+    console.log(req.body);
+    console.log(req.files);
+    if (req.body.recipient0) {
+        var recipientList = [];
+        recipientList.push(req.body.recipient0);
+        var recipientCount = 1;
+        while (true){
+            var name = "recipient" + recipientCount;
+            if (!req.body[name]){
+                break
+            }
+            recipientList.push(req.body[name]);
+            recipientCount ++;
+        }
+        var newCapsule = new capsule ({
+            "recipients": recipientList,
+            "released": false
+        });
+
+        if (req.body.note){
+            newCapsule.note = req.body.note;
+        }
+        if (req.files.imageInput){
+            var images = [];
+            console.log(req.files.imageInput);
+            req.files.imageInput.forEach(function(element){
+                var newImage  = new image ({
+                    data: fs.readFileSync(element.file),
+                    contentType: element.mimetype
+                });
+                images.push(newImage);
+                del("uploads/" + element.uuid + "/**");
+
+                }
+            );
+            newCapsule.img = images;
+        }
+        if (req.files.videoInput){
+            var videos = [];
+            console.log(req.files.videoInput);
+            req.files.videoInput.forEach(function(element){
+                    var newVideo  = new video ({
+                        data: fs.readFileSync(element.file),
+                        contentType: element.mimetype
+                    });
+                    videos.push(newVideo);
+                    del("uploads/" + element.uuid + "/**");
+
+                }
+            );
+            newCapsule.video = videos;
+        }
+
+        if (req.files.fileInput){
+            var files = [];
+            console.log(req.files.fileInput);
+            req.files.fileInput.forEach(function(element){
+                    var newFile  = new file ({
+                        data: fs.readFileSync(element.file),
+                        contentType: element.mimetype
+                    });
+                    files.push(newFile);
+                    del("uploads/" + element.uuid + "/**");
+                }
+            );
+            newCapsule.file = files;
+        }
+
+        newCapsule.save(function(err, cap){
+            if (err) {
+                return next(err);
+            }
+            else{
+                return res.redirect("/userInbox");
+            }
+        });
+    }
+
 
 };
 const unlockCapsule = function(req, res) {
-    console.log(req.body);
-    console.log(req.body.deceased);
     if (req.body.deceased && req.body.datePassing) {
         var passingEvent = new Passing ({
             "deceased": req.body.deceased,

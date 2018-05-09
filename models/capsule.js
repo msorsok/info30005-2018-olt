@@ -1,14 +1,21 @@
 var mongoose = require("mongoose");
 
+
+var imgSchema = require("./img.js");
+var videoSchema = require("./video.js");
+var fileSchema = require("./file.js");
+
 var capsuleSchema =  mongoose.Schema(
     {
-        "recipients" : {type: Schema.ObjectId, ref: 'user'},
-        "img" : { data: Buffer, contentType: String },
+        "recipients" : [String],
+        "img" : [imgSchema],
         "note" : String,
-        "video" : {data: Buffer, contentType: String},
-        "file" : {data: Buffer, contentType: String},
+        "video" : [videoSchema],
+        "file" : [fileSchema],
         "released" : Boolean
     }
 );
 
 mongoose.model('capsule', capsuleSchema);
+
+module.exports = capsuleSchema;

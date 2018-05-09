@@ -30,9 +30,21 @@
         padding: 0 1em;
      }
 
+    .title{
+        text-align: center;
+        //display: grid;
+        //grid-template-rows: 1fr;
+        //grid-template-areas: 1fr;
+    }
+
+    h1{
+        font-family: "Charlevoix Pro";
+        padding: 0em;
+        width: 100%;
+    }
     .message{
         display: block;
-        padding: 1em 0;
+        padding: 1em;
 
     }
 

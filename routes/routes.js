@@ -11,10 +11,12 @@ router.get("/userWelcome", controller.userWelcomeRoute);
 router.get("/userInbox",controller.userInboxRoute);
 router.get("/account2", controller.account2Route);
 router.get("/view/:id", controller.viewRoute);
-router.get("/signUp", controller.userWelcomeRoute)
+
+
 
 router.post("/signUp", controller.userSignup);
 router.post("/loginUser", controller.userLogin);
+
 router.post("/create", controller.createCapsule);
 router.post("/unlock", controller.unlockCapsule);
 router.post("/account", controller.updateAccount);

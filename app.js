@@ -5,12 +5,16 @@ require("./models/db.js");
 var router = require('./routes/routes');
 var path = require('path');
 
+var bb = require('express-busboy');
+
 
 var app = express();
+bb.extend(app, {
+    upload: true,
+    path: "./uploads",
+    allowedPath: /./
+});
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
 
 app.use(express.static('public'));
 

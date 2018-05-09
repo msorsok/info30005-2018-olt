@@ -15,11 +15,10 @@ bb.extend(app, {
     path: "./uploads",
     allowedPath: /./
 });
-
+require('./config/passport')(passport);
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var session      = require('express-session');
-
 
 
 app.use(express.static('public'));
@@ -34,8 +33,10 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
-app.use('/', router);
-require('./routes/routes')(app, passport);
+
+app.use('/', router)
+require('./config/passport')(passport);
+
 app.get('*', function(req, res){
     res.status(404).send('Oops you took a wrong turn.');
 });

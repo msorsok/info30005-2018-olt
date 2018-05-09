@@ -20,7 +20,7 @@
                 </p>
             </div>
         </div>
-        <form id = "loginForm" action="/userWelcome">
+        <form id = "loginForm" action="/loginUser" method="post">
             <div class="addEmail">
                 <p> Email</p>
                 <input type="text" name="email" placeholder="example@email.com">
@@ -47,38 +47,38 @@
         </div>
     </div>
 
-    <form id = "signupForm" action="/" method="post">
+    <form id = "signupForm" action="/signUp" method="post">
             <div class="SignupTEXT">
                 Create an account
             </div>
 
             <div class="firstName">
-                <input type="text" name="First Name" placeholder="First name">
+                <input type="text" name="firstName" placeholder="First name">
             </div>
 
 
             <div class="lastName">
-                <input type="text" name="Last Name" placeholder="Surname">
+                <input type="text" name="lastName" placeholder="Surname">
             </div>
 
             <div class="dateOfBirthT TEXT">
                 Date of Birth
             </div>
             <div class="dateOfBirthF">
-                <input type="date" name="DOB">
+                <input type="date" name="dateOfBirthF">
             </div>
             <div class="emailT TEXT">
                 Email
             </div>
 
             <div class="emailF">
-                <input type="text" name="email" placeholder="example@email.com">
+                <input type="text" name="emailF" placeholder="example@email.com">
             </div>
             <div class="passwordT TEXT">
                 Password
             </div>
             <div class="passwordF">
-                <input type="password" name="password" placeholder="New password">
+                <input type="password" name="passwordF" placeholder="New password">
             </div>
             <div class="re-enterPasswordT TEXT">
                 Re-enter Password

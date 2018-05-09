@@ -8,7 +8,7 @@ var userSchema =  mongoose.Schema(
         "emailF" : String,
         "passwordF": String,
         //"capsules": {type: Schema.ObjectId, ref: 'capsule'},
-        "profilePic" : {data: Buffer, contentType: String},
+        //"profilePic" : {data: Buffer, contentType: String},
         "nominee1email" : String,
         "nominee2email" : String
     }

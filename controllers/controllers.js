@@ -41,28 +41,24 @@ const userLogin = function(req, res) {
 
 };
 const userSignup = function(req, res) {
-    console.log("Hello")
-    console.log(req.body);
-    console.log(req.body.deceased);
-    if (req.body.firstName &&
-        req.body.lastName &&
-        req.body.emailF &&
-        req.body.passwordF &&
-        req.body.dateOfBirthF) {
-        var userCreate = new UserSignup ({
+    console.log("Hello");
+
+    if (req.body.firstName) {
+        var userCreate = new UserSignup({
             "firstName": req.body.firstName,
             "lastName": req.body.lastName,
-            "DOB": req.body.dateOfBirthF,
+            "dateOfBirthF": req.body.dateOfBirthF,
             "email": req.body.emailF,
-            "password": req.body.passwordF
-
+            "password": req.body.passwordF,
+            "nominee1email":"Add Email",
+            "nominee2email":"Add Email"
         });
         userCreate.save(function(err, event){
             if (err) {
                 return next(err)
             }
             else{
-                return res.redirect("/userInbox")
+                return res.redirect("/userWelcome")
             }
         });
     }

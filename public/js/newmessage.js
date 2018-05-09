@@ -1,6 +1,6 @@
 /* a listener when user clicks the complete message button*/
 var completeMessage = document.getElementById("completeMessage");
-completeMessage.addEventListener("click", processCompleteMessage);
+//completeMessage.addEventListener("click", processCompleteMessage);
 
 function processCompleteMessage(e) {
     if(e.preventDefault) {
@@ -11,34 +11,39 @@ function processCompleteMessage(e) {
 }
 
 /*a listener for when the user lists their intended recipients*/
-var messageRecipients = document.getElementById("messageRecipients");
-messageRecipients.addEventListener("submit", processMessageRecipients);
+var messageRecipients = document.getElementById("addRecipient");
+messageRecipients.addEventListener("click", processMessageRecipients);
 var input = [];
-function processMessageRecipients(e) {
-    if (e.preventDefault()) {
-        e.preventDefault();
-    }
-    var recipients = document.getElementById("recipients").value;
-    input.push(recipients);
-    createRecipient(recipients);
-    listRecipients();
+function processMessageRecipients() {
+    var recipient = document.getElementById("recipients").value;
+    document.getElementById("recipients").value = "";
+    input.push(recipient);
+    addRecipientHTML(recipient);
 
 }
 
-
-function listRecipients() {
-    for(var i=0;i<input.length;i++) {
-        console.log(i +". "+input[i]);
-    }
-}
 
 /* simulate responsivity by creating a drop-down list of user input
 * for their intended recipients
  */
-function createRecipient(name) {
-    var newOption = document.createElement("option");
-    newOption.value= name;
-    newOption.innerHTML = name;
-    document.getElementsByName("inputRecipients")[0].appendChild(newOption);
+function addRecipientHTML(name) {
+    if (input.length == 1){
+        var recipients = document.getElementsByClassName("recipients")[0];
+        var pTag = document.createElement("p");
+        pTag.id = "recipientsList";
+        pTag.innerHTML = name;
+        recipients.appendChild(pTag);
+    }
+    else {
+        document.getElementById("recipientsList").innerHTML += ", " + name;
+    }
+    var newInput = document.createElement("input");
+    newInput.setAttribute("type", "text");
+    newInput.style.display = "none";
+    newInput.value = name;
+    newInput.name = "recipient" + (input.length - 1);
+    var form = document.getElementById("newCapsule");
+    form.appendChild(newInput);
+    console.log(newInput);
 }
 

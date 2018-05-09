@@ -1,6 +1,5 @@
 var mongoose = require("mongoose");
-require("./capsule.js");
-var Schema = mongoose.Schema;
+var capsuleSchema = require("./capsule.js");
 var userSchema =  mongoose.Schema(
     {
         "firstName" : String,
@@ -8,11 +7,11 @@ var userSchema =  mongoose.Schema(
         "dateOfBirthF" : Date,
         "emailF" : String,
         "passwordF": String,
-        //"capsules": {type: Schema.ObjectId, ref: 'capsule'},
+        "capsules": [capsuleSchema],
         "profilePic" : {data: Buffer, contentType: String},
         "nominee1email" : String,
         "nominee2email" : String
     }
 );
 
-mongoose.model('User', userSchema);
+mongoose.model('user', userSchema);

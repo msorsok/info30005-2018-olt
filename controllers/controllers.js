@@ -1,4 +1,12 @@
 var mongoose = require("mongoose");
+var passing = mongoose.model("passing");
+var user = mongoose.model("user");
+var capsule = mongoose.model("capsule");
+var image = mongoose.model("img");
+var video = mongoose.model("video");
+var file = mongoose.model("file");
+var fs = require('fs');
+var del = require("del");
 var db = require("../models/db.js");
 var Passing = mongoose.model("Passing");
 var User = mongoose.model("User");
@@ -44,15 +52,15 @@ const userLogin = function(req, res) {
 
 };
 const userSignup = function(req, res) {
-    console.log("Hello")
+    console.log("Hello");
     console.log(req.body);
-    console.log(req.body.deceased);
+    console.log(req.body.email);
     if (req.body.firstName &&
         req.body.lastName &&
         req.body.emailF &&
         req.body.passwordF &&
         req.body.dateOfBirthF) {
-        var userCreate = new UserSignup ({
+        var userCreate = new user ({
             "firstName": req.body.firstName,
             "lastName": req.body.lastName,
             "DOB": req.body.dateOfBirthF,
@@ -71,13 +79,104 @@ const userSignup = function(req, res) {
     }
 };
 const createCapsule = function(req, res) {
+    console.log(req.body);
+    console.log(req.files);
+    if (req.body.recipient0) {
+        var recipientList = [];
+        recipientList.push(req.body.recipient0);
+        var recipientCount = 1;
+        while (true){
+            var name = "recipient" + recipientCount;
+            if (!req.body[name]){
+                break
+            }
+            recipientList.push(req.body[name]);
+            recipientCount ++;
+        }
+        var newCapsule = new capsule ({
+            "recipients": recipientList,
+            "released": false
+        });
+
+        if (req.body.note){
+            newCapsule.note = req.body.note;
+        }
+        if (req.files.imageInput){
+            var images = [];
+            if (!(req.files.imageInput instanceof Array) ){
+                var input = [req.files.imageInput];
+            }
+            else{
+                var input = req.files.imageInput;
+            }
+            input.forEach(function(element){
+                var newImage  = new image ({
+                    data: fs.readFileSync(element.file),
+                    contentType: element.mimetype
+                });
+                images.push(newImage);
+                del("uploads/" + element.uuid + "/**");
+
+                }
+            );
+            newCapsule.img = images;
+        }
+        if (req.files.videoInput){
+            var videos = [];
+            if (!(req.files.videoInput instanceof Array) ){
+                var input = [req.files.videoInput];
+            }
+            else{
+                var input = req.files.videoInput;
+            }
+            input.forEach(function(element){
+                    var newVideo  = new video ({
+                        data: fs.readFileSync(element.file),
+                        contentType: element.mimetype
+                    });
+                    videos.push(newVideo);
+                    del("uploads/" + element.uuid + "/**");
+
+                }
+            );
+            newCapsule.video = videos;
+        }
+
+        if (req.files.fileInput){
+            var files = [];
+            if (!(req.files.fileInput instanceof Array) ){
+                var input = [req.files.fileInput];
+            }
+            else{
+                var input = req.files.fileInput;
+            }
+            input.forEach(function(element){
+                    var newFile  = new file ({
+                        data: fs.readFileSync(element.file),
+                        contentType: element.mimetype
+                    });
+                    files.push(newFile);
+                    del("uploads/" + element.uuid + "/**");
+                }
+            );
+            newCapsule.file = files;
+        }
+
+        newCapsule.save(function(err, cap){
+            if (err) {
+                return next(err);
+            }
+            else{
+                return res.redirect("/userInbox");
+            }
+        });
+    }
+
 
 };
 const unlockCapsule = function(req, res) {
-    console.log(req.body);
-    console.log(req.body.deceased);
     if (req.body.deceased && req.body.datePassing) {
-        var passingEvent = new Passing ({
+        var passingEvent = new passing ({
             "deceased": req.body.deceased,
             "datePassing": req.body.datePassing
         });

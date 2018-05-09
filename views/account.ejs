@@ -21,7 +21,7 @@
                     <input type="text" name = "lastName" id="lastName" placeholder="Enter your last name">
 
                     <p>Date of Birth</p>
-                    <input type="date" name="DOB" id="DOB">
+                    <input type="date" name="dateOfBirthF" id="DOB">
                 <br>
                 <input type="submit" id="nameSubmit" value="submit">
 
@@ -33,17 +33,18 @@
                 <div class="currentPhoto">
                     <img src="res/user.png" alt="User Profile Picture">
                 </div>
-                <form action="" id ="selectPhoto">
-                    <input type="file" name="file_profilePicture" placeholder="fileupload" id="profilePicture" accept=".png, .jpg, .jpeg">
+                <form action="/account" method="post" id ="selectPhoto">
+                    <input type="file" name="profilePic" placeholder="fileupload" id="profilePicture" accept=".png, .jpg, .jpeg">
+                    <br> <input type="submit" value="Confirm New Picture" id="confirmPicture">
                 </form>
             </div>
 
 
-            <form id= "editNominationForm" action="">
+            <form id= "editNominationForm" action="/account" method="post">
                 <p>First Nominee</p>
-                <input type="text" id="firstNominee" placeholder="Jim Smith">
+                <input type="text" name="nominee1email" id="firstNominee" placeholder="Jim Smith">
                 <p>Second Nominee</p>
-                <input type="text" id="secondNominee" placeholder="Jane Smith">
+                <input type="text" name="nominee2email" id="secondNominee" placeholder="Jane Smith">
                 <br>
                 <input type="submit" value="Confirm Nominees" id="confirmChanges">
             </form>

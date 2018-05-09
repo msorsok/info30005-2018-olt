@@ -7,6 +7,7 @@ var video = mongoose.model("video");
 var file = mongoose.model("file");
 var fs = require('fs');
 var del = require("del");
+var db = require("../models/db.js");
 
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');
@@ -193,23 +194,50 @@ const unlockCapsule = function(req, res) {
 const updateAccount = function(req, res) {
     console.log("updating account");
 
-    const query = {"firstName": "newFirstName"};
+    const query = {"_id": "5aeffe1fed298801985194e5"};
 
-    console.log("query field created");
-    /*only update name*/
-    var newData = {
-        "firstName": req.body.firstName,
-        "lastName": req.body.lastName,
-        "dateOfBirthF": req.body.DOB
-    };
+    var newData = {};
+    if (req.body.firstName){
+        newData.firstName = req.body.firstName;
+    }
+    if (req.body.lastName){
+        newData.lastName = req.body.lastName;
+    }
+    if (req.body.dateOfBirthF) {
+        newData.dateOfBirthF = req.body.dateOfBirthF;
+    }
+    if (req.body.nominee1email) {
+        newData.nominee1email = req.body.nominee1email;
+    }
+    if (req.body.nominee2email) {
+        newData.nominee2email = req.body.nominee2email;
+    }
+    console.log("req.body is");
+    console.log(req.body);
+    console.log("the req.files. are");
+    console.log(req.files.profilePic);
 
-    console.log("ready to update data");
+
+    if (req.files.profilePic) {
+        console.log("file has been sent");
+        var input = [req.files.profilePic];
+        input.forEach(function(element) {
+            var newFile  = new file ({
+                data: fs.readFileSync(element.file),
+                contentType: element.mimetype
+            });
+            newData.profilePic = newFile;
+            del("uploads/" + element.uuid + "/**");
+        });
+
+    }
+
     /*findOneAndUpdate(condition, update, callback)
     * returns the first document to match all conditions specified in condition
     * update all the values specified in update argument
     * execute the callback function
      */
-    User.findOneAndUpdate(query, {$set: newData}, function(err, doc) {
+    user.findOneAndUpdate(query, {$set: newData}, function(err, doc) {
         if(err) {
             next(err);
         }

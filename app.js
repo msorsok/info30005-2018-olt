@@ -3,6 +3,7 @@ var express = require("express");
 var router = require('./routes/routes');
 var path = require('path');
 var bodyParser = require("body-parser");
+var bb = require('express-busboy');
 
 var app = express();
 
@@ -10,6 +11,11 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+bb.extend(app, {
+    upload: true,
+    path: "/uploads",
+    allowedPath: /./
+});
 app.use(express.static('public'));
 
 app.set('view engine', 'ejs');

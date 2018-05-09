@@ -1,8 +1,12 @@
-require("./models/db.js");
+
 var express = require("express");
+var bodyParser = require("body-parser");
+require("./models/db.js");
 var router = require('./routes/routes');
 var path = require('path');
+
 var bb = require('express-busboy');
+
 
 var app = express();
 bb.extend(app, {

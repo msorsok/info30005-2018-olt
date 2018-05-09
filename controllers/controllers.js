@@ -48,9 +48,8 @@ const userLogin = function(req, res) {
 
 };
 const userSignup = function(req, res) {
-    console.log("Hello");
-    console.log(req.body);
-    console.log(req.body.email);
+
+
     if (req.body.firstName &&
         req.body.lastName &&
         req.body.emailF &&
@@ -59,17 +58,18 @@ const userSignup = function(req, res) {
         var userCreate = new user ({
             "firstName": req.body.firstName,
             "lastName": req.body.lastName,
-            "DOB": req.body.dateOfBirthF,
-            "email": req.body.emailF,
-            "password": req.body.passwordF
-
+            "dateOfBirthF": req.body.dateOfBirthF,
+            "emailF": req.body.emailF,
+            "passwordF": req.body.passwordF,
+            "nominee1email":"Add Email",
+            "nominee2email":"Add Email"
         });
         userCreate.save(function(err, event){
             if (err) {
                 return next(err)
             }
             else{
-                return res.redirect("/userInbox")
+                return res.redirect("/userWelcome")
             }
         });
     }

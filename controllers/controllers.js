@@ -47,8 +47,13 @@ const userLogin = function(req, res) {
 
 };
 const userSignup = function(req, res) {
-
-
+    passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    });
+};
+const userSignup2 = function(req, res) {
     if (req.body.firstName &&
         req.body.lastName &&
         req.body.emailF &&

@@ -1,7 +1,7 @@
 var express = require("express");
 var controller = require('../controllers/controllers');
 var router = express.Router();
-
+var passport = require("passport");
 router.get('/', controller.loginRoute);
 router.get("/blank", controller.blankRoute);
 router.get("/unlock", controller.unlockRoute);
@@ -12,9 +12,12 @@ router.get("/userInbox",controller.userInboxRoute);
 router.get("/account2", controller.account2Route);
 router.get("/view/:id", controller.viewRoute);
 
+router.post('/signup', passport.authenticate('local-signup', {
+    successRedirect : '/profile', // redirect to the secure profile section
+    failureRedirect : '/signup', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+}));
 
-
-router.post("/signUp", controller.userSignup);
 router.post("/loginUser", controller.userLogin);
 
 router.post("/create", controller.createCapsule);

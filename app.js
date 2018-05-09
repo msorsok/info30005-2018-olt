@@ -4,7 +4,8 @@ var bodyParser = require("body-parser");
 require("./models/db.js");
 var router = require('./routes/routes');
 var path = require('path');
-
+var passport = require('passport');
+var flash    = require('connect-flash');
 var bb = require('express-busboy');
 
 
@@ -15,13 +16,26 @@ bb.extend(app, {
     allowedPath: /./
 });
 
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var session      = require('express-session');
+
+
 
 app.use(express.static('public'));
 
+app.use(cookieParser()); // read cookies (needed for auth)
+app.use(bodyParser()); // get information from html forms
+
 app.set('view engine', 'ejs');
 
-app.use('/', router);
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
 
+app.use('/', router);
+require('./routes/routes')(app, passport);
 app.get('*', function(req, res){
     res.status(404).send('Oops you took a wrong turn.');
 });

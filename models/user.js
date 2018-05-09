@@ -1,7 +1,5 @@
 var mongoose = require("mongoose");
-
 var capsuleSchema = require("./capsule.js");
-
 var userSchema =  mongoose.Schema(
     {
         "firstName" : String,
@@ -16,4 +14,4 @@ var userSchema =  mongoose.Schema(
     }
 );
 
-mongoose.model('user', userSchema);
+mongoose.model('User', userSchema);

@@ -171,7 +171,32 @@ const unlockCapsule = function(req, res) {
     }
 };
 const updateAccount = function(req, res) {
+    console.log("updating account");
 
+    const query = {"firstName": "newFirstName"};
+
+    console.log("query field created");
+    /*only update name*/
+    var newData = {
+        "firstName": req.body.firstName,
+        "lastName": req.body.lastName,
+        "dateOfBirthF": req.body.DOB
+    };
+
+    console.log("ready to update data");
+    /*findOneAndUpdate(condition, update, callback)
+    * returns the first document to match all conditions specified in condition
+    * update all the values specified in update argument
+    * execute the callback function
+     */
+    User.findOneAndUpdate(query, {$set: newData}, function(err, doc) {
+        if(err) {
+            next(err);
+        }
+        else {
+            return res.redirect("/account");
+        }
+    })
 };
 
 

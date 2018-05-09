@@ -3,6 +3,7 @@ var db = require("../models/db.js");
 var Passing = mongoose.model("Passing");
 var User = mongoose.model("User");
 var UserSignUp = mongoose.model("User");
+var fs = require("fs"); // filestream
 
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');
@@ -93,17 +94,33 @@ const unlockCapsule = function(req, res) {
 const updateAccount = function(req, res) {
     console.log("updating account");
 
-    const query = {"firstName": "newFirstName"};
+    const query = {"_id": "5aeffe1fed298801985194e5"};
 
-    console.log("query field created");
-    /*only update name*/
-    var newData = {
-        "firstName": req.body.firstName,
-        "lastName": req.body.lastName,
-        "dateOfBirthF": req.body.DOB
-    };
+    var newData = {};
+    if (req.body.firstName){
+        newData.firstName = req.body.firstName;
+    }
+    if (req.body.lastName){
+        newData.lastName = req.body.lastName;
+    }
+    if (req.body.dateOfBirthF) {
+        newData.dateOfBirthF = req.body.dateOfBirthF;
+    }
+    if (req.body.nominee1email) {
+        newData.nominee1email = req.body.nominee1email;
+    }
+    if (req.body.nominee2email) {
+        newData.nominee2email = req.body.nominee2email;
+    }
 
-    console.log("ready to update data");
+    //not working
+    if (req.body.profilePic) {
+        console.log("new profile pic");
+        console.log(req.body.profilePic);
+        newData.profilePic.data = fs.readFileSync(req.body.profilePic);
+        newData.profilePic.contentType = "image/png, image/jpeg";
+    }
+
     /*findOneAndUpdate(condition, update, callback)
     * returns the first document to match all conditions specified in condition
     * update all the values specified in update argument

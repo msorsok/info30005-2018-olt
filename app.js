@@ -34,8 +34,14 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
+// require('./routes/routes')(app, passport);
+
+var routes_obj = require('./routes/routes');
+var router = routes_obj(passport);
+
 app.use('/', router);
-require('./routes/routes')(app, passport);
+
+
 app.get('*', function(req, res){
     res.status(404).send('Oops you took a wrong turn.');
 });

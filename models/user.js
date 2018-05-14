@@ -1,28 +1,49 @@
-var mongoose = require("mongoose");
-var capsuleSchema = require("./capsule.js");
-var bcrypt   = require('bcrypt');
+var mongoose = require('mongoose');
+var bcrypt = require('bcryptjs');
 
-var userSchema =  mongoose.Schema(
-    {
-        "firstName" : String,
-        "lastName" : String,
-        "dateOfBirthF" : Date,
-        "emailF" : String,
-        "passwordF": String,
-        "capsules": [capsuleSchema],
-        "profilePic" : {data: Buffer, contentType: String},
-        "nominee1email" : String,
-        "nominee2email" : String
-    }
-);
-// methods ======================
-// generating a hash
-userSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
+// User Schema
+var UserSchema = mongoose.Schema({
+	username: {
+		type: String,
+		index:true
+	},
+	password: {
+		type: String
+	},
+	email: {
+		type: String
+	},
+	firstName: {
+		type: String
+	},
+	lastName: {
+		type: String
+	}
+});
 
-// checking if password is valid
-userSchema.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.local.password);
-};
-mongoose.model('user', userSchema);
+var User = module.exports = mongoose.model('User', UserSchema);
+
+module.exports.createUser = function(newUser, callback){
+	bcrypt.genSalt(10, function(err, salt) {
+	    bcrypt.hash(newUser.password, salt, function(err, hash) {
+	        newUser.password = hash;
+	        newUser.save(callback);
+	    });
+	});
+}
+
+module.exports.getUserByUsername = function(username, callback){
+	var query = {username: username};
+	User.findOne(query, callback);
+}
+
+module.exports.getUserById = function(id, callback){
+	User.findById(id, callback);
+}
+
+module.exports.comparePassword = function(candidatePassword, hash, callback){
+	bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
+    	if(err) throw err;
+    	callback(null, isMatch);
+	});
+}

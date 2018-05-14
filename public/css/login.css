@@ -180,13 +180,13 @@
     .emailT{
         grid-area: emailT;
     }
-    .emailF{
+    .username{
         grid-area: emailF;
     }
     .passwordT{
         grid-area: passwordT;
     }
-    .passwordF{
+    .password{
         grid-area: passwordF;
     }
     .re-enterPasswordT{

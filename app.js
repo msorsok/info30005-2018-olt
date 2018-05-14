@@ -1,49 +1,85 @@
-
-var express = require("express");
-var bodyParser = require("body-parser");
-require("./models/db.js");
-var router = require('./routes/routes');
+var express = require('express');
 var path = require('path');
-var passport = require('passport');
-var flash    = require('connect-flash');
-var bb = require('express-busboy');
-
-
-var app = express();
-bb.extend(app, {
-    upload: true,
-    path: "./uploads",
-    allowedPath: /./
-});
-require('./config/passport')(passport);
-var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
-var session      = require('express-session');
+var bodyParser = require('body-parser');
+var exphbs = require('express-handlebars');
+var expressValidator = require('express-validator');
+var flash = require('connect-flash');
+var session = require('express-session');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var mongo = require('mongodb');
+var mongoose = require('mongoose');
 
+mongoose.connect('mongodb://adminlasttime:iloveweb123@ds215370.mlab.com:15370/onelasttime');
+var db = mongoose.connection;
 
-app.use(express.static('public'));
+var routes = require('./routes/index');
+var users = require('./routes/users');
 
-app.use(cookieParser()); // read cookies (needed for auth)
-app.use(bodyParser()); // get information from html forms
+// Init App
+var app = express();
 
+// View Engine
 app.set('view engine', 'ejs');
 
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+// BodyParser Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+// Set Static Folder
+app.use(express.static('public'));
+
+// Express Session
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}));
+
+// Passport init
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(passport.session());
 
+// Express Validator
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
 
-app.use('/', router)
-require('./config/passport')(passport);
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
 
-app.get('*', function(req, res){
-    res.status(404).send('Oops you took a wrong turn.');
+// Connect Flash
+app.use(flash());
+
+// Global Vars
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, function(){
-    console.log(`Express listening on port ${PORT}`);
-});
 
-// adding a comment
+
+app.use('/', routes);
+app.use('/users', users);
+
+// Set Port
+app.set('port', (process.env.PORT || 3001));
+
+app.listen(app.get('port'), function(){
+	console.log('Server started on port '+app.get('port'));
+});

@@ -8,7 +8,7 @@ var file = mongoose.model("file");
 var fs = require('fs');
 var del = require("del");
 var db = require("../models/db.js");
-
+require("../config/passport.js")
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');
 };
@@ -48,11 +48,7 @@ const userLogin = function(req, res) {
 
 };
 const userSignup = function(req, res) {
-    passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    });
+
 };
 const userSignup2 = function(req, res) {
     if (req.body.firstName &&
@@ -247,7 +243,15 @@ const updateAccount = function(req, res) {
     })
 };
 
+function isLoggedIn(req, res, next) {
 
+    // if user is authenticated in the session, carry on
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
 
 module.exports = {
     comingSoonRoute: comingSoonRoute,

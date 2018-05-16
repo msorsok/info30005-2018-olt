@@ -1,14 +1,15 @@
 var mongoose = require("mongoose");
+var db = require("../models/db.js");
+var user = mongoose.model("User");
 var passing = mongoose.model("passing");
-var user = mongoose.model("user");
 var capsule = mongoose.model("capsule");
 var image = mongoose.model("img");
 var video = mongoose.model("video");
 var file = mongoose.model("file");
+
 var fs = require('fs');
 var del = require("del");
-var db = require("../models/db.js");
-require("../config/passport.js")
+
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');
 };
@@ -22,7 +23,7 @@ const blankRoute = function(req, res) {
 };
 
 const accountRoute = function(req, res) {
-    res.render('account');
+    res.render('account', {fname: req.user.firstName});
 };
 
 const account2Route = function(req, res) {
@@ -30,19 +31,19 @@ const account2Route = function(req, res) {
 };
 
 const unlockRoute = function(req, res) {
-    res.render("unlock");
+    res.render("unlock", {fname: req.user.firstName}););
 };
 const createRoute = function(req, res) {
-    res.render('newmessage');
+    res.render('newmessage', {fname: req.user.firstName}););
 };
 const userWelcomeRoute = function (req,res) {
     res.render('user_welcome');
 };
 const userInboxRoute = function (req,res) {
-    res.render('user_inbox');
+    res.render('user_inbox', {fname: req.user.firstName});
 };
 const viewRoute = function (req,res) {
-    res.render('view_capsule', database[req.params.id]);
+    res.render('view_capsule', {fname: req.user.firstName}););
 };
 const userLogin = function(req, res) {
 
@@ -51,6 +52,7 @@ const userSignup = function(req, res) {
 
 };
 const userSignup2 = function(req, res) {
+    /*
     if (req.body.firstName &&
         req.body.lastName &&
         req.body.emailF &&
@@ -74,6 +76,7 @@ const userSignup2 = function(req, res) {
             }
         });
     }
+    */
 };
 const createCapsule = function(req, res) {
     console.log(req.body);
@@ -107,12 +110,12 @@ const createCapsule = function(req, res) {
                 var input = req.files.imageInput;
             }
             input.forEach(function(element){
-                var newImage  = new image ({
-                    data: fs.readFileSync(element.file),
-                    contentType: element.mimetype
-                });
-                images.push(newImage);
-                del("uploads/" + element.uuid + "/**");
+                    var newImage  = new image ({
+                        data: fs.readFileSync(element.file),
+                        contentType: element.mimetype
+                    });
+                    images.push(newImage);
+                    del("uploads/" + element.uuid + "/**");
 
                 }
             );
@@ -189,19 +192,22 @@ const unlockCapsule = function(req, res) {
 };
 const updateAccount = function(req, res) {
     console.log("updating account");
-
-    const query = {"_id": "5aeffe1fed298801985194e5"};
-
+    console.log(req.user);
     var newData = {};
     if (req.body.firstName){
+        console.log("firstname " + req.body.firstName);
         newData.firstName = req.body.firstName;
     }
     if (req.body.lastName){
+        console.log("lastname " + req.body.lastName);
         newData.lastName = req.body.lastName;
     }
+
+    /*
     if (req.body.dateOfBirthF) {
         newData.dateOfBirthF = req.body.dateOfBirthF;
     }
+
     if (req.body.nominee1email) {
         newData.nominee1email = req.body.nominee1email;
     }
@@ -227,13 +233,14 @@ const updateAccount = function(req, res) {
         });
 
     }
-
+    */
     /*findOneAndUpdate(condition, update, callback)
     * returns the first document to match all conditions specified in condition
     * update all the values specified in update argument
-    * execute the callback function
-     */
-    user.findOneAndUpdate(query, {$set: newData}, function(err, doc) {
+    * execute the callback function*/
+    console.log("req.user.username is");
+    console.log(req.user.username);
+    user.findOneAndUpdate(req.user.username, {$set: newData}, function(err, doc) {
         if(err) {
             next(err);
         }
@@ -241,6 +248,7 @@ const updateAccount = function(req, res) {
             return res.redirect("/account");
         }
     })
+
 };
 
 function isLoggedIn(req, res, next) {

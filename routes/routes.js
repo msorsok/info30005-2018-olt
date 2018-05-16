@@ -1,3 +1,4 @@
+/*
 var express = require("express");
 var controller = require('../controllers/controllers');
 var router = express.Router();
@@ -13,7 +14,7 @@ router.get("/userInbox",controller.userInboxRoute);
 router.get("/account2", controller.account2Route);
 router.get("/view/:id", controller.viewRoute);
 
-/*
+
 module.exports = function(passport) {
     router.get('/', controller.loginRoute);
     router.get("/blank", controller.blankRoute);

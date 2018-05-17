@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 var passing = mongoose.model("passing");
-var user = mongoose.model("user");
+var user = mongoose.model("User");
 var capsule = mongoose.model("capsule");
 var image = mongoose.model("img");
 var video = mongoose.model("video");
@@ -8,7 +8,7 @@ var file = mongoose.model("file");
 var fs = require('fs');
 var del = require("del");
 var db = require("../models/db.js");
-require("../config/passport.js")
+
 const comingSoonRoute = function(req, res) {
     res.render('comingsoon');
 };
@@ -44,37 +44,8 @@ const userInboxRoute = function (req,res) {
 const viewRoute = function (req,res) {
     res.render('view_capsule', database[req.params.id]);
 };
-const userLogin = function(req, res) {
 
-};
-const userSignup = function(req, res) {
 
-};
-const userSignup2 = function(req, res) {
-    if (req.body.firstName &&
-        req.body.lastName &&
-        req.body.emailF &&
-        req.body.passwordF &&
-        req.body.dateOfBirthF) {
-        var userCreate = new user ({
-            "firstName": req.body.firstName,
-            "lastName": req.body.lastName,
-            "dateOfBirthF": req.body.dateOfBirthF,
-            "emailF": req.body.emailF,
-            "passwordF": req.body.passwordF,
-            "nominee1email":"Add Email",
-            "nominee2email":"Add Email"
-        });
-        userCreate.save(function(err, event){
-            if (err) {
-                return next(err)
-            }
-            else{
-                return res.redirect("/userWelcome")
-            }
-        });
-    }
-};
 const createCapsule = function(req, res) {
     console.log(req.body);
     console.log(req.files);
@@ -264,8 +235,6 @@ module.exports = {
     createRoute: createRoute,
     blankRoute: blankRoute,
     viewRoute: viewRoute,
-    userLogin: userLogin,
-    userSignup: userSignup,
     createCapsule: createCapsule,
     unlockCapsule: unlockCapsule,
     updateAccount: updateAccount

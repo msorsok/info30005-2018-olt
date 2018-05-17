@@ -24,17 +24,15 @@
 @media screen and (min-width: 992px) {
     .content{
         font-family: "Unna";
-        font-size: 200%;
         grid-area: content;
         box-sizing: border-box;
         padding: 0 1em;
-     }
+        background-color: #f1f0ff;
+    }
 
     .title{
         text-align: center;
-        //display: grid;
-        //grid-template-rows: 1fr;
-        //grid-template-areas: 1fr;
+        font-size: 150%;
     }
 
     h1{
@@ -45,6 +43,7 @@
     .message{
         display: block;
         padding: 1em;
+        font-size: 150%;
 
     }
 
@@ -55,29 +54,25 @@
         grid-row-gap: 1em;
         grid-template-areas: ". deceasedName . datePassing ." ". submitRelease submitRelease submitRelease . ";
         align-items: center;
-        background-color: #f1f1f1;
-        font-size: 70%;
+        font-size: 100%;
+        font-family: "Charlevoix Pro";
 
     }
 
     #releaseForm select{
-        padding: 1.1em 1em;
+        padding: 1.1em 8em 1.1em 1em;
         box-sizing: border-box;
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "Charlevoix Pro";
-        font-size: 70%;
     }
 
     #releaseForm input{
-        padding: 1em;
+        padding: 1.1em 8em 1.1em 1em;
         box-sizing: border-box;
         background-color: #957ead;
         border-style: none;
         color: #fff;
-        font-family: "Charlevoix Pro";
-        font-size: 70%;
     }
 
     #releaseForm input[type = submit]{
@@ -85,11 +80,10 @@
         background-color: #56327d;
         border-style: none;
         color: #fff;
-        font-family: "Charlevoix Pro";
         font-size: 100%;
-        box-sizing: border-box;
-        padding: 0.5em 1em;
+        padding: 0.5em 1.5em;
         cursor: pointer;
+        font-size: 150%;
     }
 
 

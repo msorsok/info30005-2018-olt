@@ -8,7 +8,7 @@ router.get('/', ensureAuthenticated, function(req, res){
     res.render('userWelcome');
 });
 router.get("/blank", controller.blankRoute);
-router.get("/unlock", controller.unlockRoute);
+router.get("/release", controller.releaseRoute);
 router.get("/account", controller.accountRoute);
 router.get("/create", controller.createRoute);
 router.get("/userWelcome", controller.userWelcomeRoute);
@@ -28,7 +28,7 @@ function ensureAuthenticated(req, res, next){
 
 
 router.post("/create", controller.createCapsule);
-router.post("/unlock", controller.unlockCapsule);
+router.post("/release", controller.releaseCapsule);
 router.post("/account", controller.updateAccount);
 
 

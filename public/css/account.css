@@ -27,8 +27,20 @@
         grid-area: content;
         box-sizing: border-box;
         padding: 0 1em;
+        background-color: #f1f0ff;
+    }
+
+    .title{
+        text-align: center;
         font-size: 150%;
     }
+
+    h1{
+        font-family: "Charlevoix Pro";
+        padding: 0em;
+        width: 100%;
+    }
+
     .description {
     }
     .description p {

@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>One Last Time - Unlock</title>
     <link href = "css/page_template.css" rel = "stylesheet" type = "text/css">
-    <link href = "css/unlock.css" rel = "stylesheet" type = "text/css">
+    <link href = "css/release.css" rel = "stylesheet" type = "text/css">
 
 </head>
 <%- include("page_template_start");%>
@@ -13,13 +13,13 @@
 
 </div>
 <div class = "message">
-            From everyone at One Last Time we are sorry for your loss.
-            To release your friend or loved one's time capsule, please provide their name and date of passing below.
+    From everyone at One Last Time we are sorry for your loss.
+    To release your friend or loved one's time capsule, please provide their name and date of passing below.
 </div>
 
-<form id = "releaseForm" action="/unlock" method = "post">
+<form id = "releaseForm" action="/release" method = "post">
     <div class = "deceasedName">
-        <p>Name</p>
+        <h2>Name</h2>
         <select name="deceased">
             <option value="John">John Smith</option>
             <option value="Lucy">Lucy Diamonds</option>
@@ -28,7 +28,7 @@
         </select>
     </div>
     <div class = "datePassing">
-        <p>Date of Passing</p>
+        <h2>Date of Passing</h2>
         <input type="date" name="datePassing">
     </div>
     <div class = submitRelease>

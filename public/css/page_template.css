@@ -36,16 +36,16 @@
     .page {
         position:relative;
         display: grid;
+        padding-bottom: 3em;
+        box-sizing: border-box;
         grid-template-columns: 1fr 7fr 0.8fr 0.8fr 0.5fr 1fr;
-        grid-template-rows: 3em repeat(3, fit-content(100%));
+        grid-template-rows: 3em repeat(2, fit-content(100%));
         grid-template-areas:
                 "header header header header header header"
                 ". navigation navigation navigation navigation ."
-                ". content content content content ."
-                ". . . . . .";
+                ". content content content content .";
         grid-column-gap: 1em;
         grid-row-gap: 2em;
-        height: 100%;
     }
 
     .header{

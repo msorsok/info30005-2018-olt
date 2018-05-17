@@ -38,13 +38,13 @@
     #newCapsule{
         display: grid;
         grid-template-rows: auto auto auto auto auto auto;
-        grid-template-columns: 1fr 1fr 1fr 1fr 15em;
-        grid-template-areas: "recipients recipients recipients recipients ."
-        "note note note note ."
-        "images images images images ."
-        "videos videos videos videos ."
-        "files files files files ."
-        "submitCapsule submitCapsule submitCapsule submitCapsule .";
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-areas: "recipients recipients recipients recipients"
+        "note note note note"
+        "images images images images"
+        "videos videos videos videos"
+        "files files files files"
+        "submitCapsule submitCapsule submitCapsule submitCapsule";
 
     }
 
@@ -197,11 +197,6 @@
         margin-top: 1em;
         margin-bottom: 1em;
     }
-
-
-
-
-
 
     .submitCapsule{
         padding: 1em;

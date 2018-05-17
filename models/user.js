@@ -19,6 +19,8 @@ var UserSchema = mongoose.Schema({
 	lastName: {
 		type: String
 	}
+	
+
 });
 
 var User = module.exports = mongoose.model('User', UserSchema);

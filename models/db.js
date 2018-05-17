@@ -1,5 +1,6 @@
 require("./passing.js");
 require("./capsule.js");
+require("./user.js")
 
 
 

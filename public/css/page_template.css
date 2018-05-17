@@ -22,9 +22,14 @@
 
 
 @media screen and (min-width: 992px) {
+    html{
+        margin: 0;
+        height: 100%;
+    }
     body {
         margin: 0;
-        background-color: #f1f1f1;
+    //background-color: #f1f1f1;
+        height: 100%;
     }
 
     /* template css */
@@ -32,8 +37,12 @@
         position:relative;
         display: grid;
         grid-template-columns: 1fr 7fr 0.8fr 0.8fr 0.5fr 1fr;
-        grid-template-rows: 3em auto;
-        grid-template-areas: "header header header header header header" ". content sidebar sidebar sidebar .";
+        grid-template-rows: 3em repeat(3, fit-content(100%));
+        grid-template-areas:
+                "header header header header header header"
+                ". navigation navigation navigation navigation ."
+                ". content content content content ."
+                ". . . . . .";
         grid-column-gap: 1em;
         grid-row-gap: 2em;
         height: 100%;
@@ -52,7 +61,7 @@
 
     .logo{
         grid-area: logo;
-        background-color: #56327d;
+        background-color: #443266;
         display: grid;
         grid-template-columns: 1fr 1em 0.4fr 1.2fr 5.4fr;
         grid-template-rows: 1fr;
@@ -79,7 +88,7 @@
         grid-template-areas: "userImage userName logout .";
         grid-column-gap: 0.5em;
         align-items: center;
-        background-color: #56327d;
+        background-color: #443266;
     }
     .userImage{
         grid-area: userImage;
@@ -95,35 +104,65 @@
         cursor: pointer;
     }
 
-    .sidebar{
+    .navigation{
         font-family: 'Charlevoix Pro';
         display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(3, fit-content(100%));
-        grid-template-areas: "account" "unlock" "create";
+        grid-template-columns: 1em repeat(4, 1fr) 1em;
+        grid-template-rows: auto;
+        grid-template-areas: ". homeNav accountNav releaseNav createNav .";
         grid-row-gap: 0.5em;
-        grid-area: sidebar;
+        grid-area: navigation;
         color: #fff;
         align-items: center;
     }
 
-    .sidebar *{
-        padding-left: 0.5em;
+    .navigation *{
+        padding: 0 0.5em;
         background-color: #957ead;
         cursor: pointer;
     }
 
-    .account{
-        grid-area: account;
+    .homeNav{
+        grid-area: homeNav;
+        text-align: center;
+        box-sizing: border-box;
+        border-color: #fff;
+        border-style: solid;
+        border-width: medium;
 
     }
 
-    .unlock{
-        grid-area: unlock;
+
+    .accountNav{
+        grid-area: accountNav;
+        text-align: center;
+        box-sizing: border-box;
+        border-color: #fff;
+        border-style: solid;
+        border-width: medium;
+
+
     }
 
-    .create{
-        grid-area: create;
+    .releaseNav{
+        grid-area: releaseNav;
+        text-align: center;
+        box-sizing: border-box;
+        border-color: #fff;
+        border-style: solid;
+        border-width: medium;
+
+
+    }
+
+    .createNav{
+        grid-area: createNav;
+        text-align: center;
+        box-sizing: border-box;
+        border-color: #fff;
+        border-style: solid;
+        border-width: medium;
+
 
     }
 }

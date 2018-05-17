@@ -29,8 +29,8 @@ const account2Route = function(req, res) {
     res.render('account2');
 };
 
-const unlockRoute = function(req, res) {
-    res.render("unlock");
+const releaseRoute = function(req, res) {
+    res.render("release");
 };
 const createRoute = function(req, res) {
     res.render('newmessage');
@@ -171,7 +171,7 @@ const createCapsule = function(req, res) {
 
 
 };
-const unlockCapsule = function(req, res) {
+const releaseCapsule = function(req, res) {
     if (req.body.deceased && req.body.datePassing) {
         var passingEvent = new passing ({
             "deceased": req.body.deceased,
@@ -256,7 +256,7 @@ function isLoggedIn(req, res, next) {
 module.exports = {
     comingSoonRoute: comingSoonRoute,
     loginRoute: loginRoute,
-    unlockRoute: unlockRoute,
+    releaseRoute: releaseRoute,
     userWelcomeRoute: userWelcomeRoute,
     userInboxRoute:userInboxRoute,
     accountRoute: accountRoute,
@@ -267,6 +267,6 @@ module.exports = {
     userLogin: userLogin,
     userSignup: userSignup,
     createCapsule: createCapsule,
-    unlockCapsule: unlockCapsule,
+    releaseCapsule: releaseCapsule,
     updateAccount: updateAccount
 };

@@ -5,7 +5,7 @@ var passport = require("passport");
 require("../config/passport.js")
 router.get('/', controller.loginRoute);
 router.get("/blank", controller.blankRoute);
-router.get("/unlock", controller.unlockRoute);
+router.get("/release", controller.releaseRoute);
 router.get("/account", controller.accountRoute);
 router.get("/create", controller.createRoute);
 router.get("/userWelcome", controller.userWelcomeRoute);
@@ -26,7 +26,7 @@ router.post('/loginUser', passport.authenticate('local-login', {
     failureFlash : true // allow flash messages
 }));
 router.post("/create", controller.createCapsule);
-router.post("/unlock", controller.unlockCapsule);
+router.post("/release", controller.releaseCapsule);
 router.post("/account", controller.updateAccount);
 
 

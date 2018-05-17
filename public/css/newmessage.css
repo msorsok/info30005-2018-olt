@@ -26,9 +26,9 @@
        font-family: "Charlevoix Pro";
        grid-area: content;
        box-sizing: border-box;
-       padding: 0 1em;
-
-    }
+       padding: 0 4em;
+       background-color: #f1f0ff;
+   }
 
     .headTitle{
         text-align: center;

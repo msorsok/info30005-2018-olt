@@ -8,13 +8,14 @@
 
 </head>
 <%- include("page_template_start");%>
-        <div class="inboxHeaderText">Inbox</div>
+
+    <h2 id = "inboxHeaderText">Inbox</h2>
 
         <div class="inbox">
-            <div class="HeaderBox ">
-                <div class="From">From</div>
-                <div class="messageTitle">Title</div>
-                <div class="date">Date Received</div>
+            <div class="HeaderBoxReceived">
+                <div class="fromHeader"><p>From</p></div>
+                <div class="titleHeader"><p>Title</p></div>
+                <div class="dateReceivedHeader"><p>Date Received</p></div>
             </div>
             <div class="inboxAllEmails">
                 <div class="inboxEmail">
@@ -29,12 +30,12 @@
                 </div>
             </div>
         </div>
-        <div class="sentHeaderText">Sent</div>
+            <h2 id = "sentHeaderText">Sent</h2>
         <div class="sent">
-            <div class="HeaderBox ">
-                <div class="sendTo">Send To</div>
-                <div class="messageTitle">Title</div>
-                <div class="date">Date Created</div>
+            <div class="HeaderBoxSent">
+                <div class="recipientHeader"><p>Recipient</p></div>
+                <div class="titleHeaderSent"><p>Title</p></div>
+                <div class="dateCreatedHeader"><p>Date Created</p></div>
             </div>
             <div class="allSentEmails">
 

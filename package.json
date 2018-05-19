@@ -20,6 +20,8 @@
     "express-busboy": "^7.0.0",
     "express-fileupload": "^0.4.0",
     "express-session": "^1.15.6",
+    "express-validator": "^5.2.0",
+    "mongodb": "^3.1.0-beta4",
     "mongoose": "^5.0.17",
     "morgan": "^1.9.0",
     "npm": "^5.8.0",

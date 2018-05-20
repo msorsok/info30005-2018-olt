@@ -41,10 +41,14 @@
 
             <div class="changeNomineesTitle"> Change your nominees</div>
             <form id= "editNominationForm" action="/account" method="post">
+                <div class="firstNominee">
                 <div class="firstNomineeTitle"><p>First Nominee</p></div>
                 <input type="text" name="nominee1email" id="firstNominee" placeholder="Jim Smith">
+                </div>
+                <div class="secondNominee">
                 <div class="secondNomineeTitle"><p>Second Nominee</p></div>
                 <input type="text" name="nominee2email" id="secondNominee" placeholder="Jane Smith">
+                </div>
                 <br>
                 <input type="submit" value="Submit" id="confirmChanges">
             </form>

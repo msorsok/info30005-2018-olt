@@ -75,8 +75,22 @@
     }
 
     #editNominationForm {
+        display: grid;
+        grid-template-areas: "firstNom secondNom" "firstNom secondNom" "submit submit";
         grid-area: nomineeDetails;
         padding: 0 1em;
+    }
+
+    .firstNominee {
+        justify-self: left;
+        grid-area: firstNom;
+    }
+    .secondNominee {
+        justify-self: left;
+        grid-area: secondNom;
+    }
+    #editNominationForm input {
+        display: inline;
     }
     .firstNameTitle, .lastNameTitle, .dobTitle, .profilePicTitle, .firstNomineeTitle,.secondNomineeTitle,.changeNomineesTitle {
         font-size: 150%;
@@ -91,7 +105,7 @@
         font-family: "Charlevoix Pro";
         font-size: 100%;
         width: 30%;
-        text-align: right;
+        text-align: center;
         margin-top: 1em;
         margin-bottom: 1em;
     }
@@ -115,7 +129,12 @@
         font-size: 100%;
         color: #fff;
         font-family: "Charlevoix Pro";
-        width: 40%;
+        width: 90%;
+    }
+
+    #editNominationForm input[type=submit] {
+        justify-self: left;
+        grid-area: submit;
     }
 
     input[type=date] {

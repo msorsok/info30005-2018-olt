@@ -136,6 +136,10 @@
         grid-area: description;
         color: #56327d;
     }
+
+    .descriptionText{
+        text-align: center;
+    }
     .submitButton{
         grid-area: submitButton;
         padding: 1em 0;

@@ -42,7 +42,7 @@ const userInboxRoute = function (req,res) {
     res.render('user_inbox');
 };
 const viewRoute = function (req,res) {
-    res.render('view_capsule', database[req.params.id]);
+    res.render('view_capsule', db[req.params.id]);
 };
 
 

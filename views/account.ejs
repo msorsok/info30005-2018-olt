@@ -14,39 +14,39 @@
         </div>
 
             <form id ="editNameForm" action="/account" method="post">
-                    <p>First Name</p>
+                <div class="firstNameTitle"><p>First Name</p></div>
                     <input type="text" name ="firstName" id="firstName" placeholder="Enter your first name">
 
-                    <p>Last Name</p>
+                    <div class="lastNameTitle"><p>Last Name</p></div>
                     <input type="text" name = "lastName" id="lastName" placeholder="Enter your last name">
 
-                    <p>Date of Birth</p>
+                <div class="dobTitle"><p>Date of Birth</p></div>
                     <input type="date" name="dateOfBirthF" id="DOB">
                 <br>
-                <input type="submit" id="nameSubmit" value="submit">
+                <input type="submit" id="nameSubmit" value="Submit">
 
             </form>
 
 
             <div class ="editProfilePicture">
-                <p>Upload New Photo</p>
+                <div class="profilePicTitle"><p>Upload New Photo</p></div>
                 <div class="currentPhoto">
                     <img src="res/user.png" alt="User Profile Picture">
                 </div>
                 <form action="/account" method="post" id ="selectPhoto" encType="multipart/form-data">
                     <input type="file" name="profilePic" placeholder="fileupload" id="profilePicture" accept=".png, .jpg, .jpeg">
-                    <br> <input type="submit" value="Confirm New Picture" id="confirmPicture">
+                    <br> <input type="submit" value="Submit" id="confirmPicture">
                 </form>
             </div>
 
-
+            <div class="changeNomineesTitle"> Change your nominees</div>
             <form id= "editNominationForm" action="/account" method="post">
-                <p>First Nominee</p>
+                <div class="firstNomineeTitle"><p>First Nominee</p></div>
                 <input type="text" name="nominee1email" id="firstNominee" placeholder="Jim Smith">
-                <p>Second Nominee</p>
+                <div class="secondNomineeTitle"><p>Second Nominee</p></div>
                 <input type="text" name="nominee2email" id="secondNominee" placeholder="Jane Smith">
                 <br>
-                <input type="submit" value="Confirm Nominees" id="confirmChanges">
+                <input type="submit" value="Submit" id="confirmChanges">
             </form>
         </div>
 

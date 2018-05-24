@@ -8,13 +8,13 @@ router.get('/', ensureAuthenticated, function(req, res){
     res.render('userWelcome');
 });
 router.get("/blank", controller.blankRoute);
-router.get("/release", controller.releaseRoute);
-router.get("/account", controller.accountRoute);
-router.get("/create", controller.createRoute);
-router.get("/userWelcome", controller.userWelcomeRoute);
-router.get("/userInbox",controller.userInboxRoute);
+router.get("/release", ensureAuthenticated,controller.releaseRoute);
+router.get("/account", ensureAuthenticated,controller.accountRoute);
+router.get("/create", ensureAuthenticated,controller.createRoute);
+router.get("/userWelcome", ensureAuthenticated,controller.userWelcomeRoute);
+router.get("/userInbox",ensureAuthenticated,controller.userInboxRoute);
 router.get("/account2", controller.account2Route);
-router.get("/view/:id", controller.viewRoute);
+router.get("/view/:id", ensureAuthenticated,controller.viewRoute);
 router.get('/login',controller.loginRoute);
 
 function ensureAuthenticated(req, res, next){

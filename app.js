@@ -20,12 +20,16 @@ var router = require('./routes/routes');
 
 // Init App
 var app = express();
-
+//bb was here initially
 
 
 
 app.use(bodyParser()); // get information from html forms
-
+bb.extend(app, {
+    upload: true,
+    path: "./uploads",
+    allowedPath: /./
+});
 // View Engine
 app.set('view engine', 'ejs');
 

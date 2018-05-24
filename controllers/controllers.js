@@ -166,9 +166,6 @@ const releaseCapsule = function(req, res) {
 };
 const updateAccount = function(req, res) {
     console.log("updating account");
-
-    const query = {"_id": "5aeffe1fed298801985194e5"};
-
     var newData = {};
     if (req.body.firstName){
         newData.firstName = req.body.firstName;
@@ -210,7 +207,7 @@ const updateAccount = function(req, res) {
     * update all the values specified in update argument
     * execute the callback function
      */
-    user.findOneAndUpdate(query, {$set: newData}, function(err, doc) {
+    user.findByIdAndUpdate(req.user._id, {$set: newData}, function(err, doc) {
         if(err) {
             next(err);
         }

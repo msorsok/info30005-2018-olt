@@ -5,7 +5,7 @@ var passport = require("passport");
 
 // Get Homepage
 router.get('/', ensureAuthenticated, function(req, res){
-    res.render('userWelcome');
+    res.render('user_welcome');
 });
 router.get("/blank", controller.blankRoute);
 router.get("/release", ensureAuthenticated,controller.releaseRoute);

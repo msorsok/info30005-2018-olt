@@ -22,6 +22,7 @@ const blankRoute = function(req, res) {
 };
 
 const accountRoute = function(req, res) {
+    console.log("account accessed");
     res.render('account');
 };
 
@@ -30,18 +31,23 @@ const account2Route = function(req, res) {
 };
 
 const releaseRoute = function(req, res) {
+    console.log("releasepage accessed");
     res.render("release");
 };
 const createRoute = function(req, res) {
+    console.log("new capsule page accessed");
     res.render('newmessage');
 };
 const userWelcomeRoute = function (req,res) {
+    console.log("user_welcome accessed");
     res.render('user_welcome');
 };
 const userInboxRoute = function (req,res) {
+    console.log("user_inbox accessed");
     res.render('user_inbox');
 };
 const viewRoute = function (req,res) {
+    console.log("view_ accessed");
     res.render('view_capsule', db[req.params.id]);
 };
 

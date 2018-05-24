@@ -3,9 +3,10 @@ var controller = require('../controllers/controllers');
 var router = express.Router();
 var passport = require("passport");
 
-// Get Homepage
+// Get Login page
 router.get('/', ensureAuthenticated, function(req, res){
-    res.render('user_welcome');
+    req.logout();
+    res.render('login');
 });
 router.get("/blank", controller.blankRoute);
 router.get("/release", ensureAuthenticated,controller.releaseRoute);

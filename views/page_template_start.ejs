@@ -18,7 +18,9 @@
             </div>
             <div class = "userName">
                 <p>
-                    Tarnvir Grewal
+                    <% if (typeof firstName == 'string' && firstName) { %>
+                        <%-firstName%>
+                    <% } %>
                 </p>
             </div>
             <div class = "logout">

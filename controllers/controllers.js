@@ -201,7 +201,7 @@ const updateAccount = function(req, res) {
         });
 
     }
-
+    console.log(req.user);
     /*findOneAndUpdate(condition, update, callback)
     * returns the first document to match all conditions specified in condition
     * update all the values specified in update argument

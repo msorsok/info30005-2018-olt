@@ -70,6 +70,11 @@ const logoutRoute = function (req, res) {
     res.redirect('/login');
 };
 
+const profilePicRoute = function (req, res) {
+    res.setHeader('Cache-Control', 'public, max-age=3000000');
+    res.contentType(req.user.profilePic.contentType);
+    res.send(req.user.profilePic.data);
+};
 
 module.exports = {
     ensureAuthenticated: ensureAuthenticated,
@@ -83,5 +88,6 @@ module.exports = {
     account2Route: account2Route,
     createRoute: createRoute,
     viewRoute: viewRoute,
-    logoutRoute: logoutRoute
+    logoutRoute: logoutRoute,
+    profilePicRoute: profilePicRoute
 };

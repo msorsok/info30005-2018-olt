@@ -67,7 +67,7 @@ const logoutRoute = function (req, res) {
 
     req.flash('success_msg', 'You are logged out');
 
-    res.redirect('/users/login');
+    res.redirect('/login');
 };
 
 

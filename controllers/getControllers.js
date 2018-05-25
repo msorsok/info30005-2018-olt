@@ -9,16 +9,6 @@ var fs = require('fs');
 var del = require("del");
 var db = require("../models/db.js");
 
-const ensureAuthenticated = function(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    else {
-        //req.flash('error_msg','You are not logged in');
-        res.redirect('login');
-    }
-};
-
 const rootRoute = function(req, res){
     req.logout();
     res.render('login');
@@ -71,23 +61,41 @@ const logoutRoute = function (req, res) {
 };
 
 const profilePicRoute = function (req, res) {
-    res.setHeader('Cache-Control', 'public, max-age=3000000');
     res.contentType(req.user.profilePic.contentType);
     res.send(req.user.profilePic.data);
 };
 
+const capsuleSentRoute = function (req, res) {
+    var targetCapsule;
+    console.log("hello");
+    console.log(req.params.id);
+    console.log(req.user);
+    req.user.capsulesSent.forEach(function(capsule){
+        console.log(capsule._id);
+        if (capsule._id == req.params.id){
+            targetCapsule = capsule;
+        }
+    });
+    if (targetCapsule  != null){
+        res.send(targetCapsule);
+    }
+    else{
+        res.send("not found");
+    }
+};
+
+
+
 module.exports = {
-    ensureAuthenticated: ensureAuthenticated,
     rootRoute: rootRoute,
-    comingSoonRoute: comingSoonRoute,
     loginRoute: loginRoute,
     releaseRoute: releaseRoute,
     userWelcomeRoute: userWelcomeRoute,
     userInboxRoute:userInboxRoute,
     accountRoute: accountRoute,
-    account2Route: account2Route,
     createRoute: createRoute,
     viewRoute: viewRoute,
     logoutRoute: logoutRoute,
-    profilePicRoute: profilePicRoute
+    profilePicRoute: profilePicRoute,
+    capsuleSentRoute: capsuleSentRoute
 };

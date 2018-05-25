@@ -56,7 +56,10 @@ router.post('/register', function (req, res) {
 						lastName: lastName,
                         dateOfBirthF:dateOfBirthF,
 						username: username,
-						password: password
+						password: password,
+						profilePic: null,
+                        nominee1email: "",
+						nominee2email: "",
 					});
 					User.createUser(newUser, function (err, user) {
 						if (err) throw err;

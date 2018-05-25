@@ -15,7 +15,6 @@ var mongoose = require('mongoose');
 var bb = require('express-busboy');
 
 
-var users = require('./routes/users');
 var router = require('./routes/routes');
 
 // Init App
@@ -82,8 +81,6 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', router);
-app.use('/users', users);
-
 
 app.get('*', function(req, res){
     res.status(404).send('Oops you took a wrong turn.');

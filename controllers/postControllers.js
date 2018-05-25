@@ -9,49 +9,6 @@ var fs = require('fs');
 var del = require("del");
 var db = require("../models/db.js");
 
-const comingSoonRoute = function(req, res) {
-    res.render('comingsoon');
-};
-
-const loginRoute = function(req, res) {
-    res.render('login');
-};
-
-const blankRoute = function(req, res) {
-    res.render('page_template');
-};
-
-const accountRoute = function(req, res) {
-    console.log("account accessed");
-    res.render('account', {firstName: req.user.firstName});
-};
-
-const account2Route = function(req, res) {
-    res.render('account2');
-};
-
-const releaseRoute = function(req, res) {
-    console.log("releasepage accessed");
-    res.render("release", {firstName: req.user.firstName});
-};
-const createRoute = function(req, res) {
-    console.log("new capsule page accessed");
-    res.render('newmessage', {firstName: req.user.firstName});
-};
-const userWelcomeRoute = function (req,res) {
-    console.log("user_welcome accessed");
-    res.render('user_welcome', {firstName: req.user.firstName});
-};
-const userInboxRoute = function (req,res) {
-    console.log("user_inbox accessed");
-    res.render('user_inbox', {firstName: req.user.firstName});
-};
-const viewRoute = function (req,res) {
-    console.log("view_ accessed");
-    res.render('view_capsule', db[req.params.id], {firstName: req.user.firstName});
-};
-
-
 const createCapsule = function(req, res) {
     console.log(req.body);
     console.log(req.files);
@@ -84,12 +41,12 @@ const createCapsule = function(req, res) {
                 var input = req.files.imageInput;
             }
             input.forEach(function(element){
-                var newImage  = new image ({
-                    data: fs.readFileSync(element.file),
-                    contentType: element.mimetype
-                });
-                images.push(newImage);
-                del("uploads/" + element.uuid + "/**");
+                    var newImage  = new image ({
+                        data: fs.readFileSync(element.file),
+                        contentType: element.mimetype
+                    });
+                    images.push(newImage);
+                    del("uploads/" + element.uuid + "/**");
 
                 }
             );
@@ -217,28 +174,74 @@ const updateAccount = function(req, res) {
     })
 };
 
-function isLoggedIn(req, res, next) {
+const registerUser = function (req, res) {
+    var firstName = req.body.firstName;
+    var lastName = req.body.lastName;
+    var username = req.body.username;
+    var password = req.body.password;
+    var password2 = req.body.password2;
+    var dateOfBirthF = req.body.dateOfBirthF;
 
-    // if user is authenticated in the session, carry on
-    if (req.isAuthenticated())
-        return next();
+    // Validation
+    req.checkBody('firstName', 'First Name is required').notEmpty();
+    req.checkBody('lastName', 'Last Name is required').notEmpty();
+    req.checkBody('username', 'Username is required').notEmpty();
+    req.checkBody('password', 'Password is required').notEmpty();
+    req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+    req.checkBody('dateOfBirthF', 'Date of birth is required').notEmpty();
 
-    // if they aren't redirect them to the home page
+    var errors = req.validationErrors();
+
+    if (errors) {
+        res.render('login', {
+            errors: errors
+        });
+    }
+    else {
+        //checking for email and username are already taken
+        User.findOne({ username: {
+                "$regex": "^" + username + "\\b", "$options": "i"
+            }}, function (err, user) {
+
+            if (user) {
+                res.render('login', {
+                    user: user
+                });
+            }
+            else {
+                var newUser = new User({
+                    firstName: firstName,
+                    lastName: lastName,
+                    dateOfBirthF:dateOfBirthF,
+                    username: username,
+                    password: password,
+                    profilePic: null,
+                    nominee1email: "",
+                    nominee2email: "",
+                    capsulesReceived: [],
+                    capsulesSent: []
+                });
+                User.createUser(newUser, function (err, user) {
+                    if (err) throw err;
+                    console.log(user);
+                });
+                req.flash('success_msg', 'You are registered and can now login');
+                res.redirect('/userWelcome');
+            }
+
+        });
+    }
+};
+
+const login = function (req, res) {
     res.redirect('/');
-}
+};
+
 
 module.exports = {
-    comingSoonRoute: comingSoonRoute,
-    loginRoute: loginRoute,
-    releaseRoute: releaseRoute,
-    userWelcomeRoute: userWelcomeRoute,
-    userInboxRoute:userInboxRoute,
-    accountRoute: accountRoute,
-    account2Route: account2Route,
-    createRoute: createRoute,
-    blankRoute: blankRoute,
-    viewRoute: viewRoute,
+    registerUser: registerUser,
     createCapsule: createCapsule,
     releaseCapsule: releaseCapsule,
-    updateAccount: updateAccount
+    updateAccount: updateAccount,
+    login: login
 };

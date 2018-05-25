@@ -9,7 +9,8 @@ var userSchema =  mongoose.Schema(
         "dateOfBirthF" : Date,
         "username" : String,
         "password": String,
-        "capsules": [capsuleSchema],
+        "capsulesReceived": [capsuleSchema],
+        "capsulesSent": [capsuleSchema],
         "profilePic" : {data: Buffer, contentType: String},
         "nominee1email" : String,
         "nominee2email" : String

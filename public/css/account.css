@@ -97,7 +97,7 @@
     }
 
     input[type=submit] {
-        padding: 1.1em 8em 1.1em 1em;
+        padding: 1em 0.5em;
         box-sizing: border-box;
         background-color: #957ead;
         border-style: none;
@@ -135,6 +135,7 @@
     #editNominationForm input[type=submit] {
         justify-self: left;
         grid-area: submit;
+        width: 15%;
     }
 
     input[type=date] {

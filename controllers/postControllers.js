@@ -8,7 +8,7 @@ var file = mongoose.model("file");
 var fs = require('fs');
 var del = require("del");
 var db = require("../models/db.js");
-
+var nodemailer = require("nodemailer");
 const createCapsule = function(req, res) {
     console.log(req.body);
     console.log(req.files);
@@ -171,7 +171,42 @@ const updateAccount = function(req, res) {
         else {
             return res.redirect("/account");
         }
-    })
+    });
+
+
+    //sending email to non-user
+    // create reusable transporter object using the default SMTP transport
+
+    var transporter = nodemailer.createTransport({
+        host: 'mail.radiant-mountain-46628.herokuapp.com',
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            //req.isAuthenticated
+            user: req.user.username, // add username here
+            pass: req.user.password  // add password here
+        },
+        tls:{
+            rejectUnauthorized:false
+        }
+    });
+    var mailOptions = {
+        from: req.user.firstName,
+        to: req.body.nominee1email, // list of receivers
+        subject: 'One Last Time nominee for ADDNAME ', // Subject line
+        text: 'ADD STANDARD TEXT', // plain text body
+        html: '<b>ADD STANDARD TEXT</b>' // html body
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message sent: %s', info.messageId);
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+
+    });
+
 };
 
 const registerUser = function (req, res) {

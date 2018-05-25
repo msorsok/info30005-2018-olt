@@ -23,8 +23,10 @@ const createCapsule = function(req, res) {
             recipientCount ++;
         }
         var newCapsule = new capsule ({
-            "recipients": recipientList,
-            "released": false
+            "dateCreated": Date.now(),
+            "released": false,
+            "senderFirstName": req.user.firstName,
+            "senderLastName" : req.user.lastName
         });
 
         if (req.body.note){
@@ -116,10 +118,9 @@ const releaseCapsule = function(req, res) {
             if (err) {
                 return next(err)
             }
-            else{
-                return res.redirect("/userInbox")
-            }
-        });
+        }
+
+        );
     }
 };
 const updateAccount = function(req, res) {

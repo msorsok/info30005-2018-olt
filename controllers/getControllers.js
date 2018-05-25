@@ -1,12 +1,7 @@
 var mongoose = require("mongoose");
 var passing = mongoose.model("passing");
-var user = mongoose.model("User");
 var capsule = mongoose.model("capsule");
-var image = mongoose.model("img");
 var video = mongoose.model("video");
-var file = mongoose.model("file");
-var fs = require('fs');
-var del = require("del");
 var db = require("../models/db.js");
 
 const rootRoute = function(req, res){
@@ -14,49 +9,30 @@ const rootRoute = function(req, res){
     res.render('login');
 };
 
-const comingSoonRoute = function(req, res) {
-    res.render('comingsoon');
-};
-
 const loginRoute = function(req, res) {
     res.render('login');
 };
 
 const accountRoute = function(req, res) {
-    console.log("account accessed");
-    res.render('account', {firstName: req.user.firstName});
-};
-
-const account2Route = function(req, res) {
-    res.render('account2');
+    res.render('account', req.user);
 };
 
 const releaseRoute = function(req, res) {
-    console.log("releasepage accessed");
-    res.render("release", {firstName: req.user.firstName});
+    res.render("release", req.user);
 };
 const createRoute = function(req, res) {
-    console.log("new capsule page accessed");
-    res.render('newmessage', {firstName: req.user.firstName});
+    res.render('newmessage', req.user);
 };
 const userWelcomeRoute = function (req,res) {
-    console.log("user_welcome accessed");
-    res.render('user_welcome', {firstName: req.user.firstName});
+    res.render('user_welcome', req.user);
 };
 const userInboxRoute = function (req,res) {
-    console.log("user_inbox accessed");
-    res.render('user_inbox', {firstName: req.user.firstName});
-};
-const viewRoute = function (req,res) {
-    console.log("view_ accessed");
-    res.render('view_capsule', db[req.params.id], {firstName: req.user.firstName});
+    res.render('user_inbox', req.user);
 };
 
 const logoutRoute = function (req, res) {
     req.logout();
-
     req.flash('success_msg', 'You are logged out');
-
     res.redirect('/login');
 };
 
@@ -65,9 +41,8 @@ const profilePicRoute = function (req, res) {
     res.send(req.user.profilePic.data);
 };
 
-const capsuleSentRoute = function (req, res) {
+const viewCapsuleSentRoute = function (req, res) {
     var targetCapsule;
-    console.log("hello");
     console.log(req.params.id);
     console.log(req.user);
     req.user.capsulesSent.forEach(function(capsule){
@@ -77,10 +52,30 @@ const capsuleSentRoute = function (req, res) {
         }
     });
     if (targetCapsule  != null){
-        res.send(targetCapsule);
+        targetCapsule.firstName = req.user.firstName;
+        res.render("preview_capsule", targetCapsule);
     }
     else{
-        res.send("not found");
+        res.send("Capsule was not found");
+    }
+};
+
+const viewCapsuleReceivedRoute = function (req, res) {
+    var targetCapsule;
+    console.log(req.params.id);
+    console.log(req.user);
+    req.user.capsulesSent.forEach(function(capsule){
+        console.log(capsule._id);
+        if (capsule._id == req.params.id){
+            targetCapsule = capsule;
+        }
+    });
+    if (targetCapsule){
+        targetCapsule.firstName = req.user.firstName;
+        res.render("view_capsule", targetCapsule);
+    }
+    else{
+        res.send("Capsule was not found");
     }
 };
 
@@ -94,8 +89,8 @@ module.exports = {
     userInboxRoute:userInboxRoute,
     accountRoute: accountRoute,
     createRoute: createRoute,
-    viewRoute: viewRoute,
     logoutRoute: logoutRoute,
     profilePicRoute: profilePicRoute,
-    capsuleSentRoute: capsuleSentRoute
+    viewCapsuleSentRoute: viewCapsuleSentRoute,
+    viewCapsuleReceivedRoute: viewCapsuleReceivedRoute
 };

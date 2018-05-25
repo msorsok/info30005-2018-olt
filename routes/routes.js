@@ -11,11 +11,12 @@ router.get("/account", passportUtilities.ensureAuthenticated, getController.acco
 router.get("/create", passportUtilities.ensureAuthenticated, getController.createRoute);
 router.get("/userWelcome", passportUtilities.ensureAuthenticated, getController.userWelcomeRoute);
 router.get("/userInbox", passportUtilities.ensureAuthenticated, getController.userInboxRoute);
-router.get("/view/:id", passportUtilities.ensureAuthenticated, getController.viewRoute);
 router.get('/profilePic', passportUtilities.ensureAuthenticated, getController.profilePicRoute);
-router.get('/capsuleSent/:id', passportUtilities.ensureAuthenticated, getController.capsuleSentRoute);
+router.get('/capsuleSent/:id', passportUtilities.ensureAuthenticated, getController.viewCapsuleSentRoute);
+router.get("/capsuleReceived/:id", passportUtilities.ensureAuthenticated, getController.viewCapsuleReceivedRoute);
 router.get('/login', getController.loginRoute);
 router.get('/logout', getController.logoutRoute);
+
 
 
 //Post Requests

@@ -8,12 +8,15 @@ var fileSchema = require("./file.js");
 
 var capsuleSchema =  mongoose.Schema(
     {
+        "senderFirstName" : String,
+        "senderLastName" : String,
         "recipients" : [String],
         "img" : [imgSchema],
         "note" : String,
         "video" : [videoSchema],
         "file" : [fileSchema],
-        "released" : Boolean
+        "released" : Boolean,
+        "dateSent": Date
     }
 );
 

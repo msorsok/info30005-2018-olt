@@ -22,6 +22,8 @@ const blankRoute = function(req, res) {
 };
 
 const accountRoute = function(req, res) {
+    console.log(req.user.profilePic.data);
+    var dbImage = req.user.profilePic.data.toString('base64');
     console.log("account accessed");
     res.render('account', {firstName: req.user.firstName});
 };

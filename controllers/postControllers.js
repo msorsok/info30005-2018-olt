@@ -1,15 +1,14 @@
 var mongoose = require("mongoose");
 var passing = mongoose.model("passing");
 var user = mongoose.model("user");
-var User = mongoose.model("User");
 var capsule = mongoose.model("capsule");
 var image = mongoose.model("img");
 var video = mongoose.model("video");
-var file = mongoose.model("file");
 var dependent = mongoose.model("dependent");
 var fs = require('fs');
 var del = require("del");
 var passport = require("passport");
+var nodemail = require("nodemailer");
 
 const createCapsule = function(req, res) {
     if (req.body.recipient0) {
@@ -97,20 +96,20 @@ const releaseCapsule = function(req, res) {
         //req.body.deceased is of the form <firstName>,<userName>
         //split the string by the ,
         var username = req.body.deceased.split(",")[1];
-        //currently only checks for first name
+        //find recently deceased user by username
         user.findOne({username: username}, function (err, recentlyDeceased) {
             if (err) {
                 return next(err);
             }
-
+            // mark confirm1 as true if user is the first nominee of the deceased user
             if (recentlyDeceased.nominee1email == req.user.username) {
                 recentlyDeceased.confirm1 = true;
             }
             else if (recentlyDeceased.nominee2email == req.user.username) {
                 recentlyDeceased.confirm2 = true;
             }
-            /* =================
-            * CODE FOR RELEASING CAPSULES GOES HERE
+            /*
+            * release capsules if both nominees have confirmed the death of the user
              */
             if (recentlyDeceased.confirm1 && recentlyDeceased.confirm2) {
                 console.log("both nominees have confirmed");
@@ -134,6 +133,7 @@ const releaseCapsule = function(req, res) {
 
                     });
                    sentCapsule.released = true;
+                   // save all changes to sentCapsule document
                    sentCapsule.save({ suppressWarning: true },function(err, event) {
                        if (err) {
                            return next(err);
@@ -146,9 +146,7 @@ const releaseCapsule = function(req, res) {
                    });
                 });
             }
-            /*
-             *=======================
-             */
+            //save all the changes to recentlyDeceased
             recentlyDeceased.save(function(err, event) {
                 if (err) {
                     return next(err);
@@ -160,6 +158,7 @@ const releaseCapsule = function(req, res) {
 };
 const updateAccount = function(req, res) {
     console.log("updating account");
+    // the json object that will be sent to the mongoose.findByIdAndUpdate
     var newData = {};
     if (req.body.firstName){
         newData.firstName = req.body.firstName;
@@ -170,6 +169,8 @@ const updateAccount = function(req, res) {
     if (req.body.dateOfBirthF) {
         newData.dateOfBirthF = req.body.dateOfBirthF;
     }
+
+    //find nominee and set user as dependent
     if (req.body.nominee1email) {
         newData.nominee1email = req.body.nominee1email;
         user.findOne({username: req.body.nominee1email}, function(err, foundUser) {
@@ -187,6 +188,7 @@ const updateAccount = function(req, res) {
         });
 
     }
+    //find nominee and set user as dependent
     if (req.body.nominee2email) {
         newData.nominee2email = req.body.nominee2email;
         user.findOne({username: req.body.nominee2email}, function(err, foundUser) {
@@ -203,12 +205,7 @@ const updateAccount = function(req, res) {
             });
         });
     }
-    console.log("req.body is");
-    console.log(req.body);
-    console.log("the req.files. are");
-    console.log(req.files.profilePic);
-
-
+    //update profile pic
     if (req.files.profilePic) {
         console.log("file has been sent");
         var input = [req.files.profilePic];

@@ -113,8 +113,11 @@ const createCapsule = function(req, res) {
 };
 const releaseCapsule = function(req, res) {
     if (req.body.deceased && req.body.datePassing) {
+        //req.body.deceased is of the form <firstName>,<userName>
+        //split the string by the ,
+        var username = req.body.deceased.split(",")[1];
         //currently only checks for first name
-        user.findOne({firstName : req.body.deceased}, function (err, recentlyDeceased) {
+        user.findOne({username: username}, function (err, recentlyDeceased) {
             if (err) {
                 return next(err);
             }
@@ -134,19 +137,23 @@ const releaseCapsule = function(req, res) {
                 //iterate through each capsule the recently deceased user created
                 recentlyDeceased.capsulesSent.forEach( function(sentCapsule) {
                     //iterate through all the recipients for the current sentCapsule
-                    sentCapsule.forEach(function(recipient) {
+                    sentCapsule.recipients.forEach(function(recipient) {
                         //push the capsule object to the array of receivedCapsules for the recipient
-                       recipient.capsulesReceived.push(sentCapsule);
-                       recipient.save(function(err, event) {
-                          if (err) {
-                              return next(err);
-                          }
+                       user.findOne({username: recipient}, function(err, capsuleRecipient) {
+                           capsuleRecipient.capsulesReceived.push(sentCapsule);
+                           capsuleRecipient.save({ suppressWarning: true },function(err, event) {
+                               if (err) {
+                                   return next(err);
+                               }
 
+                           });
                        });
+
+
 
                     });
                    sentCapsule.released = true;
-                   sentCapsule.save(function(err, event) {
+                   sentCapsule.save({ suppressWarning: true },function(err, event) {
                        if (err) {
                            return next(err);
                        }

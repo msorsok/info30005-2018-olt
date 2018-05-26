@@ -165,5 +165,148 @@
 
 
 @media screen and (max-width: 992px) {
+    .content{
+        grid-area: content;
+        display: grid;
+        grid-template-columns: 0.5fr 6fr 0.5fr;
+        grid-template-rows: repeat(6, fit-content(100%));
+        grid-template-areas:". title ." ". inboxHeaderText ." ". inbox ." ". sentHeaderText ." ". sent ." ". . .";
+        grid-row-gap: 1em;
+        background-color: #f1f0ff;
+        padding-bottom: 1em;
+
+    }
+
+    .title{
+        text-align: center;
+        grid-area: title;
+        font-size: 150%;
+    }
+
+    h1{
+        font-family: "Charlevoix Pro";
+        padding: 0em;
+        width: 100%;
+    }
+    #inboxHeaderText{
+        grid-area: inboxHeaderText;
+        font-family: 'Charlevoix Pro';
+        color: #443266;
+        justify-self: center;
+        align-self: center;
+
+
+    }
+    .inbox{
+        grid-area: inbox;
+        background-color: white;
+        font-family: 'Charlevoix Pro';
+
+    }
+    .HeaderBoxReceived{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: auto;
+        cursor: pointer;
+        border-color: #443266;
+        border-style: solid;
+        color: white;
+        background-color: #443266;
+        grid-template-areas: "fromHeader titleHeader dateReceivedHeader";
+    }
+
+    .fromHeader{
+        grid-area: fromHeader;
+        padding: 0 4%;
+    }
+
+    .titleHeader{
+        grid-area: titleHeader;
+        padding: 0 4%;
+
+    }
+
+    .dateReceivedHeader{
+        grid-area: dateReceivedHeader;
+        padding: 0 4%;
+
+    }
+
+    .inboxEmail{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 2em auto;
+        padding-left: 2%;
+        padding-top: 2%;
+        cursor: pointer;
+        border-color: #443266;
+    }
+
+    #sentHeaderText{
+        grid-area: sentHeaderText;
+        font-family: 'Charlevoix Pro';
+        color: #443266;
+        justify-self: center;
+        align-self: center;
+
+    }
+
+    .sent{
+        grid-area: sent;
+        background-color: white;
+        font-family: 'Charlevoix Pro';
+
+
+    }
+    .sentEmail{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 2em auto;
+        color:black;
+        cursor: pointer;
+        padding-top: 2%;
+        padding-left: 2%;
+        border-color: #443266;
+
+    }
+
+    .messageTitle{
+        overflow: hidden;
+    }
+
+
+    .HeaderBoxSent{
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: auto;
+        cursor: pointer;
+        border-color: #443266;
+        border-style: solid;
+        color: white;
+        background-color: #443266;
+        grid-template-areas: "recipientHeader titleHeaderSent dateCreatedHeader";
+    }
+
+    .recipientHeader{
+        grid-area: recipientHeader;
+        padding: 0 4%;
+
+    }
+
+    .titleHeaderSent{
+        grid-area: titleHeaderSent;
+        padding: 0 4%;
+
+    }
+
+    .dateCreatedHeader{
+        grid-area: dateCreatedHeader;
+        padding: 0 4%;
+    }
+
+    .capsuleid{
+        display: none;
+    }
+
 
 }

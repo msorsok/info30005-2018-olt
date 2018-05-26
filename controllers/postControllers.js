@@ -1,10 +1,12 @@
 var mongoose = require("mongoose");
 var passing = mongoose.model("passing");
 var user = mongoose.model("User");
+var User = mongoose.model("User");
 var capsule = mongoose.model("capsule");
 var image = mongoose.model("img");
 var video = mongoose.model("video");
 var file = mongoose.model("file");
+var dependent = mongoose.model("dependent");
 var fs = require('fs');
 var del = require("del");
 var db = require("../models/db.js");
@@ -135,17 +137,40 @@ const updateAccount = function(req, res) {
     if (req.body.dateOfBirthF) {
         newData.dateOfBirthF = req.body.dateOfBirthF;
     }
+
     if (req.body.nominee1email) {
         newData.nominee1email = req.body.nominee1email;
+        user.findOne({username: req.body.nominee1email}, function(err, foundUser) {
+            if (err) {
+                console.log("couldnt find user");
+                return next(err);
+            }
+            console.log("creating dependent");
+            foundUser.dependents.push(req.user._id);
+            foundUser.save(function(err,event) {
+                if (err) {
+                    return next(err);
+                }
+            });
+        });
+
     }
     if (req.body.nominee2email) {
         newData.nominee2email = req.body.nominee2email;
+        user.findOne({username: req.body.nominee2email}, function(err, foundUser) {
+            if (err) {
+                console.log("couldnt find user");
+                return next(err);
+            }
+            console.log("creating dependent");
+            foundUser.dependents.push(req.user._id);
+            foundUser.save(function(err,event) {
+                if (err) {
+                    return next(err);
+                }
+            });
+        });
     }
-    console.log("req.body is");
-    console.log(req.body);
-    console.log("the req.files. are");
-    console.log(req.files.profilePic);
-
 
     if (req.files.profilePic) {
         console.log("file has been sent");
@@ -161,12 +186,8 @@ const updateAccount = function(req, res) {
 
     }
     console.log(req.user);
-    /*findOneAndUpdate(condition, update, callback)
-    * returns the first document to match all conditions specified in condition
-    * update all the values specified in update argument
-    * execute the callback function
-     */
-    user.findByIdAndUpdate(req.user._id, {$set: newData}, function(err, doc) {
+    /*find the user with matching id and username and updates its attributes based on set*/
+    user.findOneAndUpdate({_id: req.user._id,username: req.user.username}, {$set: newData}, function(err, doc) {
         if(err) {
             next(err);
         }
@@ -210,6 +231,7 @@ const updateAccount = function(req, res) {
     });
 
 };
+
 
 const registerUser = function (req, res) {
     var firstName = req.body.firstName;
@@ -256,7 +278,8 @@ const registerUser = function (req, res) {
                     nominee1email: "",
                     nominee2email: "",
                     capsulesReceived: [],
-                    capsulesSent: []
+                    capsulesSent: [],
+                    dependents: []
                 });
                 User.createUser(newUser, function (err, user) {
                     if (err) throw err;

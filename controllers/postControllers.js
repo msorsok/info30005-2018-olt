@@ -1,15 +1,13 @@
 var mongoose = require("mongoose");
 var passing = mongoose.model("passing");
 var user = mongoose.model("user");
-var User = mongoose.model("User");
 var capsule = mongoose.model("capsule");
 var image = mongoose.model("img");
 var video = mongoose.model("video");
-var file = mongoose.model("file");
 var dependent = mongoose.model("dependent");
+var nodemailer = require("nodemailer");
 var fs = require('fs');
 var del = require("del");
-var passport = require("passport");
 
 const createCapsule = function(req, res) {
     if (req.body.recipient0) {
@@ -178,7 +176,7 @@ const updateAccount = function(req, res) {
                 return next(err);
             }
             console.log("creating dependent");
-            foundUser.dependents.push(req.user._id);
+            foundUser.dependents.push(req.user.username);
             foundUser.save(function(err,event) {
                 if (err) {
                     return next(err);

@@ -23,25 +23,13 @@ const accountRoute = function(req, res) {
 };
 
 const releaseRoute = function(req, res) {
-    var nominators = [];
-    /*
-    * currently, foundUser gets pushed to nominators
-    * but after forEach block nominators becomes []
-    */
-    req.user.dependents.forEach( function(dependent) {
-        user.findById(dependent, function(err, foundUser) {
-            if (err) {
-                return next(err);
-            }
-            nominators.push(foundUser);
-            res.render("release", {firstName: req.user.firstName, dependents: nominators}); //please do not move
-        });
-    });
-
+    return res.render("release", {firstName: req.user.firstName, dependents: req.user.dependents});
 };
+
 const createRoute = function(req, res) {
     res.render('newmessage', req.user);
 };
+
 const userWelcomeRoute = function (req,res) {
     if (req.user.capsulesReceived.length + req.user.capsulesSent.length > 0){
         res.redirect("/");
@@ -50,7 +38,7 @@ const userWelcomeRoute = function (req,res) {
         res.render('user_welcome', req.user);
     }
 };
-const userInboxRoute = function (req,res) {
+yconst userInboxRoute = function (req,res) {
     console.log(req.user.capsulesReceived.length + req.user.capsulesSent.length );
     if (req.user.capsulesReceived.length + req.user.capsulesSent.length > 0){
         res.render('user_inbox', req.user);

@@ -10,6 +10,11 @@ var del = require("del");
 var nodemailer = require("nodemailer");
 
 const createCapsule = function(req, res) {
+    if (!req.body.recipient0){
+        //no recipients listed
+        req.flash("error_msg", "Please list at least one recipient");
+        res.redirect("/create");
+    }
     if (req.body.recipient0) {
         var recipientList = [];
         recipientList.push(req.body.recipient0);
@@ -314,7 +319,6 @@ const registerUser = function (req, res) {
     var lastName = req.body.lastName;
     var username = req.body.username;
     var password = req.body.password;
-    var password2 = req.body.password2;
     var dateOfBirthF = req.body.dateOfBirthF;
 
     // Validation

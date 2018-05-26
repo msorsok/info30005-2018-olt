@@ -27,7 +27,16 @@ const releaseRoute = function(req, res) {
 };
 
 const createRoute = function(req, res) {
-    res.render('newmessage', req.user);
+    var errorMessages = [];
+    if (res.locals.success_msg){
+        errorMessages.push(res.locals.success_msg);
+    }
+    if(res.locals.error_msg){
+        errorMessages.push(res.locals.error_msg);
+    }
+    var data = req.user;
+    data.message = errorMessages;
+    res.render('newmessage', data);
 };
 
 const userWelcomeRoute = function (req,res) {
@@ -38,7 +47,7 @@ const userWelcomeRoute = function (req,res) {
         res.render('user_welcome', req.user);
     }
 };
-yconst userInboxRoute = function (req,res) {
+const userInboxRoute = function (req,res) {
     console.log(req.user.capsulesReceived.length + req.user.capsulesSent.length );
     if (req.user.capsulesReceived.length + req.user.capsulesSent.length > 0){
         res.render('user_inbox', req.user);

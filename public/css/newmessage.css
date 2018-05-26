@@ -43,7 +43,8 @@
         "note note note note"
         "images images images images"
         "videos videos videos videos"
-        "submitCapsule submitCapsule submitCapsule submitCapsule";
+        "submitCapsule submitCapsule submitCapsule submitCapsule"
+        "error error error error";
 
     }
 
@@ -187,6 +188,17 @@
         font-size: 100%;
         width: 100%;
 
+    }
+
+    .errors{
+        justify-self: center;
+        grid-area: error;
+        padding: 1em;
+    }
+
+    .errorMessage{
+        color: black;
+        text-align: center;
     }
 
     ::placeholder {
@@ -221,9 +233,8 @@
         "note note note note"
         "images images images images"
         "videos videos videos videos"
-        "files files files files"
-        "submitCapsule submitCapsule submitCapsule submitCapsule";
-
+        "submitCapsule submitCapsule submitCapsule submitCapsule"
+        "error error error error";
     }
 
 
@@ -350,31 +361,6 @@
         margin-bottom: 1em;
     }
 
-    .files{
-        grid-area: files;
-        display: grid;
-        grid-template-rows: auto auto;
-        grid-template-columns: auto auto;
-        grid-template-areas: "fileTitle fileTitle"
-        "fileInput fileInput";
-
-    }
-
-    .files h2{
-        grid-area: fileTitle;
-    }
-
-    .files input{
-        grid-area: fileInput;
-        justify-self: left;
-        padding: 0.5em 2em;
-        box-sizing: border-box;
-        border-style: none;
-        font-family: "Charlevoix Pro";
-        font-size: 100%;
-        margin-top: 1em;
-        margin-bottom: 1em;
-    }
 
     .submitCapsule{
         padding: 1em;
@@ -392,6 +378,17 @@
         font-size: 100%;
         width: 100%;
 
+    }
+
+    .errors{
+        justify-self: center;
+        grid-area: error;
+        padding: 1em;
+    }
+
+    .errorMessage{
+        color: black;
+        text-align: center;
     }
 
     ::placeholder {

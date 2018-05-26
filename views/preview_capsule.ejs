@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>One Last Time - <%= senderFirstName %>'s Capsule </title>
+    <title>One Last Time - <%= capsule.senderFirstName %>'s Capsule </title>
     <link href = "/css/page_template.css" rel = "stylesheet" type = "text/css">
     <link href = "/css/preview_capsule.css" rel = "stylesheet" type = "text/css">
     <link rel="icon" href="res/logoImageBlack.png">
@@ -11,11 +11,11 @@
 <%- include("page_template_start");%>
         <div class = "preamble">
             <h1> The following is a preview of the capsule you have created</h1>
-            <p><%= senderFirstName %> saved the following time capsule for you to view</p>
+            <p><%= capsule.senderFirstName %> saved the following time capsule for you to view</p>
         </div>
         <div class = "note">
             <img src = "/res/corner.png" width = "3%">
-            <p><%- note %></p>
+            <p><%- capsule.note %></p>
         </div>
 
         <div class = "videoGallery">
@@ -24,10 +24,10 @@
 
             </div>
 
-            <% video.forEach(function(video, i){ %>
+            <% capsule.video.forEach(function(video){ %>
                 <div class = "video" >
                     <video controls width = "100%">
-                        <source src= "<%= "/capsule/" + video._id %>" type="video/mp4" >
+                        <source src= "<%= "/capsuleVideo/" + video %>" type="video/mp4" >
                     </video>
                 </div>
             <% }) %>
@@ -41,9 +41,9 @@
                 <p>&#10094;</p>
 
             </div>
-            <% img.forEach(function(photo, i){ %>
-                <div class = "photo <%= i %>">
-                    <img src="<%= "/capsule/"+_id + "/" + photo._id %>" width = 100% />
+            <% capsule.img.forEach(function(photo){ %>
+                <div class = "photo">
+                    <img src="<%= "/capsuleImage/" + photo %>" width = 100% />
                     <%-photo._id%>
                 </div>
             <% }) %>

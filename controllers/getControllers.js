@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 var passing = mongoose.model("passing");
 var capsule = mongoose.model("capsule");
 var video = mongoose.model("video");
+var image = mongoose.model("img");
 var user = mongoose.model("user");
 var fs = require('fs');
 
@@ -63,53 +64,70 @@ const profilePicRoute = function (req, res) {
 };
 
 const viewCapsuleSentRoute = function (req, res) {
-    console.log(req.params.id);
-    user.find({_id: req.params.id}, function (err, docs){
-        console.log(docs);
-    });
-    user.findOne({_id: req.params.id}, function (err, capsule) {
-        if (err) {
-            res.send("Capsule was not found");
+    user.findOne({_id: req.user._id}, function(err, account){
+        if(account){
+            console.log("capsules sent");
+            console.log(account.capsulesSent);
+            account.capsulesSent.forEach(function (capsule) {
+                console.log("capsule");
+                console.log(capsule);
+                if (capsule._id == req.params.id) {
+                    req.user.capsule = capsule;
+                    return res.render("preview_capsule", req.user);
+                }
+            });
         }
-        else {
-            console.log(capsule);
-            res.render("preview_capsule", capsule);
+        else{
+            console.log("user not found");
+            res.redirect("/");
         }
     });
 };
 
 const viewCapsuleReceivedRoute = function (req, res) {
-    var targetCapsule = user.findOne({_id: req.params.id});
-    if (targetCapsule){
-        res.render("view_capsule", targetCapsule);
-    }
-    else{
-        res.send("Capsule was not found");
-    }
-};
-
-const capsuleContentsRoute = function (req, res) {
-    var thisCapsule = user.findOne({_id: req.params.capsuleid});
-    console.log(thisCapsule);
-    var target;
-    var images = thisCapsule.img;
-    images.forEach(function (image) {
-        if (image._id == params.contentsid) {
-            console.log(image);
-            target = image;
+    user.findOne({_id: req.user._id}, function(err, account){
+        if(account){
+            console.log("capsules sent");
+            console.log(account.capsulesReceived);
+            account.capsulesReceived.forEach(function (capsule) {
+                console.log("capsule");
+                console.log(capsule);
+                if (capsule._id == req.params.id) {
+                    req.user.capsule = capsule;
+                    return res.render("view_capsule", req.user);
+                }
+            });
+        }
+        else{
+            console.log("user not found");
+            res.redirect("/");
         }
     });
-    if (target){
-        console.log(target.contentType);
-        res.contentType(target.contentType);
-        res.send(target);
-    }
-    else{
-        res.send("Target was not found");
-    }
 };
 
+const capsuleVideoRoute = function (req, res) {
+    video.findOne({_id: req.params.id}, function(err, video){
+        if(video){
+            res.contentType(video.contentType);
+            res.send(video.data);
+        }
+        else{
+            res.send("Video not found");
+        }
+    });
+};
 
+const capsuleImageRoute = function (req, res) {
+    image.findOne({_id: req.params.id}, function(err, img){
+        if(img){
+            res.contentType(img.contentType);
+            res.send(img.data);
+        }
+        else{
+            res.send("Image not found");
+        }
+    });
+};
 
 module.exports = {
     loginRoute: loginRoute,
@@ -122,5 +140,6 @@ module.exports = {
     profilePicRoute: profilePicRoute,
     viewCapsuleSentRoute: viewCapsuleSentRoute,
     viewCapsuleReceivedRoute: viewCapsuleReceivedRoute,
-    capsuleContentsRoute: capsuleContentsRoute
+    capsuleVideoRoute: capsuleVideoRoute,
+    capsuleImageRoute: capsuleImageRoute
 };

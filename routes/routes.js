@@ -13,7 +13,8 @@ router.get("/userWelcome", passportUtilities.ensureAuthenticated, getController.
 router.get('/profilePic', passportUtilities.ensureAuthenticated, getController.profilePicRoute);
 router.get('/capsuleSent/:id', passportUtilities.ensureAuthenticated, getController.viewCapsuleSentRoute);
 router.get("/capsuleReceived/:id", passportUtilities.ensureAuthenticated, getController.viewCapsuleReceivedRoute);
-router.get("/capsule/:capsuleid/:contentsid", passportUtilities.ensureAuthenticated, getController.capsuleContentsRoute);
+router.get("/capsuleVideo/:id", passportUtilities.ensureAuthenticated, getController.capsuleVideoRoute);
+router.get("/capsuleImage/:id", passportUtilities.ensureAuthenticated, getController.capsuleImageRoute);
 router.get('/login', getController.loginRoute);
 router.get('/logout', getController.logoutRoute);
 

@@ -171,16 +171,6 @@
         margin-bottom: 1em;
     }
 
-    .files{
-        grid-area: files;
-        display: grid;
-        grid-template-rows: auto auto;
-        grid-template-columns: auto auto;
-        grid-template-areas: "fileTitle fileTitle"
-        "fileInput fileInput";
-
-    }
-
     .submitCapsule{
         padding: 1em;
         grid-area: submitCapsule;

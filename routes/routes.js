@@ -23,7 +23,7 @@ router.get('/logout', getController.logoutRoute);
 router.post("/create", passportUtilities.ensureAuthenticated, postController.createCapsule);
 router.post("/release", passportUtilities.ensureAuthenticated, postController.releaseCapsule);
 router.post("/account", passportUtilities.ensureAuthenticated, postController.updateAccount);
-router.post('/register', passportUtilities.ensureAuthenticated, postController.registerUser);
+router.post('/register', postController.registerUser);
 router.post('/login', passportUtilities.authenticate, postController.login);
 
 

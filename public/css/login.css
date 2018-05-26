@@ -234,12 +234,13 @@
         display: grid;
         grid-template-columns: 5fr 2em 6.1fr 2em;
         grid-template-rows: 3em;
-        grid-template-areas: "logo logo login login";
+        grid-template-areas: "login login login login";
         color: #fff;
         align-items: center;
         background-color: #56327d;
     }
     .logo{
+        display: none;
         grid-area: logo;
         display: grid;
         grid-template-columns: 1fr 1em 0.4fr 1.2fr 3.4fr;

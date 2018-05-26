@@ -1,10 +1,10 @@
 function mouseOver(el) {
     return  function() {
-        el.style.backgroundColor = "#56327d";
+        el.style.backgroundColor = "#443266";
         for (var i = 0 ; i < el.childNodes.length; i++) {
             if (el.childNodes[i].nodeType == Node.ELEMENT_NODE) {
                 console.log(el.childNodes[i]);
-                el.childNodes[i].style.backgroundColor = "#56327d";
+                el.childNodes[i].style.backgroundColor = "#443266";
             }
         }
     }
@@ -22,12 +22,10 @@ function mouseOut(el) {
     }
 }
 
-function mouseClick(link) {
-    return function() {
-        window.location.href = link;
-    }
-}
+var createButton = document.getElementById("create");
+createButton.addEventListener("mouseout", mouseOut(createButton));
+createButton.addEventListener("mouseover",mouseOver(createButton));
 
-
-document.getElementsByClassName("createNewTimeCapsuleButton")[0].addEventListener("click", mouseClick("/userInbox"));
-
+var releaseButton = document.getElementById("release");
+releaseButton.addEventListener("mouseout", mouseOut(releaseButton));
+releaseButton.addEventListener("mouseover",mouseOver(releaseButton));

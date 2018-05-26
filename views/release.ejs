@@ -21,10 +21,10 @@
     <div class = "deceasedName">
         <h2>Name</h2>
         <select name="deceased">
-            <option value="John">John Smith</option>
-            <option value="Lucy">Lucy Diamonds</option>
-            <option value="Steve">Steve Green</option>
-            <option value="Alice">Alice Hutchins</option>
+            <% if (dependents) {%>
+                <% dependents.forEach(dependent) {%>
+                    <option><%-dependent.firstName + dependent.lastName%></option>
+            <% }}%>
         </select>
     </div>
     <div class = "datePassing">

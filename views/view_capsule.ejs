@@ -10,7 +10,7 @@
 
 <%- include("page_template_start");%>
         <div class = "preamble">
-            <p><%= firstName %> saved the following time capsule for you to view</p>
+            <p><%= senderFirstName %> saved the following time capsule for you to view</p>
         </div>
         <div class = "note">
             <img src = "/res/corner.png" width = "3%">
@@ -26,7 +26,7 @@
             <% video.forEach(function(video, i){ %>
                 <div class = "video" >
                     <video controls width = "100%">
-                        <source src= "<%= video %>" type="video/mp4" >
+                        <source src= "<%= "/video/" + video._id %>" type="video/mp4" >
                     </video>
                 </div>
             <% }) %>
@@ -42,7 +42,7 @@
             </div>
             <% img.forEach(function(photo, i){ %>
                 <div class = "photo <%= i %>">
-                    <img src="<%= photo %>" width = 100% />
+                    <img src="<%= "/capsule/" + photo._id %>" width = 100% />
                 </div>
             <% }) %>
 

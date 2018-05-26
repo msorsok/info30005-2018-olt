@@ -1,20 +1,16 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
-
-
 var imgSchema = require("./img.js");
 var videoSchema = require("./video.js");
-var fileSchema = require("./file.js");
 
 var capsuleSchema =  mongoose.Schema(
     {
         "senderFirstName" : String,
         "senderLastName" : String,
         "recipients" : [String],
-        "img" : [imgSchema],
+        "img" : [String],
         "note" : String,
-        "video" : [videoSchema],
-        "file" : [fileSchema],
+        "video" : [String],
         "released" : Boolean,
         "dateSent": Date
     }

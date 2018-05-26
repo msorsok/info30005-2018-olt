@@ -2,15 +2,19 @@ var mongoose = require("mongoose");
 var passing = mongoose.model("passing");
 var capsule = mongoose.model("capsule");
 var video = mongoose.model("video");
-var db = require("../models/db.js");
-
-const rootRoute = function(req, res){
-    req.logout();
-    res.render('login');
-};
+var user = mongoose.model("user");
+var fs = require('fs');
 
 const loginRoute = function(req, res) {
-    res.render('login');
+    var errorMessages = [];
+    if (res.locals.success_msg){
+         errorMessages.push(res.locals.success_msg);
+    }
+    if(res.locals.error_msg){
+        errorMessages.push(res.locals.error_msg);
+    }
+    console.log(errorMessages);
+    res.render('login',{message: errorMessages});
 };
 
 const accountRoute = function(req, res) {
@@ -24,10 +28,21 @@ const createRoute = function(req, res) {
     res.render('newmessage', req.user);
 };
 const userWelcomeRoute = function (req,res) {
-    res.render('user_welcome', req.user);
+    if (req.user.capsulesReceived.length + req.user.capsulesSent.length > 0){
+        res.redirect("/");
+    }
+    else{
+        res.render('user_welcome', req.user);
+    }
 };
 const userInboxRoute = function (req,res) {
-    res.render('user_inbox', req.user);
+    console.log(req.user.capsulesReceived.length + req.user.capsulesSent.length );
+    if (req.user.capsulesReceived.length + req.user.capsulesSent.length > 0){
+        res.render('user_inbox', req.user);
+    }
+    else{
+        res.redirect("/userWelcome");
+    }
 };
 
 const logoutRoute = function (req, res) {
@@ -37,41 +52,35 @@ const logoutRoute = function (req, res) {
 };
 
 const profilePicRoute = function (req, res) {
-    res.contentType(req.user.profilePic.contentType);
-    res.send(req.user.profilePic.data);
+    if (req.user.profilePic){
+        res.contentType(req.user.profilePic.contentType);
+        res.send(req.user.profilePic.data);
+    }
+    else{
+        res.contentType("image/jpeg");
+        res.send(fs.readFileSync("/res/user.jpg"));
+    }
 };
 
 const viewCapsuleSentRoute = function (req, res) {
-    var targetCapsule;
     console.log(req.params.id);
-    console.log(req.user);
-    req.user.capsulesSent.forEach(function(capsule){
-        console.log(capsule._id);
-        if (capsule._id == req.params.id){
-            targetCapsule = capsule;
+    user.find({_id: req.params.id}, function (err, docs){
+        console.log(docs);
+    });
+    user.findOne({_id: req.params.id}, function (err, capsule) {
+        if (err) {
+            res.send("Capsule was not found");
+        }
+        else {
+            console.log(capsule);
+            res.render("preview_capsule", capsule);
         }
     });
-    if (targetCapsule  != null){
-        targetCapsule.firstName = req.user.firstName;
-        res.render("preview_capsule", targetCapsule);
-    }
-    else{
-        res.send("Capsule was not found");
-    }
 };
 
 const viewCapsuleReceivedRoute = function (req, res) {
-    var targetCapsule;
-    console.log(req.params.id);
-    console.log(req.user);
-    req.user.capsulesSent.forEach(function(capsule){
-        console.log(capsule._id);
-        if (capsule._id == req.params.id){
-            targetCapsule = capsule;
-        }
-    });
+    var targetCapsule = user.findOne({_id: req.params.id});
     if (targetCapsule){
-        targetCapsule.firstName = req.user.firstName;
         res.render("view_capsule", targetCapsule);
     }
     else{
@@ -79,18 +88,39 @@ const viewCapsuleReceivedRoute = function (req, res) {
     }
 };
 
+const capsuleContentsRoute = function (req, res) {
+    var thisCapsule = user.findOne({_id: req.params.capsuleid});
+    console.log(thisCapsule);
+    var target;
+    var images = thisCapsule.img;
+    images.forEach(function (image) {
+        if (image._id == params.contentsid) {
+            console.log(image);
+            target = image;
+        }
+    });
+    if (target){
+        console.log(target.contentType);
+        res.contentType(target.contentType);
+        res.send(target);
+    }
+    else{
+        res.send("Target was not found");
+    }
+};
+
 
 
 module.exports = {
-    rootRoute: rootRoute,
     loginRoute: loginRoute,
     releaseRoute: releaseRoute,
     userWelcomeRoute: userWelcomeRoute,
-    userInboxRoute:userInboxRoute,
+    userInboxRoute: userInboxRoute,
     accountRoute: accountRoute,
     createRoute: createRoute,
     logoutRoute: logoutRoute,
     profilePicRoute: profilePicRoute,
     viewCapsuleSentRoute: viewCapsuleSentRoute,
-    viewCapsuleReceivedRoute: viewCapsuleReceivedRoute
+    viewCapsuleReceivedRoute: viewCapsuleReceivedRoute,
+    capsuleContentsRoute: capsuleContentsRoute
 };

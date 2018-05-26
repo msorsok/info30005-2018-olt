@@ -1,13 +1,12 @@
 var mongoose = require("mongoose");
 var passing = mongoose.model("passing");
-var user = mongoose.model("User");
+var user = mongoose.model("user");
 var capsule = mongoose.model("capsule");
 var image = mongoose.model("img");
 var video = mongoose.model("video");
-var file = mongoose.model("file");
 var fs = require('fs');
 var del = require("del");
-var db = require("../models/db.js");
+var passport = require("passport");
 
 const createCapsule = function(req, res) {
     if (req.body.recipient0) {
@@ -45,7 +44,8 @@ const createCapsule = function(req, res) {
                         data: fs.readFileSync(element.file),
                         contentType: element.mimetype
                     });
-                    images.push(newImage);
+                    images.push(newImage._id);
+                    newImage.save();
                     del("uploads/" + element.uuid + "/**");
 
                 }
@@ -65,43 +65,24 @@ const createCapsule = function(req, res) {
                         data: fs.readFileSync(element.file),
                         contentType: element.mimetype
                     });
-                    videos.push(newVideo);
+                    videos.push(newVideo._id);
+                    newVideo.save();
                     del("uploads/" + element.uuid + "/**");
 
                 }
             );
             newCapsule.video = videos;
         }
-
-        if (req.files.fileInput){
-            var files = [];
-            if (!(req.files.fileInput instanceof Array) ){
-                var input = [req.files.fileInput];
-            }
-            else{
-                var input = req.files.fileInput;
-            }
-            input.forEach(function(element){
-                    var newFile  = new file ({
-                        data: fs.readFileSync(element.file),
-                        contentType: element.mimetype
-                    });
-                    files.push(newFile);
-                    del("uploads/" + element.uuid + "/**");
-                }
-            );
-            newCapsule.file = files;
-        }
         var newCapsulesSent = {};
         newCapsulesSent.capsulesSent = req.user.capsulesSent;
-        console.log(newCapsulesSent);
         newCapsulesSent.capsulesSent.push(newCapsule);
         user.findByIdAndUpdate(req.user._id, {$set: newCapsulesSent}, function(err, doc) {
             if(err) {
-                next(err);
+                console.log(err);
             }
             else {
-                return res.redirect("/userInbox");
+                console.log("about to redirect");
+                res.redirect("/");
             }
         });
     }
@@ -122,6 +103,7 @@ const releaseCapsule = function(req, res) {
 
         );
     }
+
 };
 const updateAccount = function(req, res) {
     console.log("updating account");
@@ -171,7 +153,7 @@ const updateAccount = function(req, res) {
             next(err);
         }
         else {
-            return res.redirect("/account");
+            res.redirect("/account");
         }
     })
 };
@@ -181,7 +163,6 @@ const registerUser = function (req, res) {
     var lastName = req.body.lastName;
     var username = req.body.username;
     var password = req.body.password;
-    var password2 = req.body.password2;
     var dateOfBirthF = req.body.dateOfBirthF;
 
     // Validation
@@ -192,26 +173,33 @@ const registerUser = function (req, res) {
     req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
     req.checkBody('dateOfBirthF', 'Date of birth is required').notEmpty();
 
-    var errors = req.validationErrors();
 
+    if(req.validationErrors()) {
+        var errors = [];
+        req.validationErrors().forEach(function (error) {
+            errors.push(error.msg);
+        });
+    }
+    console.log(errors);
     if (errors) {
+        console.log("errors found aborting");
         res.render('login', {
-            errors: errors
+            message: errors
         });
     }
     else {
         //checking for email and username are already taken
-        User.findOne({ username: {
+        user.findOne({ username: {
                 "$regex": "^" + username + "\\b", "$options": "i"
-            }}, function (err, user) {
+            }}, function (err, account) {
 
-            if (user) {
-                res.render('login', {
-                    user: user
-                });
+            if (account) {
+                console.log("account found");
+                req.flash("error_msg", "Account already exists, please login");
+                res.redirect('/login');
             }
             else {
-                var newUser = new User({
+                var newUser = new user({
                     firstName: firstName,
                     lastName: lastName,
                     dateOfBirthF:dateOfBirthF,
@@ -223,14 +211,12 @@ const registerUser = function (req, res) {
                     capsulesReceived: [],
                     capsulesSent: []
                 });
-                User.createUser(newUser, function (err, user) {
+                user.createUser(newUser, function (err, account) {
                     if (err) throw err;
-                    console.log(user);
                 });
                 req.flash('success_msg', 'You are registered and can now login');
-                res.redirect('/userWelcome');
+                res.redirect("/login");
             }
-
         });
     }
 };

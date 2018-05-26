@@ -11,53 +11,73 @@
 <div class="title">
     <h1> Home</h1>
 </div>
-<% if (capsulesReceived.length > 0){%>
-<h2 id = "inboxHeaderText">Inbox</h2>
+<% if (capsulesReceived.length + capsulesSent.length > 0) {%>
+    <% if (capsulesReceived.length > 0){%>
+    <h2 id = "inboxHeaderText">Inbox</h2>
 
-<div class="inbox">
-    <div class="HeaderBoxReceived">
-        <div class="fromHeader"><p>From</p></div>
-        <div class="titleHeader"><p>Title</p></div>
-        <div class="dateReceivedHeader"><p>Date Received</p></div>
-    </div>
-    <div class="inboxAllEmails">
-
-        <% capsulesReceived.forEach(function(capsule){ %>
-        <div class = "inboxEmail" >
-            <div class="From"><%-capsule.sender%></div>
-            <div class="messageTitle"><%-capsule.note.substring(0, 50)%></div>
-            <div class="date">
-                <% if(capsule.dateCreated) {%>
-                <%-capsule.dateCreated%>
-                <% }%>
-            </div>
-            <div class = "capsuleid"><%- capsule._id%></div>
+    <div class="inbox">
+        <div class="HeaderBoxReceived">
+            <div class="fromHeader"><p>From</p></div>
+            <div class="titleHeader"><p>Title</p></div>
+            <div class="dateReceivedHeader"><p>Date Received</p></div>
         </div>
-        <% }) %>
-    </div>
-</div>
-<%}%>
-<h2 id = "sentHeaderText">Sent</h2>
-<div class="sent">
-    <div class="HeaderBoxSent">
-        <div class="recipientHeader"><p>Recipient</p></div>
-        <div class="titleHeaderSent"><p>Title</p></div>
-        <div class="dateCreatedHeader"><p>Date Created</p></div>
-    </div>
-    <div class="allSentEmails">
-        <% capsulesSent.forEach(function(capsule){ %>
-        <div class = "sentEmail" >
-            <div class="sentTO"><%-capsule.recipients%></div>
-            <div class="messageTitle"><%-capsule.note.substring(0, 50)%></div>
-            <div class="date">
-                <% if(capsule.dateCreated) {%>
+        <div class="inboxAllEmails">
+
+            <% capsulesReceived.forEach(function(capsule){ %>
+            <div class = "inboxEmail" >
+                <div class="From"><%-capsule.sender%></div>
+                <div class="messageTitle">
+                    <% if (capsule.note.length > 60) {%>
+                    <%-capsule.note.substring(0, 60) + "..."%>
+                    <%} else{%>
+                    <%-capsule.note%>
+                    <%}%>
+                </div>
+                <div class="date">
+                    <% if(capsule.dateCreated) {%>
                     <%-capsule.dateCreated%>
-                <% }%>
+                    <% }%>
+                </div>
+                <div class = "capsuleid"><%- capsule._id%></div>
             </div>
-            <div class = "capsuleid"><%- capsule._id%></div>
+            <% }) %>
         </div>
-        <% }) %>
     </div>
-</div>
+    <%}%>
+    <h2 id = "sentHeaderText">Sent</h2>
+    <div class="sent">
+        <div class="HeaderBoxSent">
+            <div class="recipientHeader"><p>Recipient</p></div>
+            <div class="titleHeaderSent"><p>Title</p></div>
+            <div class="dateCreatedHeader"><p>Date Created</p></div>
+        </div>
+        <div class="allSentEmails">
+            <% capsulesSent.forEach(function(capsule){ %>
+            <div class = "sentEmail" >
+                <div class="sentTO"><%-capsule.recipients%></div>
+                <div class="messageTitle">
+                    <% if (capsule.note.length > 60) {%>
+                        <%-capsule.note.substring(0, 60) + "..."%>
+                    <%} else{%>
+                    <%-capsule.note%>
+                    <%}%>
+                </div>
+                <div class="date">
+                    <% if(capsule.dateCreated) {%>
+                        <%-capsule.dateCreated%>
+                    <% }%>
+                </div>
+                <div class = "capsuleid"><%- capsule._id%></div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+<%} else {%>
+    <div class = "noCapsules">
+        <h1>
+            You have no capsules to view.
+        </h1>
+    </div>
+<%}%>
 <script src="js/user_inbox.js"></script>
 <%- include("page_template_end");%>

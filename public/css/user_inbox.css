@@ -160,6 +160,10 @@
         display: none;
     }
 
+    .noCapsules{
+        text-align: center;
+        grid-area: inboxHeaderText;
+    }
 
 }
 

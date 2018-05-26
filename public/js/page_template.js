@@ -54,6 +54,6 @@ document.getElementsByClassName("logout")[0].addEventListener("click", mouseClic
 
 var els = document.getElementsByClassName("logo")[0].children;
 for (var i = 0 ; i < els.length; i++) {
-    els[i].addEventListener("click", mouseClick("userInbox"));
+    els[i].addEventListener("click", mouseClick(""));
 }
 

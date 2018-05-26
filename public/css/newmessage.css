@@ -37,13 +37,12 @@
 
     #newCapsule{
         display: grid;
-        grid-template-rows: auto auto auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-template-areas: "recipients recipients recipients recipients"
         "note note note note"
         "images images images images"
         "videos videos videos videos"
-        "files files files files"
         "submitCapsule submitCapsule submitCapsule submitCapsule";
 
     }
@@ -162,32 +161,6 @@
 
     .videos input{
         grid-area: videoInput;
-        justify-self: left;
-        padding: 0.5em 2em;
-        box-sizing: border-box;
-        border-style: none;
-        font-family: "Charlevoix Pro";
-        font-size: 100%;
-        margin-top: 1em;
-        margin-bottom: 1em;
-    }
-
-    .files{
-        grid-area: files;
-        display: grid;
-        grid-template-rows: auto auto;
-        grid-template-columns: auto auto;
-        grid-template-areas: "fileTitle fileTitle"
-        "fileInput fileInput";
-
-    }
-
-    .files h2{
-        grid-area: fileTitle;
-    }
-
-    .files input{
-        grid-area: fileInput;
         justify-self: left;
         padding: 0.5em 2em;
         box-sizing: border-box;

@@ -14,9 +14,10 @@
     <%-firstName%><%}%>
 </div>
 <div class="standardText">Would you like to create a new Time Capsule?</div>
-<a href="/userInbox"> <div  class="createNewTimeCapsuleButton button"> Check Inbox </div></a>
+<a href="/create"> <div  class="button" id="create"> Create New Time Capsule </div></a>
 
 <div class="standardText">or would you like to release a Time Capsule?</div>
-<a href="/unlock"> <div class="unlockTimeCapsule button">Release Time Capsule</div></a>
+<a href="/release"> <div class="button" id = "release">Release Time Capsule</div></a>
 
+<script src ="js/user_welcome.js"></script>
 <%- include("page_template_end");%>

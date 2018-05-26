@@ -125,11 +125,19 @@
         grid-area: signup;
         display: grid;
         grid-template-columns: 0.05fr 1fr 1fr 0.05fr;
-        grid-template-areas: " . SignupTEXT SignupTEXT ." " . firstName lastName . "  " . dateOfBirthT dateOfBirthF . " " . emailT emailF ." " . passwordT passwordF ." " . re-enterPasswordT re-enterPasswordF . " " . submitButton submitButton .";
+        grid-template-areas:
+                " . SignupTEXT SignupTEXT ."
+                " . firstName lastName . "
+                " . dateOfBirthT dateOfBirthF . "
+                " . emailT emailF ."
+                " . passwordT passwordF ."
+                " . re-enterPasswordT re-enterPasswordF . "
+                " . submitButton submitButton ."
+                " . errors errors .";
         grid-row-gap: 1em;
         color: #fff;
         align-items: center;
-        grid-template-rows: repeat(7, fit-content(100%));
+        grid-template-rows: repeat(8, fit-content(100%));
         padding: 1em 1.5em;
     }
 
@@ -202,12 +210,20 @@
     .re-enterPasswordF{
         grid-area: re-enterPasswordF;
     }
+    .errors {
+        grid-area: errors;
+    }
 
+    .errorMessage{
+        color: black;
+        text-align: center;
+    }
     .largeLogo{
         margin: 10% 35%;
         box-sizing: border-box;
         text-align: justify;
     }
+
 }
 @media screen and (max-width: 992px) {
     body{

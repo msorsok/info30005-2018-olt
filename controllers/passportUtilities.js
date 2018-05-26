@@ -1,13 +1,12 @@
 var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('../models/user');
+var user = require('../models/user');
 
 const ensureAuthenticated = function(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
     else {
-        req.flash('error_msg','You are not logged in');
         res.redirect('/login');
     }
 };
@@ -15,24 +14,24 @@ const ensureAuthenticated = function(req, res, next){
 
 const authenticate =
     passport.authenticate('local', {
-        successRedirect: '/userInbox',
-        failureRedirect: '/users/login',
+        successRedirect: '/',
+        failureRedirect: '/login',
         failureFlash: true
     });
 
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
-        User.getUserByUsername(username, function (err, user) {
+        user.getUserByUsername(username, function (err, account) {
             if (err) throw err;
-            if (!user) {
+            if (!account) {
                 return done(null, false, { message: 'Unknown User' });
             }
 
-            User.comparePassword(password, user.password, function (err, isMatch) {
+            user.comparePassword(password, account.password, function (err, isMatch) {
                 if (err) throw err;
                 if (isMatch) {
-                    return done(null, user);
+                    return done(null, account);
                 } else {
                     return done(null, false, { message: 'Invalid password' });
                 }
@@ -45,7 +44,7 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (id, done) {
-    User.getUserById(id, function (err, user) {
+    user.getUserById(id, function (err, user) {
         done(err, user);
     });
 });

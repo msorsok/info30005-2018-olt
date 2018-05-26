@@ -5,17 +5,19 @@ var router = express.Router();
 var passportUtilities = require("../controllers/passportUtilities");
 
 // Get Requests
-router.get('/', passportUtilities.ensureAuthenticated, getController.rootRoute);
+router.get('/', passportUtilities.ensureAuthenticated, getController.userInboxRoute);
 router.get("/release", passportUtilities.ensureAuthenticated, getController.releaseRoute);
 router.get("/account", passportUtilities.ensureAuthenticated, getController.accountRoute);
 router.get("/create", passportUtilities.ensureAuthenticated, getController.createRoute);
 router.get("/userWelcome", passportUtilities.ensureAuthenticated, getController.userWelcomeRoute);
-router.get("/userInbox", passportUtilities.ensureAuthenticated, getController.userInboxRoute);
 router.get('/profilePic', passportUtilities.ensureAuthenticated, getController.profilePicRoute);
 router.get('/capsuleSent/:id', passportUtilities.ensureAuthenticated, getController.viewCapsuleSentRoute);
 router.get("/capsuleReceived/:id", passportUtilities.ensureAuthenticated, getController.viewCapsuleReceivedRoute);
+router.get("/capsuleVideo/:id", passportUtilities.ensureAuthenticated, getController.capsuleVideoRoute);
+router.get("/capsuleImage/:id", passportUtilities.ensureAuthenticated, getController.capsuleImageRoute);
 router.get('/login', getController.loginRoute);
 router.get('/logout', getController.logoutRoute);
+
 
 
 

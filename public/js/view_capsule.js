@@ -80,8 +80,12 @@ prevPhotoButton.addEventListener("mouseover", prevMouseOver(prevPhotoButton, "ph
 prevPhotoButton.addEventListener("mouseout", mouseOut(prevPhotoButton));
 
 //Setting first video and photo visible
-document.getElementsByClassName("video")[0].style.display = "inherit";
-document.getElementsByClassName("photo")[0].style.display = "inherit";
+if (document.getElementsByClassName("video").length > 0){
+    document.getElementsByClassName("video")[0].style.display = "inherit";
+}
+if(document.getElementsByClassName("photo").length > 0){
+    document.getElementsByClassName("photo")[0].style.display = "inherit";
+}
 
 
 

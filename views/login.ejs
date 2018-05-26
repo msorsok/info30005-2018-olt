@@ -90,8 +90,16 @@
             <div class="submitButton">
                 <input type="submit" value="Submit">
             </div>
+            <div class = "errors">
+                <% if (message) { %>
+                    <%message.forEach(function(msg) {%>
+                <div class = "errorMessage">
+                    <%= msg %>
+                </div>
+                <% });} %>
+            </div>
+
     </form>
 </div>
-<script src="/js/login.js"></script>
 </body>
 </html>

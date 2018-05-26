@@ -2,26 +2,20 @@ require("./models/db.js");
 
 
 var express = require('express');
-var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
-var mongo = require('mongodb');
-var mongoose = require('mongoose');
 var bb = require('express-busboy');
-
-
 var router = require('./routes/routes');
 
 // Init App
 var app = express();
-//bb was here initially
 
-
+app.use(express.static('public'));
+app.use(cookieParser());
 
 app.use(bodyParser()); // get information from html forms
 bb.extend(app, {
@@ -29,16 +23,11 @@ bb.extend(app, {
     path: "./uploads",
     allowedPath: /./
 });
-// View Engine
-app.set('view engine', 'ejs');
 
 // BodyParser Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-// Set Static Folder
-app.use(express.static('public'));
-
+//bb was here initially
 // Express Session
 app.use(session({
     secret: 'secret',
@@ -46,10 +35,11 @@ app.use(session({
     resave: true
 }));
 
+// Connect Flash
+app.use(flash());
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
-
 // Express Validator
 app.use(expressValidator({
     errorFormatter: function(param, msg, value) {
@@ -68,8 +58,7 @@ app.use(expressValidator({
     }
 }));
 
-// Connect Flash
-app.use(flash());
+
 
 // Global Vars
 app.use(function (req, res, next) {
@@ -81,14 +70,18 @@ app.use(function (req, res, next) {
 });
 
 app.use('/', router);
-
 app.get('*', function(req, res){
     res.status(404).send('Oops you took a wrong turn.');
 });
 
+// View Engine
+app.set('view engine', 'ejs');
+
+
+// Set Static Folder
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function(){
-    console.log(`Express listening on port ${PORT}`);
+    console.log("Express listening on port" + PORT);
 });
-
-// adding a comment

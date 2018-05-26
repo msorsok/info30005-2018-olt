@@ -168,5 +168,149 @@
 }
 
 @media screen and (max-width: 992px) {
+    html{
+        margin: 0;
+        height: 100%;
+    }
+    body {
+        margin: 0;
+    //background-color: #f1f1f1;
+        height: 100%;
+    }
 
+    /* template css */
+    .page {
+        position:relative;
+        display: grid;
+        padding-bottom: 3em;
+        box-sizing: border-box;
+
+        grid-template-columns: 1fr 7fr 0.8fr 0.8fr 0.5fr 1fr;
+        grid-template-rows: 3em repeat(2, fit-content(100%));
+        grid-template-areas:
+                "header header header header header header"
+                ". navigation navigation navigation navigation ."
+                ". content content content content .";
+
+        grid-column-gap: 1em;
+        grid-row-gap: 2em;
+    }
+
+    .header{
+        grid-area: header;
+        display: grid;
+        grid-template-columns: 8fr 2em 3.1fr 2em;
+        grid-template-rows: 1fr;
+        grid-template-areas: "logo logo user user";
+        color: #fff;
+        align-items: center;
+        font-family: 'Charlevoix Pro';
+    }
+
+    .logo{
+        grid-area: logo;
+        background-color: #443266;
+        display: grid;
+        grid-template-columns: 1fr 1em 0.4fr 1.2fr 5.4fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: ". . logoImage logoText .";
+        align-items: center;
+    }
+
+    .logoImage{
+        grid-area: logoImage;
+        cursor: pointer;
+
+    }
+
+    .logoText{
+        grid-area: logoText;
+        cursor: pointer;
+    }
+
+    .user{
+        grid-area: user;
+        display: grid;
+        grid-template-columns: 0.5fr 1.2fr 0.4fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "userImage userName logout";
+        grid-column-gap: 0.5em;
+        align-items: center;
+        background-color: #443266;
+    }
+    .userImage{
+        grid-area: userImage;
+    }
+
+    .userName{
+        grid-area: userName;
+    }
+
+    .logout{
+        grid-area: logout;
+        padding-left: 1em;
+        cursor: pointer;
+    }
+
+    .navigation{
+        font-family: 'Charlevoix Pro';
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-columns: auto;
+        grid-template-areas: "homeNav" "accountNav" "releaseNav" "createNav";
+        grid-row-gap: 0.5em;
+        grid-area: navigation;
+        color: #fff;
+        align-items: center;
+    }
+
+    .navigation *{
+        padding: 0 0.5em;
+        background-color: #957ead;
+        cursor: pointer;
+    }
+
+    .homeNav{
+        grid-area: homeNav;
+        text-align: center;
+        box-sizing: border-box;
+        border-color: #fff;
+        border-style: solid;
+        border-width: medium;
+
+    }
+
+
+    .accountNav{
+        grid-area: accountNav;
+        text-align: center;
+        box-sizing: border-box;
+        border-color: #fff;
+        border-style: solid;
+        border-width: medium;
+
+
+    }
+
+    .releaseNav{
+        grid-area: releaseNav;
+        text-align: center;
+        box-sizing: border-box;
+        border-color: #fff;
+        border-style: solid;
+        border-width: medium;
+
+
+    }
+
+    .createNav{
+        grid-area: createNav;
+        text-align: center;
+        box-sizing: border-box;
+        border-color: #fff;
+        border-style: solid;
+        border-width: medium;
+
+
+    }
 }

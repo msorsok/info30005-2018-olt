@@ -15,6 +15,8 @@ var userSchema =  mongoose.Schema(
         "profilePic" : {data: Buffer, contentType: String},
         "nominee1email" : String,
         "nominee2email" : String,
+        "confirm1" : Boolean,
+        "confirm2" : Boolean,
         "dependents" : [String]
     }
 );

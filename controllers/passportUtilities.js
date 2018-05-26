@@ -2,16 +2,24 @@ var passport = require("passport");
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
 
+const ensureAuthenticated = function(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    else {
+        req.flash('error_msg','You are not logged in');
+        res.redirect('/login');
+    }
+};
+
+
 const authenticate =
     passport.authenticate('local', {
-        successRedirect: '/userWelcome',
+        successRedirect: '/userInbox',
         failureRedirect: '/users/login',
         failureFlash: true
     });
 
-module.exports = {
-    authenticate: authenticate
-};
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
@@ -41,3 +49,9 @@ passport.deserializeUser(function (id, done) {
         done(err, user);
     });
 });
+
+
+module.exports = {
+    ensureAuthenticated: ensureAuthenticated,
+    authenticate: authenticate
+};

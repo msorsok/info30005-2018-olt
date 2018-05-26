@@ -112,5 +112,85 @@
 }
 
 @media screen and (max-width: 992px) {
+    .content{
+        font-family: "Unna";
+        grid-area: content;
+        box-sizing: border-box;
+        padding: 0 1em;
+        background-color: #f1f0ff;
+    }
 
+    .title{
+        text-align: center;
+        font-size: 150%;
+    }
+
+    h1{
+        font-family: "Charlevoix Pro";
+        padding: 0em;
+        width: 100%;
+    }
+    .message{
+        display: block;
+        padding: 1em;
+        font-size: 150%;
+
+    }
+
+    #releaseForm{
+        display: grid;
+        grid-template-columns: 0.1fr 2fr 0.5fr 2fr 0.1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-row-gap: 1em;
+        grid-template-areas: ". deceasedName . datePassing ." ". submitRelease submitRelease submitRelease . ";
+        align-items: center;
+        font-size: 100%;
+        font-family: "Charlevoix Pro";
+
+    }
+
+    #releaseForm select{
+        padding: 1.1em 8em 1.1em 1em;
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+    }
+
+    #releaseForm input{
+        padding: 1.1em 8em 1.1em 1em;
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+    }
+
+    #releaseForm input[type = submit]{
+        box-sizing: border-box;
+        background-color: #56327d;
+        border-style: none;
+        color: #fff;
+        font-size: 100%;
+        padding: 0.5em 1.5em;
+        cursor: pointer;
+        font-size: 150%;
+    }
+
+
+    .deceasedName{
+        grid-area: deceasedName;
+        justify-self: right;
+    }
+
+    .datePassing{
+        grid-area: datePassing;
+        justify-self: left;
+
+    }
+
+    .submitRelease{
+        grid-area: submitRelease;
+        justify-self: center;
+
+    }
 }

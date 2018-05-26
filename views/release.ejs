@@ -23,7 +23,9 @@
         <select name="deceased">
             <% if (dependents) {%>
             <% dependents.forEach(function(dependent){%>
-            <option><%-dependent.firstName%></option>
+            <% var uname = dependent.username;%>
+            <% var fname = dependent.firstName%>
+            <option><%-fname+","+uname%></option>
             <% });}%>
         </select>
     </div>

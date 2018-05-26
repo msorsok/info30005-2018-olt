@@ -228,100 +228,200 @@
 
 @media screen and (max-width: 992px) {
     .content{
-        font-family: "Unna";
+        font-family: "Charlevoix Pro";
         grid-area: content;
         box-sizing: border-box;
-        padding: 0 1em;
+        padding: 0 4em;
+        background-color: #f1f0ff;
+    }
+
+    .headTitle{
+        text-align: center;
+        font-size: 150%;
+    }
+
+    #newCapsule{
+        display: grid;
+        grid-template-rows: auto auto auto auto auto auto;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-areas: "recipients recipients recipients recipients"
+        "note note note note"
+        "images images images images"
+        "videos videos videos videos"
+        "files files files files"
+        "submitCapsule submitCapsule submitCapsule submitCapsule";
 
     }
 
-    .new_message{
 
+    .recipients {
+        grid-area: recipients;
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-template-columns: 3fr 1fr;
+        grid-template-areas: "title title"
+        "recipientsList recipientsList "
+        "recipientsInput addRecipient ";
     }
 
-    .recipients p, .note p, .attachments p {
-        font-size: 175%;
+    .recipients h2{
+        grid-area: title;
     }
 
-    .recipients{
-
+    .recipients #recipientsList{
+        font-family: "Unna";
+        grid-area: recipientsList;
     }
 
-    .attachments{
-    }
-    .note{
-        width: 100%;
-        height: 100%;
-    }
-
-    .sendOptions{
+    .recipients #recipients{
         padding: 1em;
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "Unna";
+        font-size: 100%;
+        width: 100%;
+        grid-area: recipientsInput;
+    }
+
+    .recipients #addRecipient {
+        grid-area: addRecipient;
+        justify-self: center;
+        padding: 0.5em 2em;
+        box-sizing: border-box;
+        background-color: #56327d;
+        border-style: none;
+        color: #fff;
+        font-family: "Charlevoix Pro";
+        font-size: 100%;
+        margin-top: 1em;
+        margin-bottom: 1em;
+
+    }
+
+    .note{
+        grid-area: note;
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 1fr;
+        grid-template-areas: "noteTitle"
+        "noteSpace";
+        width: 100%;
+    }
+
+    .note h2{
+        grid-area: noteTitle;
+
+    }
+
+    .note #nameTextArea {
+        grid-area: noteSpace;
+        width: 100%;
+        padding: 1em;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "Unna";
+        font-size: 100%;
+    }
+    .images{
+        grid-area: images;
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: auto auto;
+        grid-template-areas: "imageTitle imageTitle"
+        "imageInput imageInput";
+
+    }
+
+    .images h2{
+        grid-area: imageTitle;
+    }
+
+    .images input{
+        grid-area: imageInput;
+        justify-self: left;
+        padding: 0.5em 2em;
+        box-sizing: border-box;
+        border-style: none;
+        font-family: "Charlevoix Pro";
+        font-size: 100%;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .videos{
+        grid-area: videos;
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: auto auto;
+        grid-template-areas: "videoTitle videoTitle"
+        "videoInput videoInput";
+
+    }
+
+    .videos h2{
+        grid-area: videoTitle;
+    }
+
+    .videos input{
+        grid-area: videoInput;
+        justify-self: left;
+        padding: 0.5em 2em;
+        box-sizing: border-box;
+        border-style: none;
+        font-family: "Charlevoix Pro";
+        font-size: 100%;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .files{
+        grid-area: files;
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: auto auto;
+        grid-template-areas: "fileTitle fileTitle"
+        "fileInput fileInput";
+
+    }
+
+    .files h2{
+        grid-area: fileTitle;
+    }
+
+    .files input{
+        grid-area: fileInput;
+        justify-self: left;
+        padding: 0.5em 2em;
+        box-sizing: border-box;
+        border-style: none;
+        font-family: "Charlevoix Pro";
+        font-size: 100%;
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .submitCapsule{
+        padding: 1em;
+        grid-area: submitCapsule;
+        justify-self: center;
+    }
+
+    .submitCapsule #completeMessage{
+        padding: 1.5em 2.5em;
+        box-sizing: border-box;
+        background-color: #56327d;
+        border-style: none;
+        color: #fff;
+        font-family: "Charlevoix Pro";
+        font-size: 100%;
+        width: 100%;
+
     }
 
     ::placeholder {
         color: #fff;
-    }
-
-    input[type=text]{
-        padding: 1em;
-        box-sizing: border-box;
-        background-color: #957ead;
-        border-style: none;
-        color: #fff;
-        font-family: "Charlevoix Pro";
-        font-size: 100%;
-        width: 60%;
-    }
-
-    input[type=radio] {
-        padding: 1em;
-        font-size: 100%;
-        background-color: #957ead;
-        border-style: none;
-        color: #fff;
-        font-family: "Charlevoix Pro";
-    }
-
-    textarea{
-        -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-        -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-        box-sizing: border-box;         /* Opera/IE 8+ */
-        padding: 1em;
-        background-color: #957ead;
-        border-style: none;
-        color: #fff;
-        font-family: "Charlevoix Pro";
-        font-size: 75%;
-        width: 60%;
-    }
-
-    input[type=submit] {
-        padding: 0.5em 1em;
-        box-sizing: border-box;
-        background-color: #957ead;
-        border-style: none;
-        color: #fff;
-        font-family: "Charlevoix Pro";
-        font-size: 100%;
-        width: 25%;
-        margin-top: 1em;
-        margin-bottom: 1em;
-    }
-    select {
-        padding: 0.5em 1em;
-        box-sizing: border-box;
-        background-color: #957ead;
-        border-style: none;
-        color: #fff;
-        font-family: "Charlevoix Pro";
-        font-size: 70%;
-        width: 50%;
-    }
-    .currentRecipients {
-        font-size: 175%;
-    }
-
-
-    #completeMessage {
     }
 }

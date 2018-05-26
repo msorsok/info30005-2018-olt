@@ -11,6 +11,7 @@ var fs = require('fs');
 var del = require("del");
 var db = require("../models/db.js");
 var nodemailer = require("nodemailer");
+var xoauth2 = require("xoauth2");
 const createCapsule = function(req, res) {
     if (req.body.recipient0) {
         var recipientList = [];
@@ -201,13 +202,19 @@ const updateAccount = function(req, res) {
     // create reusable transporter object using the default SMTP transport
 
     var transporter = nodemailer.createTransport({
-        host: 'mail.radiant-mountain-46628.herokuapp.com',
-        port: 587,
-        secure: false, // true for 465, false for other ports
+        service: 'gmail',
+        secure:false,
+        port:300,
         auth: {
-            //req.isAuthenticated
-            user: req.user.username, // add username here
-            pass: req.user.password  // add password here
+            user: 'onelasttime.system@gmail.com',
+            pass: 'iloveweb123'
+           /*
+            xoauth2: xoauth2.createXOAuth2Generator({
+                user: 'onelasttime.system@gmail.com',
+                clientID: ' 255810401845-79jehcf14r1qvpaq5900m668ji53n0b3.apps.googleusercontent.com',
+                clientSecret: ' jfZIuEGQ6t64Bi7lPmULAU4R',
+                refreshToken:'1/yFBrD7sX5tSOrxdzbzFnF5v1q2bkKWifKvgVJ_QGmG8'
+            })*/
         },
         tls:{
             rejectUnauthorized:false
@@ -215,8 +222,8 @@ const updateAccount = function(req, res) {
     });
     var mailOptions = {
         from: req.user.firstName,
-        to: req.body.nominee1email, // list of receivers
-        subject: 'One Last Time nominee for ADDNAME ', // Subject line
+        to: req.user.nominee1email, // list of receivers
+        subject: 'One Last Time nominee for'+req.user.firstName, // Subject line
         text: 'ADD STANDARD TEXT', // plain text body
         html: '<b>ADD STANDARD TEXT</b>' // html body
     };

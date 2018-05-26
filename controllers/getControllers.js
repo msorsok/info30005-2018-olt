@@ -20,13 +20,22 @@ const accountRoute = function(req, res) {
 
 const releaseRoute = function(req, res) {
     var nominators = [];
+    /*
+    * currently, foundUser gets pushed to nominators
+    * but after forEach block nominators becomes []
+    */
     req.user.dependents.forEach( function(dependent) {
         user.findById(dependent, function(err, foundUser) {
+            if (err) {
+                return next(err);
+            }
             nominators.push(foundUser);
+            res.render("release", {firstName: req.user.firstName, dependents: nominators}); //please do not move
         });
     });
-    res.render("release", {user: req.user, nominators: nominators});
+
 };
+
 const createRoute = function(req, res) {
     res.render('newmessage', req.user);
 };
@@ -44,7 +53,9 @@ const logoutRoute = function (req, res) {
 };
 
 const profilePicRoute = function (req, res) {
-    res.contentType(req.user.profilePic.contentType);
+    if(req.user.profilePic.contentType) {
+        res.contentType(req.user.profilePic.contentType);
+    }
     res.send(req.user.profilePic.data);
 };
 

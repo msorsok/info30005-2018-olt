@@ -201,14 +201,13 @@
     }
 
     .currentPhoto img {
-        height: 50%;
-        width: 50%;
+        height: 45%;
+        width: 45%;
     }
 
     #editNameForm {
-        justify-self: center;
+        justify-self: right;
         grid-area: nameDetails;
-        padding: 1em 2em 1em 2em;
     }
 
     .editProfilePicture {

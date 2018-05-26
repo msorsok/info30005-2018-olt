@@ -44,7 +44,7 @@
         grid-area: header;
         display: grid;
         grid-template-columns: 5fr 2em 6.1fr 2em;
-        grid-template-rows: 1fr;
+        grid-template-rows: 3em;
         grid-template-areas: "logo logo login login";
         color: #fff;
         align-items: center;
@@ -54,7 +54,7 @@
         grid-area: logo;
         display: grid;
         grid-template-columns: 1fr 1em 0.4fr 1.2fr 3.4fr;
-        grid-template-rows: 1fr;
+        grid-template-rows: 3em;
         grid-template-areas: ". . logoImage logoText .";
         align-items: center;
         box-sizing: border-box;
@@ -209,7 +209,196 @@
         text-align: justify;
     }
 }
+@media screen and (max-width: 992px) {
+    body{
+        margin: 0;
+        background-color: #f1f1f1;
+    }
+    h1{
+        font-size: 300%;
+    }
+    .page {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 5fr 4.1fr 1fr;
+        grid-template-rows: 3em auto auto;
+        grid-template-areas: "header header header header"
+        ". description description ."
+        ". signup signup .";
+        grid-row-gap: 2em;
+        height: 100%;
+        font-family: "Charlevoix Pro";
+    }
+    .header{
+        grid-area: header;
+        display: grid;
+        grid-template-columns: 5fr 2em 6.1fr 2em;
+        grid-template-rows: 3em;
+        grid-template-areas: "login login login login";
+        color: #fff;
+        align-items: center;
+        background-color: #56327d;
+    }
+    .logo{
+        display: none;
+        grid-area: logo;
+        display: grid;
+        grid-template-columns: 1fr 1em 0.4fr 1.2fr 3.4fr;
+        grid-template-rows: 3em;
+        grid-template-areas: ". . logoImage logoText .";
+        align-items: center;
+        box-sizing: border-box;
+    }
+    .logoImage{
+        grid-area: logoImage;
+        cursor: pointer;
 
+    }
+    .logoText{
+        grid-area: logoText;
+        cursor: pointer;
+    }
+
+    #loginForm{
+        grid-area: login;
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        grid-template-rows: 3em;
+        grid-template-areas: "addEmail addPassword userLoginButton forgotPassword";
+        align-items: center;
+
+    }
+    #loginForm p{
+        display: inline-block;
+        padding-right: 0.5em;
+        margin: 0;
+    }
+    .addEmail{
+        grid-area: addEmail;
+    }
+    .addPassword{
+        grid-area: addPassword;
+    }
+
+    .userLoginButton{
+        grid-area: userLoginButton;
+
+    }
+
+    .forgotPassword{
+        grid-area: forgotPassword;
+    }
+
+    #loginForm input{
+        box-sizing: border-box;
+        padding: 0.4em 1em;
+        cursor: pointer;
+    }
+
+    #loginForm input[type = submit]{
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-size: 100%;
+        padding: 0.4em 1em;
+        cursor: pointer;
+    }
+
+
+
+    /* Header ends here */
+
+
+    #signupForm{
+        background-color: #957ead;
+        grid-area: signup;
+        display: grid;
+        grid-template-columns: 0.05fr 1fr 1fr 0.05fr;
+        grid-template-areas: " . SignupTEXT SignupTEXT ." " . firstName firstName . " " . lastName lastName . " " . dateOfBirthT dateOfBirthT . " ". dateOfBirthF dateOfBirthF ." " . emailT emailT ." ". emailF emailF ." " . passwordT passwordT ." ". passwordF passwordF ." " . re-enterPasswordT re-enterPasswordT . " " . re-enterPasswordF re-enterPasswordF . " " . submitButton submitButton .";
+        grid-row-gap: 1em;
+        color: #fff;
+        align-items: center;
+        grid-template-rows: repeat(12, fit-content(100%));
+        padding: 1em 1.5em;
+    }
+
+    .description{
+        padding: 0 10% 0 0;
+        font-size: 130%;
+        grid-area: description;
+        color: #56327d;
+    }
+
+    .descriptionText{
+        text-align: center;
+    }
+    .submitButton{
+        grid-area: submitButton;
+        padding: 1em 0;
+        justify-self: center;
+    }
+
+    #signupForm input{
+        font-size: 100%;
+        padding: 0.5em;
+        margin-right: 1em;
+
+    }
+
+    #signupForm input[type = submit]{
+        box-sizing: border-box;
+        background-color: #56327d;
+        border-style: none;
+        color: #fff;
+        font-size: 120%;
+        padding: 0.5em 1.5em;
+        cursor: pointer;
+
+    }
+    .SignupTEXT{
+        grid-area: SignupTEXT;
+        font-size: 3em;
+    }
+    .firstName{
+        grid-area: firstName;
+
+    }
+    .lastName{
+        grid-area: lastName;
+    }
+
+    .dateOfBirthT{
+        grid-area: dateOfBirthT;
+    }
+    .dateOfBirthF{
+        grid-area: dateOfBirthF;
+    }
+    .emailT{
+        grid-area: emailT;
+    }
+    .username{
+        grid-area: emailF;
+    }
+    .passwordT{
+        grid-area: passwordT;
+    }
+    .password{
+        grid-area: passwordF;
+    }
+    .re-enterPasswordT{
+        grid-area: re-enterPasswordT;
+    }
+    .re-enterPasswordF{
+        grid-area: re-enterPasswordF;
+    }
+
+    .largeLogo{
+        margin: 10% 35%;
+        box-sizing: border-box;
+        text-align: justify;
+    }
+}
 
 
 

@@ -11,9 +11,9 @@
 <%- include("page_template_start");%>
 
 <div class="welcomeTitle">Welcome <% if (typeof firstName == 'string' && firstName) { %>
-    <%-firstName%>
-    <% } %>,</div>
-<div class="standardText">would you like to create a new Time Capsule?</div>
+    <%-firstName%><%}%>
+</div>
+<div class="standardText">Would you like to create a new Time Capsule?</div>
 <a href="/userInbox"> <div  class="createNewTimeCapsuleButton button"> Check Inbox </div></a>
 
 <div class="standardText">or would you like to release a Time Capsule?</div>

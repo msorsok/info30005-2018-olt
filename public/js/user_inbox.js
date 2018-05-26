@@ -27,24 +27,34 @@ function mouseClick(link) {
         window.location.href = link;
     }
 }
+try{
+    var inbox = document.getElementsByClassName("inboxAllEmails")[0].children;
+}
+catch(e){
 
-
-
-var inbox = document.getElementsByClassName("inboxAllEmails")[0].children;
-
-for (var i = 0 ; i < inbox.length; i++) {
-    inbox[i].addEventListener("mouseover", mouseOver(inbox[i]));
-    inbox[i].addEventListener("mouseout", mouseOut(inbox[i]));
-    console.log(inbox[i].children[0].childNodes[0]);
-    inbox[i].addEventListener("click", mouseClick("view/" + inbox[i].children[0].childNodes[0].data));
 }
 
-var sent = document.getElementsByClassName("allSentEmails")[0].children;
-
-for (var i = 0 ; i < sent.length; i++) {
-    sent[i].addEventListener("mouseover", mouseOver(sent[i]));
-    sent[i].addEventListener("mouseout", mouseOut(sent[i]));
-    console.log(inbox[i].children[0].childNodes[0]);
-    sent[i].addEventListener("click", mouseClick("view/Farah"));
+if (inbox) {
+    console.log(inbox);
+    console.log(inbox[0].children);
+    for (var i = 0; i < inbox.length; i++) {
+        inbox[i].addEventListener("mouseover", mouseOver(inbox[i]));
+        inbox[i].addEventListener("mouseout", mouseOut(inbox[i]));
+        inbox[i].addEventListener("click", mouseClick("capsuleReceived/" + inbox[i].children[3].innerHTML));
+    }
 }
+try{
+    var sent = document.getElementsByClassName("allSentEmails")[0].children;
+}
+catch(e){
 
+}
+if (sent) {
+    console.log(sent);
+    console.log(sent[0]);
+    for (var i = 0; i < sent.length; i++) {
+        sent[i].addEventListener("mouseover", mouseOver(sent[i]));
+        sent[i].addEventListener("mouseout", mouseOut(sent[i]));
+        sent[i].addEventListener("click", mouseClick("capsuleSent/" + sent[i].children[3].innerHTML));
+    }
+}

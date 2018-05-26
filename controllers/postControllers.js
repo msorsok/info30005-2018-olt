@@ -10,8 +10,6 @@ var del = require("del");
 var db = require("../models/db.js");
 var nodemailer = require("nodemailer");
 const createCapsule = function(req, res) {
-    console.log(req.body);
-    console.log(req.files);
     if (req.body.recipient0) {
         var recipientList = [];
         recipientList.push(req.body.recipient0);
@@ -25,8 +23,10 @@ const createCapsule = function(req, res) {
             recipientCount ++;
         }
         var newCapsule = new capsule ({
-            "recipients": recipientList,
-            "released": false
+            "dateCreated": Date.now(),
+            "released": false,
+            "senderFirstName": req.user.firstName,
+            "senderLastName" : req.user.lastName
         });
 
         if (req.body.note){
@@ -92,12 +92,15 @@ const createCapsule = function(req, res) {
             );
             newCapsule.file = files;
         }
-
-        newCapsule.save(function(err, cap){
-            if (err) {
-                return next(err);
+        var newCapsulesSent = {};
+        newCapsulesSent.capsulesSent = req.user.capsulesSent;
+        console.log(newCapsulesSent);
+        newCapsulesSent.capsulesSent.push(newCapsule);
+        user.findByIdAndUpdate(req.user._id, {$set: newCapsulesSent}, function(err, doc) {
+            if(err) {
+                next(err);
             }
-            else{
+            else {
                 return res.redirect("/userInbox");
             }
         });
@@ -115,10 +118,9 @@ const releaseCapsule = function(req, res) {
             if (err) {
                 return next(err)
             }
-            else{
-                return res.redirect("/userInbox")
-            }
-        });
+        }
+
+        );
     }
 };
 const updateAccount = function(req, res) {

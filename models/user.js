@@ -1,6 +1,7 @@
 var mongoose = require("mongoose");
 var capsuleSchema = require("./capsule.js");
 var bcrypt   = require('bcrypt');
+var dependentSchema = require("./dependent.js");
 
 var userSchema =  mongoose.Schema(
     {
@@ -13,7 +14,8 @@ var userSchema =  mongoose.Schema(
         "capsulesSent": [capsuleSchema],
         "profilePic" : {data: Buffer, contentType: String},
         "nominee1email" : String,
-        "nominee2email" : String
+        "nominee2email" : String,
+        "dependents" : [dependentSchema]
     }
 );
 // methods ======================

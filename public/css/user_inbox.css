@@ -154,7 +154,10 @@
     .dateCreatedHeader{
         grid-area: dateCreatedHeader;
         padding: 0 4%;
+    }
 
+    .capsuleid{
+        display: none;
     }
 
 

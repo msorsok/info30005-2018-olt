@@ -3,6 +3,7 @@ var passing = mongoose.model("passing");
 var capsule = mongoose.model("capsule");
 var video = mongoose.model("video");
 var db = require("../models/db.js");
+var user = mongoose.model("User");
 
 const rootRoute = function(req, res){
     req.logout();
@@ -18,7 +19,13 @@ const accountRoute = function(req, res) {
 };
 
 const releaseRoute = function(req, res) {
-    res.render("release", req.user);
+    var nominators = [];
+    req.user.dependents.forEach( function(dependent) {
+        user.findById(dependent, function(err, foundUser) {
+            nominators.push(foundUser);
+        });
+    });
+    res.render("release", {user: req.user, nominators: nominators});
 };
 const createRoute = function(req, res) {
     res.render('newmessage', req.user);

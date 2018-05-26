@@ -113,17 +113,60 @@ const createCapsule = function(req, res) {
 };
 const releaseCapsule = function(req, res) {
     if (req.body.deceased && req.body.datePassing) {
-        var passingEvent = new passing ({
-            "deceased": req.body.deceased,
-            "datePassing": req.body.datePassing
-        });
-        passingEvent.save(function(err, event){
+        //currently only checks for first name
+        user.findOne({firstName : req.body.deceased}, function (err, recentlyDeceased) {
             if (err) {
-                return next(err)
+                return next(err);
             }
-        }
 
-        );
+            if (recentlyDeceased.nominee1email == req.user.username) {
+                recentlyDeceased.confirm1 = true;
+            }
+            else if (recentlyDeceased.nominee2email == req.user.username) {
+                recentlyDeceased.confirm2 = true;
+            }
+            /* =================
+            * CODE FOR RELEASING CAPSULES GOES HERE
+             */
+            if (recentlyDeceased.confirm1 && recentlyDeceased.confirm2) {
+                console.log("both nominees have confirmed");
+
+                //iterate through each capsule the recently deceased user created
+                recentlyDeceased.capsulesSent.forEach( function(sentCapsule) {
+                    //iterate through all the recipients for the current sentCapsule
+                    sentCapsule.forEach(function(recipient) {
+                        //push the capsule object to the array of receivedCapsules for the recipient
+                       recipient.capsulesReceived.push(sentCapsule);
+                       recipient.save(function(err, event) {
+                          if (err) {
+                              return next(err);
+                          }
+
+                       });
+
+                    });
+                   sentCapsule.released = true;
+                   sentCapsule.save(function(err, event) {
+                       if (err) {
+                           return next(err);
+                       }
+                   });
+                   recentlyDeceased.save(function(err,event) {
+                       if (err){
+                           return next(err);
+                       }
+                   });
+                });
+            }
+            /*
+             *=======================
+             */
+            recentlyDeceased.save(function(err, event) {
+                if (err) {
+                    return next(err);
+                }
+            });
+        });
     }
 };
 const updateAccount = function(req, res) {
@@ -286,6 +329,8 @@ const registerUser = function (req, res) {
                     nominee2email: "",
                     capsulesReceived: [],
                     capsulesSent: [],
+                    confirm1: false,
+                    confirm2: false,
                     dependents: []
                 });
                 User.createUser(newUser, function (err, user) {

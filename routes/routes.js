@@ -12,6 +12,7 @@ router.get("/create", getController.ensureAuthenticated, getController.createRou
 router.get("/userWelcome", getController.ensureAuthenticated, getController.userWelcomeRoute);
 router.get("/userInbox", getController.ensureAuthenticated, getController.userInboxRoute);
 router.get("/view/:id", getController.ensureAuthenticated, getController.viewRoute);
+router.get('/profilePic', getController.ensureAuthenticated, getController.profilePicRoute);
 router.get('/login', getController.loginRoute);
 router.get('/logout', getController.logoutRoute);
 

@@ -14,6 +14,7 @@
         </div>
 
             <form id ="editNameForm" action="/account" method="post">
+                <div class="editNameTitle"><h2>Edit your name</h2></div>
                 <div class="firstNameTitle"><p>First Name</p></div>
                     <input type="text" name ="firstName" id="firstName" placeholder="Enter your first name">
 
@@ -23,23 +24,23 @@
                 <div class="dobTitle"><p>Date of Birth</p></div>
                     <input type="date" name="dateOfBirthF" id="DOB">
                 <br>
-                <input type="submit" id="nameSubmit" value="Submit">
+                <input type="submit" id="nameSubmit" value="Change name">
 
             </form>
 
 
             <div class ="editProfilePicture">
-                <div class="profilePicTitle"><p>Upload New Photo</p></div>
+                <div class="profilePicTitle"><h2>Upload New Photo</h2></div>
                 <div class="currentPhoto">
                     <img src="res/user.png" alt="User Profile Picture">
                 </div>
                 <form action="/account" method="post" id ="selectPhoto" encType="multipart/form-data">
                     <input type="file" name="profilePic" placeholder="fileupload" id="profilePicture" accept=".png, .jpg, .jpeg">
-                    <br> <input type="submit" value="Submit" id="confirmPicture">
+                    <br> <input type="submit" value="Change Picture" id="confirmPicture">
                 </form>
             </div>
 
-            <div class="changeNomineesTitle"> Change your nominees</div>
+            <div class="changeNomineesTitle"><h2>Change your nominees</h2></div>
             <form id= "editNominationForm" action="/account" method="post">
                 <div class="firstNominee">
                 <div class="firstNomineeTitle"><p>First Nominee</p></div>
@@ -50,7 +51,7 @@
                 <input type="text" name="nominee2email" id="secondNominee" placeholder="Jane Smith">
                 </div>
                 <br>
-                <input type="submit" value="Submit" id="confirmChanges">
+                <input type="submit" value="Change Nominees" id="confirmChanges">
             </form>
         </div>
 

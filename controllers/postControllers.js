@@ -8,6 +8,7 @@ var dependent = mongoose.model("dependent");
 var fs = require('fs');
 var del = require("del");
 var passport = require("passport");
+var nodemailer = require("nodemailer");
 
 const createCapsule = function(req, res) {
     if (req.body.recipient0) {

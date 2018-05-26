@@ -5,9 +5,9 @@ var capsule = mongoose.model("capsule");
 var image = mongoose.model("img");
 var video = mongoose.model("video");
 var dependent = mongoose.model("dependent");
-var nodemailer = require("nodemailer");
 var fs = require('fs');
 var del = require("del");
+var nodemailer = require("nodemailer");
 
 const createCapsule = function(req, res) {
     if (req.body.recipient0) {
@@ -157,6 +157,79 @@ const releaseCapsule = function(req, res) {
 
 };
 const updateAccount = function(req, res) {
+    //sending email to non-user
+    console.log(req.user.nominee1email);
+    console.log(req.body.nominee1email);
+    console.log(req.user.nominee1email != req.body.nominee1email);
+    console.log(req.user.nominee2email);
+    console.log(req.user.firstName);
+
+    if((req.user.nominee1email != req.body.nominee1email) && (req.body.nominee1email)){
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            secure:false,
+            port:300,
+            auth: {
+                user: 'onelasttime.system@gmail.com',
+                pass: 'iloveweb123'
+
+            },
+            tls:{
+                rejectUnauthorized:false
+            }
+        });
+        var mailOptions = {
+            from: req.user.firstName,
+            to: req.body.nominee1email, // list of receivers
+            subject: 'One Last Time nominee for '+req.user.firstName, // Subject line
+
+            html:req.user.firstName+' has made you their security nominee! Please create an account using this email address, so that you can release their capsule when they pass away.' // html body
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId);
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+
+        });
+
+    }
+
+    if((req.user.nominee2email != req.body.nominee2email)&& (req.body.nominee2email)){
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            secure:false,
+            port:300,
+            auth: {
+                user: 'onelasttime.system@gmail.com',
+                pass: 'iloveweb123'
+
+            },
+            tls:{
+                rejectUnauthorized:false
+            }
+        });
+        var mailOptions = {
+            from: req.user.firstName,
+            to: req.body.nominee2email, // list of receivers
+            subject: 'One Last Time nominee for'+req.user.firstName, // Subject line
+            text: req.user.firstName+' has made you their security nominee', // plain text body
+            html: '<b>ADD STANDARD TEXT</b>' // html body
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId);
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+
+        });
+
+    }
+
     console.log("updating account");
     var newData = {};
     if (req.body.firstName){
@@ -232,44 +305,7 @@ const updateAccount = function(req, res) {
     });
 
 
-    //sending email to non-user
-    // create reusable transporter object using the default SMTP transport
 
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        secure:false,
-        port:300,
-        auth: {
-            user: 'onelasttime.system@gmail.com',
-            pass: 'iloveweb123'
-           /*
-            xoauth2: xoauth2.createXOAuth2Generator({
-                user: 'onelasttime.system@gmail.com',
-                clientID: ' 255810401845-79jehcf14r1qvpaq5900m668ji53n0b3.apps.googleusercontent.com',
-                clientSecret: ' jfZIuEGQ6t64Bi7lPmULAU4R',
-                refreshToken:'1/yFBrD7sX5tSOrxdzbzFnF5v1q2bkKWifKvgVJ_QGmG8'
-            })*/
-        },
-        tls:{
-            rejectUnauthorized:false
-        }
-    });
-    var mailOptions = {
-        from: req.user.firstName,
-        to: req.user.nominee1email, // list of receivers
-        subject: 'One Last Time nominee for'+req.user.firstName, // Subject line
-        text: 'ADD STANDARD TEXT', // plain text body
-        html: '<b>ADD STANDARD TEXT</b>' // html body
-    };
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-            return console.log(error);
-        }
-        console.log('Message sent: %s', info.messageId);
-    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-
-
-    });
 
 };
 

@@ -210,7 +210,7 @@ const updateAccount = function(req, res) {
         console.log("file has been sent");
         var input = [req.files.profilePic];
         input.forEach(function(element) {
-            var newFile  = new file ({
+            var newFile  = new image ({
                 data: fs.readFileSync(element.file),
                 contentType: element.mimetype
             });

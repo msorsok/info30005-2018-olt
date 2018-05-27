@@ -97,7 +97,7 @@ const createCapsule = function(req, res) {
             }
             else {
                 console.log("about to redirect");
-                res.redirect("/");
+                 return res.redirect("/");
             }
         });
     }
@@ -170,9 +170,8 @@ const releaseCapsule = function(req, res) {
 
 
                                     });
-                                    return next(err);
                                 }
-                                if (capsuleRecipient) {
+                                else{
                                     console.log('case2');
                                     var transporter = nodemailer.createTransport({
                                         service: 'gmail',
@@ -197,6 +196,7 @@ const releaseCapsule = function(req, res) {
                                         if (error) {
                                             return console.log(error);
                                         }
+                             
                                         console.log('Message sent: %s', info.messageId);
                                         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
@@ -234,12 +234,12 @@ const releaseCapsule = function(req, res) {
                         return next(saveerr);
                     }
                     console.log("recently deceased changes have been saved");
-                    res.redirect("/");
+                    return res.redirect("/");
                 });
             }
 
             console.log("recently deceased not found");
-            res.redirect("/");
+            //return res.redirect("/");
         });
     }
 
@@ -334,7 +334,7 @@ const updateAccount = function(req, res) {
     if (req.body.nominee1email) {
         newData.nominee1email = req.body.nominee1email;
         user.findOne({username: req.body.nominee1email}, function(err, foundUser) {
-            if (err && !foundUser) {
+            if (!foundUser) {
                 console.log("couldnt find user");
                 req.flash("error_msg", "Unable to update profile");
                 return res.redirect("/account");
@@ -453,7 +453,7 @@ const registerUser = function (req, res) {
             if (account) {
                 console.log("account found");
                 req.flash("error_msg", "Account already exists, please login");
-                res.redirect('/login');
+                return res.redirect('/login');
             }
             else {
                 //check nominees
@@ -490,7 +490,7 @@ const registerUser = function (req, res) {
                     }
                 });
                 req.flash('success_msg', 'You are registered and can now login');
-                res.redirect("/login");
+                return res.redirect("/login");
             }
         });
     }

@@ -7,10 +7,14 @@ var video = mongoose.model("video");
 var dependent = mongoose.model("dependent");
 var fs = require('fs');
 var del = require("del");
-var passport = require("passport");
 var nodemailer = require("nodemailer");
 
 const createCapsule = function(req, res) {
+    if (!req.body.recipient0){
+        //no recipients listed
+        req.flash("error_msg", "Please list at least one recipient");
+        res.redirect("/create");
+    }
     if (req.body.recipient0) {
         var recipientList = [];
         //check recipient0 here
@@ -249,7 +253,7 @@ const updateAccount = function(req, res) {
                 return next(err);
             }
             console.log("creating dependent");
-            foundUser.dependents.push(req.user._id);
+            foundUser.dependents.push(req.user.username);
             foundUser.save(function(err,event) {
                 if (err) {
                     return next(err);
@@ -314,7 +318,6 @@ const registerUser = function (req, res) {
     var lastName = req.body.lastName;
     var username = req.body.username;
     var password = req.body.password;
-    var password2 = req.body.password2;
     var dateOfBirthF = req.body.dateOfBirthF;
 
     // Validation

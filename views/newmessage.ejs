@@ -14,12 +14,12 @@
     <form action="/create" method = "post" id="newCapsule" encType = "multipart/form-data">
         <div class="recipients">
             <h2>Recipients</h2>
-            <input type="text" id= "recipients" placeholder="These people will receive your message" value="">
-            <button type="button" id = "addRecipient"> Add </button>
+            <input type="text" id= "recipients" placeholder="johnsmith@example.com" value="">
+            <button type="button" id = "addRecipient"> Add Recipient </button>
         </div>
 
         <div class="note">
-            <h2>Write a note (Optional)</h2>
+            <h2>Write a note</h2>
             <textarea id="nameTextArea" form="newCapsule" rows="10" placeholder="Enter your note here..." name = "note"></textarea>
         </div>
 
@@ -35,6 +35,14 @@
 
         <div class="submitCapsule">
             <input type="submit" id="completeMessage" value="Create Time Capsule">
+        </div>
+        <div class = "errors">
+            <% if (message) { %>
+            <%message.forEach(function(msg) {%>
+            <div class = "errorMessage">
+                <%= msg %>
+            </div>
+            <% });} %>
         </div>
     </form>
 </div>

@@ -336,7 +336,7 @@ const updateAccount = function(req, res) {
                 return next(err);
             }
             console.log("creating dependent");
-            foundUser.dependents.push(req.user._id);
+            foundUser.dependents.push(req.user.username);
             foundUser.save(function(err,event) {
                 if (err) {
                     return next(err);
@@ -344,10 +344,6 @@ const updateAccount = function(req, res) {
             });
         });
     }
-    console.log("req.body is");
-    console.log(req.body);
-    console.log("the req.files. are");
-    console.log(req.files.profilePic);
 
 
     if (req.files.profilePic) {

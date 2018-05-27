@@ -12,7 +12,7 @@ var userSchema =  mongoose.Schema(
         "password": String,
         "capsulesReceived": [capsuleSchema],
         "capsulesSent": [capsuleSchema],
-        "profilePic" : {data: Buffer, contentType: String},
+        "profilePic" : String,
         "nominee1email" : String,
         "nominee2email" : String,
         "confirm1" : Boolean,

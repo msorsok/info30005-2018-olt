@@ -93,6 +93,14 @@
         grid-area: userImage;
     }
 
+    #headerProfilePic{
+        display: block;
+        max-width: 40px;
+        max-height: 40px;
+        width: auto;
+        height: auto;
+    }
+
     .userName{
         grid-area: userName;
     }
@@ -240,6 +248,14 @@
     }
     .userImage{
         grid-area: userImage;
+    }
+
+    #headerProfilePic{
+        display: block;
+        max-width: 40px;
+        max-height: 40px;
+        width: auto;
+        height: auto;
     }
 
     .userName{

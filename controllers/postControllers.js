@@ -240,7 +240,6 @@ const releaseCapsule = function(req, res) {
             console.log("recently deceased not found");
             res.redirect("/");
         });
-
     }
 
 
@@ -272,7 +271,8 @@ const updateAccount = function(req, res) {
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {
-                return console.log(error);
+                req.flash("error_msg", "Unable to update profile");
+                return res.redirect("/account");
             }
             console.log('Message sent: %s', info.messageId);
             console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
@@ -304,7 +304,9 @@ const updateAccount = function(req, res) {
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {
-                return console.log(error);
+                console.log(error);
+                req.flash("error_msg", "Unable to update profile");
+                return res.redirect("/account");
             }
             console.log('Message sent: %s', info.messageId);
             console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
@@ -330,18 +332,19 @@ const updateAccount = function(req, res) {
     if (req.body.nominee1email) {
         newData.nominee1email = req.body.nominee1email;
         user.findOne({username: req.body.nominee1email}, function(err, foundUser) {
-            if (!err && foundUser) {
-                console.log("creating dependent");
-                foundUser.dependents.push(req.user.username);
-                foundUser.save(function(err2,event) {
-                    if (err2) {
-                        return next(err2);
-                    }
-                });
+            if (err) {
+                console.log("couldnt find user");
+                req.flash("error_msg", "Unable to update profile");
+                return res.redirect("/account");
             }
-            else {
-                console.log("this user doesnt exist");
-            }
+            console.log("creating dependent");
+            foundUser.dependents.push(req.user.username);
+            foundUser.save(function(err,event) {
+                if (err) {
+                    req.flash("error_msg", "Unable to update profile");
+                    return res.redirect("/account");
+                }
+            });
         });
 
     }
@@ -366,26 +369,36 @@ const updateAccount = function(req, res) {
 
 
     if (req.files.profilePic) {
-        console.log("file has been sent");
-        var input = [req.files.profilePic];
-        input.forEach(function(element) {
-            var newFile  = new image ({
-                data: fs.readFileSync(element.file),
-                contentType: element.mimetype
-            });
-            newData.profilePic = newFile;
-            del("uploads/" + element.uuid + "/**");
+        console.log("profile pic received");
+        console.log(req.files.profilePic);
+        var newImage  = new image ({
+            data: fs.readFileSync(req.files.profilePic.file),
+            contentType: req.files.profilePic.mimetype
         });
-
+        console.log("profile pic path:");
+        console.log(req.files.profilePic.file);
+        newImage.save(function(err,event) {
+            if (err) {
+                req.flash("error_msg", "Unable to update profile");
+                return res.redirect("/account");
+            }
+        });
+        newData.profilePic = newImage._id;
+        console.log("newImage id:");
+        console.log(newImage._id);
+        del("uploads\\" + req.files.profilePic.uuid + "\\**");
     }
     console.log(req.user);
     /*find the user with matching id and username and updates its attributes based on set*/
-    user.findOneAndUpdate({_id: req.user._id,username: req.user.username}, {$set: newData}, function(err, doc) {
+    user.findOneAndUpdate({_id: req.user._id}, {$set: newData}, function(err, doc) {
         if(err) {
-            next(err);
+            req.flash("error_msg", "Unable to update profile");
+            return res.redirect("/account");
         }
         else {
-            res.redirect("/account");
+            console.log(doc);
+            req.flash("success_msg", "Updated profile successfully");
+            return res.redirect("/account");
         }
     });
 
@@ -452,8 +465,11 @@ const registerUser = function (req, res) {
                     dependents: []
                 });
                 user.createUser(newUser, function (err, account) {
-                    if (err) throw err;
-                    console.log(user);
+                    if (err){
+                        console.log(user);
+                        req.flash("error_msg", "Unable to create new account");
+                        return res.redirect("/login");
+                    }
                 });
                 req.flash('success_msg', 'You are registered and can now login');
                 res.redirect("/login");

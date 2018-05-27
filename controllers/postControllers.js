@@ -164,6 +164,34 @@ const releaseCapsule = function(req, res) {
 
                                });
                            }
+                           var transporter = nodemailer.createTransport({
+                               service: 'gmail',
+                               secure:false,
+                               port:300,
+                               auth: {
+                                   user: 'onelasttime.system@gmail.com',
+                                   pass: 'iloveweb123'
+
+                               },
+                               tls:{
+                                   rejectUnauthorized:false
+                               }
+                           });
+                           var mailOptions = {
+                               from: req.user.firstName,
+                               to: recipient, // list of receivers
+                               subject: 'One Last Time nominee for '+req.user.firstName, // Subject line
+                               html:req.user.firstName+' has left you a message. To view this message, please login using this email.' // html body
+                           };
+                           transporter.sendMail(mailOptions, function(error, info){
+                               if (error) {
+                                   return console.log(error);
+                               }
+                               console.log('Message sent: %s', info.messageId);
+                               console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+
+                           });
                            capsuleRecipient.capsulesReceived.push(sentCapsule);
                            capsuleRecipient.save({ suppressWarning: true },function(err, event) {
                                if (err) {

@@ -23,25 +23,22 @@ const accountRoute = function(req, res) {
 };
 
 const releaseRoute = function(req, res) {
-    var nominators = [];
-    /*
-    * currently, foundUser gets pushed to nominators
-    * but after forEach block nominators becomes []
-    */
-    req.user.dependents.forEach( function(dependent) {
-        user.findById(dependent, function(err, foundUser) {
-            if (err) {
-                return next(err);
-            }
-            nominators.push(foundUser);
-            res.render("release", {firstName: req.user.firstName, dependents: nominators}); //please do not move
-        });
-    });
+    return res.render("release", {firstName: req.user.firstName, dependents: req.user.dependents});
+};
 
-};
 const createRoute = function(req, res) {
-    res.render('newmessage', req.user);
+    var errorMessages = [];
+    if (res.locals.success_msg){
+        errorMessages.push(res.locals.success_msg);
+    }
+    if(res.locals.error_msg){
+        errorMessages.push(res.locals.error_msg);
+    }
+    var data = req.user;
+    data.message = errorMessages;
+    res.render('newmessage', data);
 };
+
 const userWelcomeRoute = function (req,res) {
     if (req.user.capsulesReceived.length + req.user.capsulesSent.length > 0){
         res.redirect("/");
@@ -62,7 +59,6 @@ const userInboxRoute = function (req,res) {
 
 const logoutRoute = function (req, res) {
     req.logout();
-    req.flash('success_msg', 'You are logged out');
     res.redirect('/login');
 };
 

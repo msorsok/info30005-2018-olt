@@ -13,13 +13,13 @@ const createCapsule = function(req, res) {
     if (!req.body.recipient0){
         //no recipients listed
         req.flash("error_msg", "Please list at least one recipient");
-        res.redirect("/create");
+        return res.redirect("/create");
     }
     if (req.body.recipient0) {
+
         var recipientList = [];
         //check recipient0 here
-        //req.flash("error_msg", "A recipient you listed does not have a valid email");
-        //return res.redirect("/create");
+
         recipientList.push(req.body.recipient0);
         var recipientCount = 1;
         while (true){
@@ -27,9 +27,14 @@ const createCapsule = function(req, res) {
             if (!req.body[name]){
                 break
             }
+            if(req.checkBody(req.body[name], 'Email is not valid').isEmail()){
+                req.flash("error_msg", "A recipient you listed does not have a valid email");
+                return res.redirect("/create");
+            }
             recipientList.push(req.body[name]);
             recipientCount ++;
         }
+
         var newCapsule = new capsule ({
             "dateCreated": Date.now(),
             "released": false,
@@ -128,6 +133,37 @@ const releaseCapsule = function(req, res) {
                     sentCapsule.recipients.forEach(function(recipient) {
                         //push the capsule object to the array of receivedCapsules for the recipient
                        user.findOne({username: recipient}, function(err, capsuleRecipient) {
+                           if(err) {
+                               //email is sent to non-users
+                               var transporter = nodemailer.createTransport({
+                                   service: 'gmail',
+                                   secure:false,
+                                   port:300,
+                                   auth: {
+                                       user: 'onelasttime.system@gmail.com',
+                                       pass: 'iloveweb123'
+
+                                   },
+                                   tls:{
+                                       rejectUnauthorized:false
+                                   }
+                               });
+                               var mailOptions = {
+                                   from: req.user.firstName,
+                                   to: recipient, // list of receivers
+                                   subject: 'One Last Time nominee for '+req.user.firstName, // Subject line
+                                   html:req.user.firstName+' has left you a message. To view this message, please create an account using this email address at http://radiant-mountain-46628.herokuapp.com/.' // html body
+                               };
+                               transporter.sendMail(mailOptions, function(error, info){
+                                   if (error) {
+                                       return console.log(error);
+                                   }
+                                   console.log('Message sent: %s', info.messageId);
+                                   console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+
+                               });
+                           }
                            capsuleRecipient.capsulesReceived.push(sentCapsule);
                            capsuleRecipient.save({ suppressWarning: true },function(err, event) {
                                if (err) {

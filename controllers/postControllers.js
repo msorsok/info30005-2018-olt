@@ -13,10 +13,13 @@ const createCapsule = function(req, res) {
     if (!req.body.recipient0){
         //no recipients listed
         req.flash("error_msg", "Please list at least one recipient");
-        res.redirect("/create");
+        return res.redirect("/create");
     }
     if (req.body.recipient0) {
+
         var recipientList = [];
+        //check recipient0 here
+
         recipientList.push(req.body.recipient0);
         var recipientCount = 1;
         while (true){
@@ -24,14 +27,20 @@ const createCapsule = function(req, res) {
             if (!req.body[name]){
                 break
             }
+            if(!req.checkBody(req.body[name], 'Email is not valid').isEmail()){
+                req.flash("error_msg", "A recipient you listed does not have a valid email");
+                return res.redirect("/create");
+            }
             recipientList.push(req.body[name]);
             recipientCount ++;
         }
+
         var newCapsule = new capsule ({
             "dateCreated": Date.now(),
             "released": false,
             "senderFirstName": req.user.firstName,
-            "senderLastName" : req.user.lastName
+            "senderLastName" : req.user.lastName,
+            "recipients":recipientList
         });
 
         if (req.body.note){
@@ -99,17 +108,20 @@ const releaseCapsule = function(req, res) {
     if (req.body.deceased && req.body.datePassing) {
         //req.body.deceased is of the form <firstName>,<userName>
         //split the string by the ,
-        var username = req.body.deceased.split(",")[1];
-        //currently only checks for first name
+        var username = req.body.deceased;
+        //find recently deceased user by username
         user.findOne({username: username}, function (err, recentlyDeceased) {
             if (err) {
                 return next(err);
             }
+            // mark confirm1 as true if user is the first nominee of the deceased user
 
             if (recentlyDeceased.nominee1email == req.user.username) {
+                console.log("nominee1 confirmed");
                 recentlyDeceased.confirm1 = true;
             }
             else if (recentlyDeceased.nominee2email == req.user.username) {
+                console.log("nominee1 confirmed");
                 recentlyDeceased.confirm2 = true;
             }
             /* =================
@@ -124,6 +136,68 @@ const releaseCapsule = function(req, res) {
                     sentCapsule.recipients.forEach(function(recipient) {
                         //push the capsule object to the array of receivedCapsules for the recipient
                        user.findOne({username: recipient}, function(err, capsuleRecipient) {
+                           if(err) {
+                               console.log('case1');
+                               //email is sent to non-users
+                               var transporter = nodemailer.createTransport({
+                                   service: 'gmail',
+                                   secure:false,
+                                   port:300,
+                                   auth: {
+                                       user: 'onelasttime.system@gmail.com',
+                                       pass: 'iloveweb123'
+
+                                   },
+                                   tls:{
+                                       rejectUnauthorized:false
+                                   }
+                               });
+                               var mailOptions = {
+                                   from: req.user.firstName,
+                                   to: recipient, // list of receivers
+                                   subject: 'One Last Time nominee for '+req.user.firstName, // Subject line
+                                   html:req.user.firstName+' has left you a message. To view this message, please create an account using this email address at http://radiant-mountain-46628.herokuapp.com/.' // html body
+                               };
+                               transporter.sendMail(mailOptions, function(error, info){
+                                   if (error) {
+                                       return console.log(error);
+                                   }
+                                   console.log('Message sent: %s', info.messageId);
+                                   console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+
+                               });
+                               return next(err);
+                           }
+                           console.log('case2');
+                           var transporter = nodemailer.createTransport({
+                               service: 'gmail',
+                               secure:false,
+                               port:300,
+                               auth: {
+                                   user: 'onelasttime.system@gmail.com',
+                                   pass: 'iloveweb123'
+
+                               },
+                               tls:{
+                                   rejectUnauthorized:false
+                               }
+                           });
+                           var mailOptions = {
+                               from: req.user.firstName,
+                               to: recipient, // list of receivers
+                               subject: 'One Last Time nominee for '+req.user.firstName, // Subject line
+                               html:req.user.firstName+' has left you a message. To view this message, please login using this email.' // html body
+                           };
+                           transporter.sendMail(mailOptions, function(error, info){
+                               if (error) {
+                                   return console.log(error);
+                               }
+                               console.log('Message sent: %s', info.messageId);
+                               console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+
+                           });
                            capsuleRecipient.capsulesReceived.push(sentCapsule);
                            capsuleRecipient.save({ suppressWarning: true },function(err, event) {
                                if (err) {
@@ -137,6 +211,7 @@ const releaseCapsule = function(req, res) {
 
                     });
                    sentCapsule.released = true;
+                   // save all changes to sentCapsule document
                    sentCapsule.save({ suppressWarning: true },function(err, event) {
                        if (err) {
                            return next(err);
@@ -149,25 +224,22 @@ const releaseCapsule = function(req, res) {
                    });
                 });
             }
-            /*
-             *=======================
-             */
+            //save all the changes to recentlyDeceased
             recentlyDeceased.save(function(err, event) {
                 if (err) {
                     return next(err);
                 }
+                console.log("recently deceased changes have been saved");
+                res.redirect("/");
             });
         });
     }
 
+
 };
 const updateAccount = function(req, res) {
     //sending email to non-user
-    console.log(req.user.nominee1email);
-    console.log(req.body.nominee1email);
-    console.log(req.user.nominee1email != req.body.nominee1email);
-    console.log(req.user.nominee2email);
-    console.log(req.user.firstName);
+
 
     if((req.user.nominee1email != req.body.nominee1email) && (req.body.nominee1email)){
         var transporter = nodemailer.createTransport({
@@ -221,8 +293,7 @@ const updateAccount = function(req, res) {
             from: req.user.firstName,
             to: req.body.nominee2email, // list of receivers
             subject: 'One Last Time nominee for'+req.user.firstName, // Subject line
-            text: req.user.firstName+' has made you their security nominee', // plain text body
-            html: '<b>ADD STANDARD TEXT</b>' // html body
+            html: req.user.firstName+' has made you their security nominee! Please create an account using this email address, so that you can release their capsule when they pass away.'
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {
@@ -249,6 +320,8 @@ const updateAccount = function(req, res) {
     if (req.body.dateOfBirthF) {
         newData.dateOfBirthF = req.body.dateOfBirthF;
     }
+
+    //find nominee and set user as dependent
     if (req.body.nominee1email) {
         newData.nominee1email = req.body.nominee1email;
         user.findOne({username: req.body.nominee1email}, function(err, foundUser) {
@@ -268,6 +341,7 @@ const updateAccount = function(req, res) {
         });
 
     }
+    //find nominee and set user as dependent
     if (req.body.nominee2email) {
         newData.nominee2email = req.body.nominee2email;
         user.findOne({username: req.body.nominee2email}, function(err, foundUser) {
@@ -277,7 +351,7 @@ const updateAccount = function(req, res) {
                 return res.redirect("/account");
             }
             console.log("creating dependent");
-            foundUser.dependents.push(req.user._id);
+            foundUser.dependents.push(req.user.username);
             foundUser.save(function(err,event) {
                 if (err) {
                     req.flash("error_msg", "Unable to update profile");
@@ -286,10 +360,6 @@ const updateAccount = function(req, res) {
             });
         });
     }
-    console.log("req.body is");
-    console.log(req.body);
-    console.log("the req.files. are");
-    console.log(req.files.profilePic);
 
 
     if (req.files.profilePic) {

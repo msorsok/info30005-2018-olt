@@ -138,8 +138,8 @@ const releaseCapsule = function(req, res) {
                         sentCapsule.recipients.forEach(function (recipient) {
                             //push the capsule object to the array of receivedCapsules for the recipient
                             user.findOne({username: recipient}, function (err, capsuleRecipient) {
-
-                                if (err && !(capsuleRecipient)) {
+                                //if capsuleREcipient is null
+                                if (!capsuleRecipient) {
                                     console.log('case1');
                                     //email is sent to non-users
                                     var transporter = nodemailer.createTransport({
@@ -337,14 +337,16 @@ const updateAccount = function(req, res) {
                 req.flash("error_msg", "Unable to update profile");
                 return res.redirect("/account");
             }
-            console.log("creating dependent");
-            foundUser.dependents.push(req.user.username);
-            foundUser.save(function(err,event) {
-                if (err) {
-                    req.flash("error_msg", "Unable to update profile");
-                    return res.redirect("/account");
-                }
-            });
+            if (foundUser) {
+                console.log("creating dependent");
+                foundUser.dependents.push(req.user.username);
+                foundUser.save(function (err, event) {
+                    if (err) {
+                        req.flash("error_msg", "Unable to update profile");
+                        return res.redirect("/account");
+                    }
+                });
+            }
         });
 
     }
@@ -352,19 +354,21 @@ const updateAccount = function(req, res) {
     if (req.body.nominee2email) {
         newData.nominee2email = req.body.nominee2email;
         user.findOne({username: req.body.nominee2email}, function(err, foundUser) {
-            if (err && !foundUser) {
+            if (!foundUser) {
                 console.log("couldnt find user");
                 req.flash("error_msg", "Unable to update profile");
                 return res.redirect("/account");
             }
-            console.log("creating dependent");
-            foundUser.dependents.push(req.user.username);
-            foundUser.save(function(err,event) {
-                if (err) {
-                    req.flash("error_msg", "Unable to update profile");
-                    return res.redirect("/account");
-                }
-            });
+            if (foundUser) {
+                console.log("creating dependent");
+                foundUser.dependents.push(req.user.username);
+                foundUser.save(function (err, event) {
+                    if (err) {
+                        req.flash("error_msg", "Unable to update profile");
+                        return res.redirect("/account");
+                    }
+                });
+            }
         });
     }
 
@@ -454,7 +458,9 @@ const registerUser = function (req, res) {
                 var newdependents = [];
                 user.find({nominee1email:username}, function(err,foundDependents) {
                    if(foundDependents) {
+                       console.log(username+"dependents are");
                        for(var i=0; i< foundDependents.length; i++) {
+                            console.log(foundDependents[i]);
                            newdependents.push(foundDependents[i].username);
                        }
                    }

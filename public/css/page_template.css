@@ -25,10 +25,14 @@
     html{
         margin: 0;
         height: 100%;
+        width: 100vw;
+
     }
     body {
         margin: 0;
         height: 100%;
+        width: 100vw;
+
     }
 
     /* template css */
@@ -45,6 +49,8 @@
                 ". content content content content .";
         grid-column-gap: 1em;
         grid-row-gap: 2em;
+        width: 100vw;
+
     }
 
     .header{
@@ -56,6 +62,7 @@
         color: #fff;
         align-items: center;
         font-family: 'Charlevoix Pro';
+        background-color: #56327d;
     }
 
     .logo{
@@ -178,11 +185,16 @@
     html{
         margin: 0;
         height: 100%;
+        width: 100vw;
     }
     body {
         margin: 0;
-    //background-color: #f1f1f1;
         height: 100%;
+        width: 100vw;
+    }
+
+    h1{
+        font-size: 100%;
     }
 
     /* template css */
@@ -192,7 +204,7 @@
         padding-bottom: 3em;
         box-sizing: border-box;
 
-        grid-template-columns: 1fr 7fr 0.8fr 0.8fr 0.5fr 1fr;
+        grid-template-columns: 0.5fr 7fr 0.8fr 0.8fr 0.5fr 0.5fr;
         grid-template-rows: 3em repeat(2, fit-content(100%));
         grid-template-areas:
                 "header header header header header header"
@@ -201,16 +213,18 @@
 
         grid-column-gap: 1em;
         grid-row-gap: 2em;
+        width: 100vw;
     }
 
     .header{
         grid-area: header;
         display: grid;
-        grid-template-columns: 8fr 2em 3.1fr 2em;
+        grid-template-columns: 3fr 2em 3.1fr 2em;
         grid-template-rows: 3em;
         grid-template-areas: "logo logo user user";
         color: #fff;
         align-items: center;
+        background-color: #56327d;
         font-family: 'Charlevoix Pro';
     }
 
@@ -218,9 +232,9 @@
         grid-area: logo;
         background-color: #443266;
         display: grid;
-        grid-template-columns: 1fr 1em 0.4fr 1.2fr 5.4fr;
+        grid-template-columns: 1em 0.4fr 1.2fr 5.4fr;
         grid-template-rows: 3em;
-        grid-template-areas: ". . logoImage logoText logoText";
+        grid-template-areas: " . logoImage logoText logoText";
         align-items: center;
     }
 
@@ -239,7 +253,7 @@
     .user{
         grid-area: user;
         display: grid;
-        grid-template-columns: 0.5fr 1.2fr 0.4fr;
+        grid-template-columns: 0.3fr 0.6fr 0.4fr;
         grid-template-rows: 3em;
         grid-template-areas: "userImage userName logout";
         grid-column-gap: 0.5em;
@@ -264,7 +278,7 @@
 
     .logout{
         grid-area: logout;
-        padding-left: 1em;
+        padding-left: 0.5em;
         cursor: pointer;
     }
 

@@ -425,6 +425,14 @@
     .re-enterPasswordF{
         grid-area: re-enterPasswordF;
     }
+    .errors {
+        grid-area: errors;
+    }
+
+    .errorMessage{
+        color: black;
+        text-align: center;
+    }
 
     .largeLogo{
         margin: 10% 35%;

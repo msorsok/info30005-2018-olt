@@ -2,62 +2,62 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Coming Soon</title>
+    <title>One Last Time - Account</title>
     <link href = "css/page_template.css" rel = "stylesheet" type = "text/css">
     <link href = "css/account.css" rel = "stylesheet" type = "text/css">
 
 </head>
 <%- include("page_template_start");%>
 <link href = "css/account.css" rel = "stylesheet" type = "text/css">
-        <div class="title">
-            <h1>Account Details</h1>
+    <div class="title">
+        <h1>Account Details</h1>
+    </div>
+
+    <div class = "errors">
+        <% if (message) { %>
+        <%message.forEach(function(msg) {%>
+        <div class = "errorMessage">
+            <%= msg %>
         </div>
+        <% });} %>
+    </div>
 
-            <form id ="editNameForm" action="/account" method="post">
-                <div class="editNameTitle"><h2>Edit your name</h2></div>
-                <div class="firstNameTitle"><p>First Name</p></div>
-                    <input type="text" name ="firstName" id="firstName" placeholder="Enter your first name">
+    <form id ="editNameForm" action="/account" method="post">
+        <div class="editNameTitle"><h2>Edit your name</h2></div>
+        <div class="firstNameTitle"><p>First Name</p></div>
+        <input type="text" name ="firstName" id="firstName" placeholder="Enter your first name">
+        <div class="lastNameTitle"><p>Last Name</p></div>
+        <input type="text" name = "lastName" id="lastName" placeholder="Enter your last name">
+        <div class="dobTitle"><p>Date of Birth</p></div>
+        <input type="date" name="dateOfBirthF" id="DOB">
+        <input type="submit" id="nameSubmit" value="Change name">
+    </form>
 
-                    <div class="lastNameTitle"><p>Last Name</p></div>
-                    <input type="text" name = "lastName" id="lastName" placeholder="Enter your last name">
-
-                <div class="dobTitle"><p>Date of Birth</p></div>
-                    <input type="date" name="dateOfBirthF" id="DOB">
-                <br>
-                <input type="submit" id="nameSubmit" value="Change name">
-
-            </form>
-
-
-            <div class ="editProfilePicture">
-                <div class="profilePicTitle"><h2>Upload New Photo</h2></div>
-                <div class="currentPhoto">
-                    <img src="/profilepic" alt="User Profile Picture">
-                </div>
-                <form action="/account" method="post" id ="selectPhoto" encType="multipart/form-data">
-                    <input type="file" name="profilePic" placeholder="fileupload" id="profilePicture" accept=".png, .jpg, .jpeg">
-                    <br> <input type="submit" value="Change Picture" id="confirmPicture">
-                </form>
-            </div>
-
-            <div class="changeNomineesTitle"><h2>Change your nominees</h2></div>
-            <form id= "editNominationForm" action="/account" method="post">
-                <div class="firstNominee">
-                <div class="firstNomineeTitle"><p>First Nominee</p></div>
-                <input type="text" name="nominee1email" id="firstNominee" placeholder="Jim Smith">
-                </div>
-                <div class="secondNominee">
-                <div class="secondNomineeTitle"><p>Second Nominee</p></div>
-                <input type="text" name="nominee2email" id="secondNominee" placeholder="Jane Smith">
-                </div>
-                <br>
-                <input type="submit" value="Change Nominees" id="confirmChanges">
-            </form>
+    <div class ="editProfilePicture">
+        <div class="profilePicTitle"><h2>Upload New Photo</h2></div>
+        <div class="currentPhoto">
+                <img src="/profilepic" alt="User Profile Picture">
         </div>
+        <form action="/account" method="post" id ="selectPhoto" encType="multipart/form-data">
+            <input type="file" name="profilePic" placeholder="fileupload" id="profilePicture" accept=".png, .jpg, .jpeg">
+            <input type="submit" value="Change Photo" id="confirmPicture">
+        </form>
+    </div>
+    <div class="changeNomineesTitle"><h2>Change your nominees</h2></div>
+    <form id= "editNominationForm" action="/account" method="post">
+        <div class="firstNominee">
+            <div class="firstNomineeTitle"><p>First Nominee</p></div>
+            <input type="text" name="nominee1email" id="firstNominee" placeholder="jim.smith@example.com">
+        </div>
+        <div class="secondNominee">
+            <div class="secondNomineeTitle"><p>Second Nominee</p></div>
+            <input type="text" name="nominee2email" id="secondNominee" placeholder="jane.smith@example.com">
+        </div>
+        <input type="submit" value="Change Nominees" id="confirmNomination">
+    </form>
+</div>
 
 <%- include("page_template_end");%>
-    </div>
-</div>
 <script src = "js/page_template.js"></script>
 <script src = "js/account.js"></script>
 </body>

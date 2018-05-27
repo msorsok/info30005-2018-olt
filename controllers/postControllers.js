@@ -13,6 +13,9 @@ var nodemailer = require("nodemailer");
 const createCapsule = function(req, res) {
     if (req.body.recipient0) {
         var recipientList = [];
+        //check recipient0 here
+        //req.flash("error_msg", "A recipient you listed does not have a valid email");
+        //return res.redirect("/create");
         recipientList.push(req.body.recipient0);
         var recipientCount = 1;
         while (true){
@@ -27,7 +30,8 @@ const createCapsule = function(req, res) {
             "dateCreated": Date.now(),
             "released": false,
             "senderFirstName": req.user.firstName,
-            "senderLastName" : req.user.lastName
+            "senderLastName" : req.user.lastName,
+            "recipients":recipientList
         });
 
         if (req.body.note){
@@ -159,11 +163,7 @@ const releaseCapsule = function(req, res) {
 };
 const updateAccount = function(req, res) {
     //sending email to non-user
-    console.log(req.user.nominee1email);
-    console.log(req.body.nominee1email);
-    console.log(req.user.nominee1email != req.body.nominee1email);
-    console.log(req.user.nominee2email);
-    console.log(req.user.firstName);
+
 
     if((req.user.nominee1email != req.body.nominee1email) && (req.body.nominee1email)){
         var transporter = nodemailer.createTransport({
@@ -216,8 +216,7 @@ const updateAccount = function(req, res) {
             from: req.user.firstName,
             to: req.body.nominee2email, // list of receivers
             subject: 'One Last Time nominee for'+req.user.firstName, // Subject line
-            text: req.user.firstName+' has made you their security nominee', // plain text body
-            html: '<b>ADD STANDARD TEXT</b>' // html body
+            html: req.user.firstName+' has made you their security nominee! Please create an account using this email address, so that you can release their capsule when they pass away.'
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {

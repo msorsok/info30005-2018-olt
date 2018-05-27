@@ -322,17 +322,16 @@ const updateAccount = function(req, res) {
     if (req.body.nominee1email) {
         newData.nominee1email = req.body.nominee1email;
         user.findOne({username: req.body.nominee1email}, function(err, foundUser) {
-            if (err) {
-                console.log("couldnt find user");
-                return next(err);
+            if (!err) {
+                console.log("creating dependent");
+                foundUser.dependents.push(req.user.username);
+                foundUser.save(function(err2,event) {
+                    if (err2) {
+                        return next(err2);
+                    }
+                });
             }
-            console.log("creating dependent");
-            foundUser.dependents.push(req.user.username);
-            foundUser.save(function(err,event) {
-                if (err) {
-                    return next(err);
-                }
-            });
+
         });
 
     }
@@ -340,17 +339,16 @@ const updateAccount = function(req, res) {
     if (req.body.nominee2email) {
         newData.nominee2email = req.body.nominee2email;
         user.findOne({username: req.body.nominee2email}, function(err, foundUser) {
-            if (err) {
-                console.log("couldnt find user");
-                return next(err);
+            if (!err) {
+                console.log("creating dependent");
+                foundUser.dependents.push(req.user.username);
+                foundUser.save(function(err2,event) {
+                    if (err2) {
+                        return next(err2);
+                    }
+                });
             }
-            console.log("creating dependent");
-            foundUser.dependents.push(req.user.username);
-            foundUser.save(function(err,event) {
-                if (err) {
-                    return next(err);
-                }
-            });
+
         });
     }
 

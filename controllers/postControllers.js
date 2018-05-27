@@ -450,6 +450,15 @@ const registerUser = function (req, res) {
                 res.redirect('/login');
             }
             else {
+                //check nominees
+                var newdependents = [];
+                user.find({nominee1email:username}, function(err,foundDependents) {
+                   if(foundDependents) {
+                       for(var i=0; i< foundDependents.length; i++) {
+                           newdependents.push(foundDependents[i].username);
+                       }
+                   }
+                });
                 var newUser = new user({
                     firstName: firstName,
                     lastName: lastName,
@@ -463,7 +472,7 @@ const registerUser = function (req, res) {
                     capsulesSent: [],
                     confirm1: false,
                     confirm2: false,
-                    dependents: []
+                    dependents: newdependents
                 });
                 user.createUser(newUser, function (err, account) {
                     if (err){

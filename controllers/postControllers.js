@@ -108,17 +108,20 @@ const releaseCapsule = function(req, res) {
     if (req.body.deceased && req.body.datePassing) {
         //req.body.deceased is of the form <firstName>,<userName>
         //split the string by the ,
-        var username = req.body.deceased.split(",")[1];
+        var username = req.body.deceased;
         //find recently deceased user by username
         user.findOne({username: username}, function (err, recentlyDeceased) {
             if (err) {
                 return next(err);
             }
             // mark confirm1 as true if user is the first nominee of the deceased user
+
             if (recentlyDeceased.nominee1email == req.user.username) {
+
                 recentlyDeceased.confirm1 = true;
             }
             else if (recentlyDeceased.nominee2email == req.user.username) {
+
                 recentlyDeceased.confirm2 = true;
             }
             /* =================
@@ -134,6 +137,7 @@ const releaseCapsule = function(req, res) {
                         //push the capsule object to the array of receivedCapsules for the recipient
                        user.findOne({username: recipient}, function(err, capsuleRecipient) {
                            if(err) {
+                               console.log('case1');
                                //email is sent to non-users
                                var transporter = nodemailer.createTransport({
                                    service: 'gmail',
@@ -163,7 +167,9 @@ const releaseCapsule = function(req, res) {
 
 
                                });
+                               return next(err);
                            }
+                           console.log('case2');
                            var transporter = nodemailer.createTransport({
                                service: 'gmail',
                                secure:false,

@@ -29,7 +29,7 @@
         box-sizing: border-box;
         background-color: #f1f0ff;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto auto auto auto;
+        grid-template-rows: repeat(5, fit-content(100%));
         grid-template-areas:
                 "title title"
                 "error error"
@@ -37,6 +37,7 @@
                 "changeNomineeTitle changeNomineeTitle"
                 "nomineeDetails nomineeDetails";
         justify-items: center;
+        width: 100%;
     }
 
     .title{
@@ -44,22 +45,20 @@
         text-align: center;
         font-size: 150%;
         font-family: "Charlevoix Pro";
+        width: 100%;
+
     }
 
     .errors {
         grid-area: error;
+        width: 100%;
+
     }
 
     .errorMessage{
         color: black;
         text-align: center;
         font-family: "Charlevoix Pro";
-
-
-    }
-    p{
-        margin-top: 0.5em;
-        margin-bottom: 0.5em;
     }
 
     h1{
@@ -76,6 +75,12 @@
             ". currentPhoto ." ". pictureForm .";
         justify-items: center;
         box-sizing: border-box;
+        width: 100%;
+
+    }
+    .content p{
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
     }
 
     .profilePicTitle{
@@ -283,21 +288,37 @@
         display: grid;
         font-family: "Unna";
         grid-area: content;
-        box-sizing: border-box;
-        padding: 0 1em;
         background-color: #f1f0ff;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, fit-content(100%));
         grid-template-areas:
-                "title title"
-                "pictureDetails pictureDetails"
-                "nameDetails nameDetails"
-                "changeNomineeTitle changeNomineeTitle"
-                "nomineeDetails nomineeDetails";
+                "title"
+                "error"
+                "pictureDetails"
+                "nameDetails"
+                "changeNomineeTitle"
+                "nomineeDetails";
+        justify-items: left;
+        padding-bottom: 1em;
+        width: 100%;
     }
 
     .title{
         grid-area: title;
+        padding-left: 3em;
         text-align: center;
         font-size: 150%;
+        font-family: "Charlevoix Pro";
+    }
+
+    .errors {
+        grid-area: error;
+    }
+
+    .errorMessage{
+        color: black;
+        text-align: center;
+        font-family: "Charlevoix Pro";
     }
 
     h1{
@@ -306,68 +327,61 @@
         width: 100%;
     }
 
-    .description {
+    .editProfilePicture {
+        justify-self: left;
+        grid-area: pictureDetails;
+        display: grid;
+        grid-template-rows: auto auto auto auto;
+        grid-template-columns: 0.1fr 1fr 0.1fr;
+        grid-template-areas: ". uploadPhotoTitle ."
+        ". currentPhoto ." ". pictureForm .";
+        justify-items: left;
+        box-sizing: border-box;
+        font-size: 80%;
+        width: 30%;
     }
-    .description p {
-        padding: 0 1em;
+    .content p{
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+    }
+
+    .profilePicTitle{
+        grid-area: uploadPhotoTitle;
+        font-family: "Charlevoix Pro";
+        font-size: 100%;
+    }
+    .currentPhoto{
+        grid-area: currentPhoto;
     }
 
     .currentPhoto img {
-        justify-self: center;
-        height: 45%;
-        width: 45%;
+        max-width: 50%;
+        width: auto;
+        height: auto;
     }
 
-    #editNameForm {
-        justify-self: center;
-        grid-area: nameDetails;
-    }
-
-    .editProfilePicture {
-        justify-self: right;
-        grid-area: pictureDetails;
-    }
-
-    .editProfilePicture input[type=submit] {
-        justify-self: right;
-    }
-    .changeNomineesTitle {
-        grid-area: changeNomineeTitle;
-        text-align: center;
-    }
-
-    #editNominationForm {
+    #selectPhoto{
+        grid-area: pictureForm;
         display: grid;
-        grid-template-areas: "firstNom firstNom" "secondNom secondNom" "submit submit";
-        grid-area: nomineeDetails;
-        justify-self: center;
-        padding: 1em 2em 1em 2em;
+        grid-template-rows: auto auto auto auto;
+        grid-template-columns: 1fr;
+        grid-template-areas: "inputPicture" "confirmPicture";
+        justify-items: center;
+
     }
 
-    .firstNominee {
-        justify-self: center;
-        grid-area: firstNom;
+    #profilePicture{
+        grid-area: inputPicture;
+        padding: 1em 0em;
+        margin-left: 25%;
+
     }
-    .secondNominee {
-        justify-self: center;
-        grid-area: secondNom;
-    }
-    #editNominationForm input {
-        display: inline;
-    }
-    .firstNameTitle, .lastNameTitle, .dobTitle, .firstNomineeTitle,.secondNomineeTitle,.changeNomineesTitle {
-        justify-self: center;
-        font-size: 150%;
-    }
-    .editNameTitle, .profilePicTitle, .changeNomineesTitle {
-        justify-self: center;
-        font-family: "Charlevoix Pro";
-        font-size: 150%;
-    }
-    input[type=submit] {
-        padding: 1em 0.5em;
+
+    #confirmPicture{
+        grid-area: confirmPicture;
+        padding: 1em 1.5em;
         box-sizing: border-box;
-        background-color: #957ead;
+        background-color: #56327d;
         border-style: none;
         color: #fff;
         font-family: "Charlevoix Pro";
@@ -377,21 +391,38 @@
         margin-bottom: 1em;
     }
 
-    #editNominationForm input[type=submit] {
-        justify-self: center;
-        grid-area: submit;
-        width: 45%;
+    #editNameForm {
+        grid-area: nameDetails;
+        display: grid;
+        grid-template-columns: 2em 1fr 2em;
+        grid-template-areas:
+                ". editNameTitle ."
+                ". firstNameTitle ."
+                ". firstName ."
+                ". lastNameTitle ."
+                ". lastName ."
+                ". dobTitle ."
+                ". dateOfBirthF ."
+                ". nameSubmit .";
+        justify-items: center;
+        box-sizing: border-box;
     }
 
-    .editProfilePicture input[type=submit] {
-        justify-self: center;
-        width: 45%;
-    }
-    #editNameForm input[type=submit] {
-        width: 45%;
+    .editNameTitle{
+        grid-area: editNameTitle;
+        font-family: "Charlevoix Pro";
+        font-size: 150%;
     }
 
-    #editNameForm input[type=text]{
+    .firstNameTitle{
+        grid-area: firstNameTitle;
+        justify-self: left;
+        font-size: 150%;
+    }
+
+    #firstName{
+        grid-area: firstName;
+        justify-self: left;
         padding: 1.1em 8em 1.1em 1em;
         box-sizing: border-box;
         background-color: #957ead;
@@ -399,8 +430,88 @@
         font-size: 100%;
         color: #fff;
         font-family: "Charlevoix Pro";
-        width: 100%;
     }
+
+    .lastNameTitle{
+        grid-area: lastNameTitle;
+        justify-self: left;
+        font-size: 150%;
+    }
+
+    #lastName{
+        grid-area: lastName;
+        justify-self: left;
+        padding: 1.1em 8em 1.1em 1em;
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        font-size: 100%;
+        color: #fff;
+        font-family: "Charlevoix Pro";
+    }
+
+    .dobTitle{
+        grid-area: dobTitle;
+        justify-self: left;
+        font-size: 150%;
+    }
+
+    #DOB{
+        grid-area: dateOfBirthF;
+        justify-self: left;
+        padding: 1em;
+        box-sizing: border-box;
+        background-color: #957ead;
+        border-style: none;
+        color: #fff;
+        font-family: "Charlevoix Pro";
+        font-size: 100%;
+        width: 100%;
+
+    }
+
+    #nameSubmit{
+        grid-area: nameSubmit;
+        padding: 1em 1.5em;
+        box-sizing: border-box;
+        background-color: #56327d;
+        border-style: none;
+        color: #fff;
+        font-family: "Charlevoix Pro";
+        font-size: 100%;
+        text-align: center;
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+
+
+    .changeNomineesTitle {
+        grid-area: changeNomineeTitle;
+        text-align: center;
+        font-family: "Charlevoix Pro";
+        font-size: 150%;
+    }
+
+    #editNominationForm {
+        display: grid;
+        grid-template-areas: "firstNom" "secondNom" "confirmNomination";
+        grid-area: nomineeDetails;
+        grid-column-gap: 2em;
+    }
+
+    .firstNominee {
+        justify-self: left;
+        grid-area: firstNom;
+    }
+    .secondNominee {
+        justify-self: left;
+        grid-area: secondNom;
+    }
+    .firstNomineeTitle,.secondNomineeTitle{
+        justify-self: center;
+        font-size: 150%;
+    }
+
 
     #editNominationForm input[type=text]{
         padding: 1.1em 8em 1.1em 1em;
@@ -410,24 +521,21 @@
         font-size: 100%;
         color: #fff;
         font-family: "Charlevoix Pro";
-        width: 100%;
     }
 
-
-    input[type=date] {
-        text-align: center;
-        padding: 1em;
+    #confirmNomination{
+        justify-self: center;
+        grid-area: confirmNomination;
+        padding: 1em 1.5em;
         box-sizing: border-box;
-        background-color: #957ead;
+        background-color: #56327d;
         border-style: none;
         color: #fff;
         font-family: "Charlevoix Pro";
         font-size: 100%;
-        width: 100%;
-    }
-
-    input[type=file] {
-        font-size: 100%;
+        text-align: center;
+        margin-top: 2em;
+        margin-bottom: 2em;
     }
 
 

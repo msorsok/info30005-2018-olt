@@ -230,10 +230,11 @@ const releaseCapsule = function(req, res) {
                     return next(err);
                 }
                 console.log("recently deceased changes have been saved");
+
+                res.redirect("/");
             });
         });
     }
-    res.redirect("/");
 
 };
 const updateAccount = function(req, res) {

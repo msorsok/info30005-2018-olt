@@ -27,7 +27,7 @@ const createCapsule = function(req, res) {
             if (!req.body[name]){
                 break
             }
-            if(req.checkBody(req.body[name], 'Email is not valid').isEmail()){
+            if(!req.checkBody(req.body[name], 'Email is not valid').isEmail()){
                 req.flash("error_msg", "A recipient you listed does not have a valid email");
                 return res.redirect("/create");
             }

@@ -25,7 +25,7 @@ function mouseOut(el) {
 function mouseClick(link) {
     switch(link){
         case "homeNav":
-            link = "userInbox";
+            link = "";
             break;
         case "accountNav":
             link = "account";

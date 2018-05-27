@@ -19,6 +19,15 @@ const loginRoute = function(req, res) {
 };
 
 const accountRoute = function(req, res) {
+    var errorMessages = [];
+    if (res.locals.success_msg){
+        errorMessages.push(res.locals.success_msg);
+    }
+    if(res.locals.error_msg){
+        errorMessages.push(res.locals.error_msg);
+    }
+    console.log(errorMessages);
+    req.user.message = errorMessages;
     res.render('account', req.user);
 };
 
@@ -63,14 +72,21 @@ const logoutRoute = function (req, res) {
 };
 
 const profilePicRoute = function (req, res) {
+    console.log("profile pic route");
+    console.log(req.user.profilePic);
     if (req.user.profilePic){
-        res.contentType(req.user.profilePic.contentType);
-        res.send(req.user.profilePic.data);
+        image.findOne({_id: req.user.profilePic}, function(err, photo){
+            if (err) {
+                console.log("no profile pic found");
+            }
+            else{
+                res.contentType(photo.contentType);
+                return res.send(photo.data);
+            }
+        });
     }
-    else{
-        res.contentType("image/jpeg");
-        res.send(fs.readFileSync("/res/user.jpg"));
-    }
+    res.contentType("image/png");
+    return res.send(fs.readFileSync("/res/user.png"));
 };
 
 const viewCapsuleSentRoute = function (req, res) {
@@ -78,14 +94,12 @@ const viewCapsuleSentRoute = function (req, res) {
         if(account){
             console.log("capsules sent");
             console.log(account.capsulesSent);
-            account.capsulesSent.forEach(function (capsule) {
-                console.log("capsule");
-                console.log(capsule);
-                if (capsule._id == req.params.id) {
-                    req.user.capsule = capsule;
+            for(var i=0; i<account.capsulesSent.length;i++) {
+                if (account.capsulesSent[i]._id == req.params.id) {
+                    req.user.capsule = account.capsulesSent[i];
                     return res.render("preview_capsule", req.user);
                 }
-            });
+            }
         }
         else{
             console.log("user not found");
@@ -99,14 +113,15 @@ const viewCapsuleReceivedRoute = function (req, res) {
         if(account){
             console.log("capsules sent");
             console.log(account.capsulesReceived);
-            account.capsulesReceived.forEach(function (capsule) {
-                console.log("capsule");
-                console.log(capsule);
-                if (capsule._id == req.params.id) {
-                    req.user.capsule = capsule;
+            for(var i=0; i<account.capsulesReceived.length;i++) {
+                if (account.capsulesReceived[i]._id == req.params.id) {
+                    req.user.capsule = account.capsulesReceived[i];
+                    console.log("capsule");
+                    console.log(account.capsulesReceived[i]);
+                    console.log(req.params.id);
                     return res.render("view_capsule", req.user);
                 }
-            });
+            }
         }
         else{
             console.log("user not found");

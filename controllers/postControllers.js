@@ -363,11 +363,14 @@ const updateAccount = function(req, res) {
 
 
     if (req.files.profilePic) {
-        console.log("file has been sent");
+        console.log("profile pic received");
+        console.log(req.files.profilePic);
         var newImage  = new image ({
             data: fs.readFileSync(req.files.profilePic.file),
             contentType: req.files.profilePic.mimetype
         });
+        console.log("profile pic path:");
+        console.log(req.files.profilePic.file);
         newImage.save(function(err,event) {
             if (err) {
                 req.flash("error_msg", "Unable to update profile");
@@ -375,11 +378,12 @@ const updateAccount = function(req, res) {
             }
         });
         newData.profilePic = newImage._id;
-        del("uploads/" + req.files.profilePic.uuid + "/**");
+        console.log("newImage id:");
+        console.log(newImage._id);
+        del("uploads\\" + req.files.profilePic.uuid + "\\**");
     }
-    console.log(req.user);
     /*find the user with matching id and username and updates its attributes based on set*/
-    user.findOneAndUpdate({_id: req.user._id,username: req.user.username}, {$set: newData}, function(err, doc) {
+    user.findOneAndUpdate({_id: req.user._id}, {$set: newData}, function(err, doc) {
         if(err) {
             req.flash("error_msg", "Unable to update profile");
             return res.redirect("/account");

@@ -74,19 +74,24 @@ const logoutRoute = function (req, res) {
 const profilePicRoute = function (req, res) {
     console.log("profile pic route");
     console.log(req.user.profilePic);
-    if (req.user.profilePic){
+    if(!req.user.profilePic){
+        return res.sendFile("public/res/user.png");
+    }
+    else{
         image.findOne({_id: req.user.profilePic}, function(err, photo){
-            if (err) {
-                console.log("no profile pic found");
+            if (!photo) {
+                console.log("missing photo from db");
+                res.type("png");
+                return res.send(fs.readFileSync("public/res/user.png"));
             }
             else{
+                console.log("the photo");
+                console.log(photo);
                 res.contentType(photo.contentType);
                 return res.send(photo.data);
             }
         });
     }
-    res.contentType("image/png");
-    return res.send(fs.readFileSync("/res/user.png"));
 };
 
 const viewCapsuleSentRoute = function (req, res) {

@@ -40,18 +40,18 @@
         </div>
         <form action="/account" method="post" id ="selectPhoto" encType="multipart/form-data">
             <input type="file" name="profilePic" placeholder="fileupload" id="profilePicture" accept=".png, .jpg, .jpeg">
-            <input type="submit" value="Change Picture" id="confirmPicture">
+            <input type="submit" value="Change Photo" id="confirmPicture">
         </form>
     </div>
     <div class="changeNomineesTitle"><h2>Change your nominees</h2></div>
     <form id= "editNominationForm" action="/account" method="post">
         <div class="firstNominee">
             <div class="firstNomineeTitle"><p>First Nominee</p></div>
-            <input type="text" name="nominee1email" id="firstNominee" placeholder="Jim Smith">
+            <input type="text" name="nominee1email" id="firstNominee" placeholder="jim.smith@example.com">
         </div>
         <div class="secondNominee">
             <div class="secondNomineeTitle"><p>Second Nominee</p></div>
-            <input type="text" name="nominee2email" id="secondNominee" placeholder="Jane Smith">
+            <input type="text" name="nominee2email" id="secondNominee" placeholder="jane.smith@example.com">
         </div>
         <input type="submit" value="Change Nominees" id="confirmNomination">
     </form>

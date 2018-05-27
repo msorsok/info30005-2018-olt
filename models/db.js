@@ -7,7 +7,5 @@ mongoose.connect("mongodb://adminlasttime:iloveweb123@ds215370.mlab.com:15370/on
     }
 });
 
-require("./passing.js");
 require("./user.js");
 require("./capsule.js");
-require("./dependent.js");

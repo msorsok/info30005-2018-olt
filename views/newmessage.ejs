@@ -11,6 +11,14 @@
 <div class = "headTitle">
     <h1>Create a Time Capsule</h1>
 </div>
+<div class = "errors">
+    <% if (message) { %>
+    <%message.forEach(function(msg) {%>
+    <div class = "errorMessage">
+        <%= msg %>
+    </div>
+    <% });} %>
+</div>
     <form action="/create" method = "post" id="newCapsule" encType = "multipart/form-data">
         <div class="recipients">
             <h2>Recipients</h2>
@@ -35,14 +43,6 @@
 
         <div class="submitCapsule">
             <input type="submit" id="completeMessage" value="Create Time Capsule">
-        </div>
-        <div class = "errors">
-            <% if (message) { %>
-            <%message.forEach(function(msg) {%>
-            <div class = "errorMessage">
-                <%= msg %>
-            </div>
-            <% });} %>
         </div>
     </form>
 </div>

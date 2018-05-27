@@ -1,10 +1,8 @@
 var mongoose = require("mongoose");
-var passing = mongoose.model("passing");
 var user = mongoose.model("user");
 var capsule = mongoose.model("capsule");
 var image = mongoose.model("img");
 var video = mongoose.model("video");
-var dependent = mongoose.model("dependent");
 var fs = require('fs');
 var del = require("del");
 var nodemailer = require("nodemailer");
@@ -45,6 +43,10 @@ const createCapsule = function(req, res) {
 
         if (req.body.note){
             newCapsule.note = req.body.note;
+        }
+        else{
+            req.flash("error_msg", "Please leave a note");
+            return res.redirect("/create");
         }
         if (req.files.imageInput){
             var images = [];

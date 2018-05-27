@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var capsuleSchema = require("./capsule.js");
 var bcrypt   = require('bcrypt');
-var dependentSchema = require("./dependent.js");
+
 
 var userSchema =  mongoose.Schema(
     {

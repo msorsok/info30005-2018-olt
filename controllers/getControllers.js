@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var passing = mongoose.model("passing");
 var capsule = mongoose.model("capsule");
 var video = mongoose.model("video");
 var image = mongoose.model("img");
@@ -75,7 +74,8 @@ const profilePicRoute = function (req, res) {
     console.log("profile pic route");
     console.log(req.user.profilePic);
     if(!req.user.profilePic){
-        return res.sendFile("public/res/user.png");
+        res.type("png");
+        res.send(fs.readFileSync("public/res/user.png"));
     }
     else{
         image.findOne({_id: req.user.profilePic}, function(err, photo){

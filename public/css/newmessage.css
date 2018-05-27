@@ -39,12 +39,14 @@
         display: grid;
         grid-template-rows: auto auto auto auto auto;
         grid-template-columns: 1fr 1fr 1fr 1fr;
-        grid-template-areas: "recipients recipients recipients recipients"
-        "note note note note"
-        "images images images images"
-        "videos videos videos videos"
-        "submitCapsule submitCapsule submitCapsule submitCapsule"
-        "error error error error";
+        grid-template-areas:
+                "recipients recipients recipients recipients"
+                "error error error error"
+                "note note note note"
+                "images images images images"
+                "videos videos videos videos"
+                "submitCapsule submitCapsule submitCapsule submitCapsule"
+        ;
 
     }
 

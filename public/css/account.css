@@ -201,22 +201,23 @@
     }
 
     .currentPhoto img {
+        justify-self: center;
         height: 45%;
         width: 45%;
     }
 
     #editNameForm {
-        justify-self: right;
+        justify-self: center;
         grid-area: nameDetails;
     }
 
     .editProfilePicture {
-        justify-self: center;
+        justify-self: right;
         grid-area: pictureDetails;
     }
 
     .editProfilePicture input[type=submit] {
-        justify-self: center;
+        justify-self: right;
     }
     .changeNomineesTitle {
         grid-area: changeNomineeTitle;
@@ -247,6 +248,7 @@
         font-size: 150%;
     }
     .editNameTitle, .profilePicTitle, .changeNomineesTitle {
+        justify-self: center;
         font-family: "Charlevoix Pro";
         font-size: 150%;
     }

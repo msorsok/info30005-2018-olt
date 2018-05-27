@@ -117,11 +117,11 @@ const releaseCapsule = function(req, res) {
             // mark confirm1 as true if user is the first nominee of the deceased user
 
             if (recentlyDeceased.nominee1email == req.user.username) {
-
+                console.log("nominee1 confirmed");
                 recentlyDeceased.confirm1 = true;
             }
             else if (recentlyDeceased.nominee2email == req.user.username) {
-
+                console.log("nominee1 confirmed");
                 recentlyDeceased.confirm2 = true;
             }
             /* =================
@@ -229,9 +229,11 @@ const releaseCapsule = function(req, res) {
                 if (err) {
                     return next(err);
                 }
+                console.log("recently deceased changes have been saved");
             });
         });
     }
+    res.redirect("/");
 
 };
 const updateAccount = function(req, res) {

@@ -48,14 +48,14 @@
         grid-template-areas: "logo logo login login";
         color: #fff;
         align-items: center;
-        background-color: #56327d;
+        background-color: #443266;
     }
     .logo{
         grid-area: logo;
         display: grid;
         grid-template-columns: 1fr 1em 0.4fr 1.2fr 3.4fr;
         grid-template-rows: 3em;
-        grid-template-areas: ". . logoImage logoText .";
+        grid-template-areas: ". . logoImage logoText logoText";
         align-items: center;
         box-sizing: border-box;
     }
@@ -74,7 +74,7 @@
         display: grid;
         grid-template-columns: repeat(4, auto);
         grid-template-rows: 1fr;
-        grid-template-areas: "addEmail addPassword userLoginButton forgotPassword";
+        grid-template-areas: "addEmail addPassword userLoginButton";
         align-items: center;
 
     }
@@ -145,7 +145,7 @@
         padding: 0 10% 0 0;
         font-size: 130%;
         grid-area: description;
-        color: #56327d;
+        color: #443266;
     }
 
     .descriptionText{
@@ -166,7 +166,7 @@
 
     #signupForm input[type = submit]{
         box-sizing: border-box;
-        background-color: #56327d;
+        background-color: #443266;
         border-style: none;
         color: #fff;
         font-size: 120%;
@@ -226,73 +226,92 @@
 
 }
 @media screen and (max-width: 992px) {
-    body{
+    html{
         margin: 0;
-        background-color: #f1f1f1;
+        height: 100%;
+
     }
-    h1{
-        font-size: 300%;
+    body {
+        margin: 0;
+        height: 100%;
+
     }
     .page {
         position: relative;
         display: grid;
         grid-template-columns: 1fr 5fr 4.1fr 1fr;
         grid-template-rows: 3em auto auto;
-        grid-template-areas: "header header header header"
-        ". description description ."
-        ". signup signup .";
+        grid-template-areas:
+                "header header header header"
+                "header header header header"
+                ". signup signup .";
         grid-row-gap: 2em;
         height: 100%;
         font-family: "Charlevoix Pro";
+        box-sizing: border-box;
+
     }
     .header{
         grid-area: header;
         display: grid;
-        grid-template-columns: 5fr 2em 6.1fr 2em;
+        grid-template-columns: 1fr;
         grid-template-rows: 3em;
-        grid-template-areas: "login login login login";
-        color: #fff;
+        grid-template-areas: "logo"
+        "login";
         align-items: center;
-        background-color: #56327d;
     }
     .logo{
-        display: none;
         grid-area: logo;
         display: grid;
-        grid-template-columns: 1fr 1em 0.4fr 1.2fr 3.4fr;
+        grid-template-columns: 0.9fr 1fr 1fr;
         grid-template-rows: 3em;
-        grid-template-areas: ". . logoImage logoText .";
+        grid-template-areas: "logoImage logoText .";
         align-items: center;
-        box-sizing: border-box;
+        background-color: #443266;
+        color: #fff;
     }
     .logoImage{
+        justify-self: right;
         grid-area: logoImage;
         cursor: pointer;
 
     }
     .logoText{
+        justify-self: left;
+        padding-left: 1em;
         grid-area: logoText;
         cursor: pointer;
+    }
+    .loginFormContainer{
+        display: inline-block;
+        box-sizing: border-box;
+        position: relative;
     }
 
     #loginForm{
         grid-area: login;
         display: grid;
-        grid-template-columns: repeat(4, auto);
-        grid-template-rows: 3em;
-        grid-template-areas: "addEmail addPassword userLoginButton forgotPassword";
-        align-items: center;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows:  repeat(3, auto);
+        grid-template-areas: "addEmail addPassword" "userLoginButton userLoginButton";
+        grid-row-gap: 0.5em;
+        justify-items: center;
 
     }
     #loginForm p{
-        display: inline-block;
         padding-right: 0.5em;
         margin: 0;
     }
     .addEmail{
+        padding: 1em 0;
+        box-sizing: border-box;
+        display: inline-block;
         grid-area: addEmail;
     }
     .addPassword{
+        padding: 1em 0;
+        box-sizing: border-box;
+        display: inline-block;
         grid-area: addPassword;
     }
 
@@ -307,24 +326,20 @@
 
     #loginForm input{
         box-sizing: border-box;
-        padding: 0.4em 1em;
+        padding: 0.4em 0em;
         cursor: pointer;
+        display: inline-block;
     }
 
     #loginForm input[type = submit]{
         box-sizing: border-box;
-        background-color: #957ead;
+        background-color: #56327d;
         border-style: none;
         color: #fff;
         font-size: 100%;
         padding: 0.4em 1em;
         cursor: pointer;
     }
-
-
-
-    /* Header ends here */
-
 
     #signupForm{
         background-color: #957ead;
@@ -340,10 +355,11 @@
     }
 
     .description{
+        display: none;
         padding: 0 10% 0 0;
         font-size: 130%;
-        grid-area: description;
-        color: #56327d;
+        //grid-area: description;
+        color: #443266;
     }
 
     .descriptionText{
@@ -364,7 +380,7 @@
 
     #signupForm input[type = submit]{
         box-sizing: border-box;
-        background-color: #56327d;
+        background-color: #443266;
         border-style: none;
         color: #fff;
         font-size: 120%;
@@ -374,7 +390,8 @@
     }
     .SignupTEXT{
         grid-area: SignupTEXT;
-        font-size: 3em;
+        font-size: 1.5em;
+        text-align: center;
     }
     .firstName{
         grid-area: firstName;

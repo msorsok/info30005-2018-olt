@@ -28,7 +28,6 @@
     }
     body {
         margin: 0;
-    //background-color: #f1f1f1;
         height: 100%;
     }
 
@@ -65,7 +64,7 @@
         display: grid;
         grid-template-columns: 1fr 1em 0.4fr 1.2fr 5.4fr;
         grid-template-rows: 3em;
-        grid-template-areas: ". . logoImage logoText .";
+        grid-template-areas: ". . logoImage logoText logoText";
         align-items: center;
     }
 
@@ -213,7 +212,7 @@
         display: grid;
         grid-template-columns: 1fr 1em 0.4fr 1.2fr 5.4fr;
         grid-template-rows: 3em;
-        grid-template-areas: ". . logoImage logoText .";
+        grid-template-areas: ". . logoImage logoText logoText";
         align-items: center;
     }
 
@@ -224,6 +223,7 @@
     }
 
     .logoText{
+        padding-left: 1em;
         grid-area: logoText;
         cursor: pointer;
     }

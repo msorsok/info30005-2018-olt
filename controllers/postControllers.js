@@ -332,7 +332,7 @@ const updateAccount = function(req, res) {
     if (req.body.nominee1email) {
         newData.nominee1email = req.body.nominee1email;
         user.findOne({username: req.body.nominee1email}, function(err, foundUser) {
-            if (err) {
+            if (err && !foundUser) {
                 console.log("couldnt find user");
                 req.flash("error_msg", "Unable to update profile");
                 return res.redirect("/account");
@@ -352,18 +352,19 @@ const updateAccount = function(req, res) {
     if (req.body.nominee2email) {
         newData.nominee2email = req.body.nominee2email;
         user.findOne({username: req.body.nominee2email}, function(err, foundUser) {
-            if (!err && foundUser) {
-                console.log("creating dependent");
-                foundUser.dependents.push(req.user.username);
-                foundUser.save(function(err2,event) {
-                    if (err2) {
-                        return next(err2);
-                    }
-                });
+            if (err && !foundUser) {
+                console.log("couldnt find user");
+                req.flash("error_msg", "Unable to update profile");
+                return res.redirect("/account");
             }
-            else {
-                console.log("this user doesnt exist");
-            }
+            console.log("creating dependent");
+            foundUser.dependents.push(req.user.username);
+            foundUser.save(function(err,event) {
+                if (err) {
+                    req.flash("error_msg", "Unable to update profile");
+                    return res.redirect("/account");
+                }
+            });
         });
     }
 
